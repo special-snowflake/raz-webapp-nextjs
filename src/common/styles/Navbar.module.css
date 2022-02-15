@@ -1,0 +1,15 @@
+.wrapper-header {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.logo {
+  cursor: pointer;
+  width: max-content;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45.12px;
+  line-height: 52px;
+  color: #1a1a1a;
+}
