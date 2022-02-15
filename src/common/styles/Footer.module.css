@@ -75,4 +75,15 @@
   font-size: 16px;
   line-height: 18px;
   color: #b4b4b4;
+  margin: 10px 0;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 990px) {
+  .wrapper-icon {
+    margin-bottom: 30px;
+  }
+  .wrapper-icon-contact {
+    align-items: flex-start;
+  }
 }

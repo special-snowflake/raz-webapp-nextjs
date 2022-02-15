@@ -37,20 +37,20 @@ function Footer() {
             <li className={styles.li}>INSTAGRAM SHOP</li>
           </ul>
         </div>
-        <div className="col-lg-3">
+        <div className="col-lg-3 ">
           <p className={styles["title"]}>CONTACT US</p>
           <div className="row">
-            <div className="col-3 border">
+            <div className={`col-lg-3 ${styles["main-contact"]}`}>
               <div className={styles["wrapper-icon-contact"]}>
                 <i className={`bi bi-envelope ${styles["icon"]}`}></i>
                 <i className={`bi bi-telephone ${styles["icon"]}`}></i>
                 <i className={`bi bi-clock ${styles["icon"]} `}></i>
               </div>
             </div>
-            <div className="col-9 d-flex flex-column justify-content-between">
+            <div className="col-lg-9 col-sm-1 d-flex flex-column justify-content-between">
               <p className={styles["title-contact"]}>raz-garlic@email.com</p>
-              <p className="mt-3">+62 8121322210</p>
-              <p className="mt-2">
+              <p className={styles["title-contact"]}>+62 8121322210</p>
+              <p className={styles["title-contact"]}>
                 9:00am - 19:00pm <br />
                 Monday - Sunday
               </p>
