@@ -1,0 +1,87 @@
+.authWrapper {
+    padding: var(--padding);
+    margin: auto;
+}
+
+.authTtitle h1 {
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 4vw;
+    text-align: center;
+    color: var(--dark);
+}
+
+.authTtitle p {
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    text-align: center;
+    color: var(--dark);
+}
+
+.authWrapperSection {
+    padding: 2vw;
+    margin: auto;
+    width: 100%;
+}
+
+.authWrapperSection {
+    margin: 3vw;
+}
+
+.title {
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2vw;
+    text-align: left;
+    color: var(--dark);
+}
+
+.authWrapperSection button {
+    margin-top: 3vw;
+    margin-bottom: 4vw;
+    border: none;
+    border-radius: 0;
+    width: max(25%, 60px);
+    height: 50px;
+}
+
+
+/* .authWrapperSection label {
+    margin-right: 1vw;
+} */
+
+.formAuth {
+    padding: 1vh 0;
+}
+
+.formAuth input {
+    padding: 2vh;
+    border-radius: 0;
+}
+
+.formAuth input::placeholder {
+    font-size: 0.8vw;
+}
+
+.forgotPassword {
+    color: #D25B5B;
+    margin-left: 0;
+}
+
+.RegisChecker {
+    margin-top: 3vw;
+}
+
+.forgotPassword,
+.authWrapperSection label {
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    padding: 3px;
+    margin: auto 5px auto 2px;
+    font-size: 1vw;
+}
