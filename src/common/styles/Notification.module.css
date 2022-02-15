@@ -1,0 +1,58 @@
+.main {
+  padding: var(--padding-big);
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.notification-item {
+  position: relative;
+  padding: 2rem 3rem;
+  border: var(--border-gray);
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  background-color: var(--dark05);
+}
+
+.notification-dot {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  background-color: var(--red);
+  border-radius: 50%;
+  top: 2rem;
+  right: 3rem;
+}
+
+.notification-title {
+  font-size: 1.5rem;
+}
+
+.notification-title.unread {
+  font-weight: 700;
+}
+
+.pagination-buttons {
+  display: flex;
+  grid-gap: 0.5rem;
+}
+
+.button,
+.button.active:hover {
+  padding: 1rem;
+  border: var(--border-gray);
+  background-color: white;
+  color: var(--dark);
+}
+
+.button.active,
+.button:hover {
+  border: 1px solid var(--dark);
+  background-color: var(--dark);
+  color: white;
+}
