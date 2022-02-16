@@ -15,7 +15,7 @@ function Forgot(props) {
     <>
       <PageTitle
         title="Forgot Password"
-        subTitle="Forgot your password? don't worry, we got your back."
+        subTitle="Forgot your password? Don't worry, we got your back."
       />
       <main className={styles["main"]}>
         <form onSubmit={submitHandler} className={styles["form"]}>
