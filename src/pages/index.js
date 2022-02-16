@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "src/common/styles/Home.module.css";
+import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
 import PageTitle from "src/common/components/PageTitle";
 
@@ -14,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <Header /> */}
+      <Header />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
