@@ -1,0 +1,120 @@
+.navbar {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  padding: 15px;
+  background: #65a2e4;
+  box-shadow: 0 0 10px gray;
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+}
+.navbar .logo {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .toggler-navbar {
+  margin-right: 15px;
+}
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background: #4f5458;
+  text-align: left;
+  font-size: 20px;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transform-origin: left center;
+  transition: 0.5s;
+}
+
+.sidebar.open {
+  transform: rotate3d(0, 0, 1, 0deg);
+  z-index: 999;
+}
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background: #0000003f;
+}
+
+.sidebar li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+.hamburger-menu {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.hamburger-menu span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.hamburger-menu span:nth-child(1) {
+  top: 2.5px;
+}
+
+.hamburger-menu span:nth-child(2) {
+  top: 11px;
+}
+
+.hamburger-menu span:nth-child(3) {
+  top: 21px;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  top: 15px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  top: 14px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
