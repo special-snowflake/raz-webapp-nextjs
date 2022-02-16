@@ -2,8 +2,14 @@
 
 :root {
   --dark: #1a1a1a;
+  --gray: #c8c8c8;
+  --dark05: #0000000d;
+  --red: #d94141;
+  --border-gray: 1px solid var(--gray);
+  --border-dark: 1px solid var(--dark);
   --font-family: "Arimo", sans-serif;
   --padding: 4vw 6vw;
+  --padding-big: 5vw 10vw;
 }
 
 html,
@@ -13,6 +19,20 @@ body {
   overflow-x: hidden;
   font-family: var(--font-family) !important;
   color: var(--dark) !important;
+}
+
+h1 {
+  font-size: calc(1.5rem + 2vw) !important;
+  margin: 0 !important;
+}
+
+h2 {
+  font-size: calc(1.325rem + 1vw) !important;
+  margin: 0 !important;
+}
+
+p {
+  margin: 0 !important;
 }
 
 a {
