@@ -1,6 +1,7 @@
 import styles from "src/common/styles/Forgot.module.css";
 
 import PageTitle from "src/common/components/PageTitle";
+import Footer from "src/common/components/footer";
 
 function Forgot(props) {
   const submitHandler = (e) => {
@@ -27,6 +28,7 @@ function Forgot(props) {
           <button>Reset Password</button>
         </form>
       </main>
+      <Footer />
     </>
   );
 }
