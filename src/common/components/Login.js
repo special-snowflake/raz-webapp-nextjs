@@ -1,26 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import styles from "../../common/styles/Auth.module.css";
+import { loginAction } from "src/store/actions/auth";
+import { connect } from "react-redux";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Login() {
-  //   const [inputs, setInputs] = useState({
-  //     email: "",
-  //     password: "",
+function Login(props) {
+  const router = useRouter();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const body = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+    props.loginDispatch(body);
+  };
+  useEffect(() => {
+    if (props.auth.isFulfilled === true) {
+      toast.info("Login success", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      // router.push("/");
+      // console.log("/")
+    }
+    if(props.auth.isRejected) {
+      toast.error("Wrong email/password!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  });
+  // const notify = () => {
+  //   toast.info("Login success", {
+  //     position: "top",
   //   });
-  //   const [submitted, setSubmitted] = useState(false);
-  //   const { email, password } = inputs;
+  // };
 
-  //   function handleChange(e) {
-  //     const { name, value } = e.target;
-  //     setInputs((inputs) => ({ ...inputs, [name]: value }));
-  //   }
   return (
     <section className={styles.authWrapperSection}>
+      <ToastContainer />
       <p className={styles.title}>Login</p>
-      <form>
+      <form onSubmit={submitHandler}>
         <div className={`${styles.formAuth} form-group`}>
           <input
-            type="text"
+            type="email"
             name="email"
             placeholder="User name or email address *"
             // value={email}
@@ -54,13 +91,13 @@ export default function Login() {
             <input
               className="form-check-input"
               type="checkbox"
-              value=""
+              // value=""
               id="flexCheckChecked"
               // checked
             />
             <label className="form-check-label">Remember me</label>
           </div>
-          <Link href={'/'} passHref>
+          <Link href={"/"} passHref>
             <p className={styles.forgotPassword}>Foget your password</p>
           </Link>
         </div>
@@ -68,3 +105,33 @@ export default function Login() {
     </section>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginDispatch: (body) => {
+      dispatch(loginAction(body));
+      console.log("login body :" + body);
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+// /////handleer
+//   const [inputs, setInputs] = useState({
+//     email: "",
+//     password: "",
+//   });
+//   const [submitted, setSubmitted] = useState(false);
+//   const { email, password } = inputs;
+
+//   function handleChange(e) {
+//     const { name, value } = e.target;
+//     setInputs((inputs) => ({ ...inputs, [name]: value }));
+//   }

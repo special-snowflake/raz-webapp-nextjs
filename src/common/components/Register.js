@@ -1,25 +1,66 @@
 import React, { useState } from "react";
 import styles from "../../common/styles/Auth.module.css";
+import { useRouter } from 'next/router'
+import { registerAuth } from "src/modules/utils/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
-  //   const [inputs, setInputs] = useState({
-  //     email: "",
-  //     password: "",
-  //   });
-  //   const [submitted, setSubmitted] = useState(false);
-  //   const { email, password } = inputs;
+  const router = useRouter()
 
-  //   function handleChange(e) {
-  //     const { name, value } = e.target;
-  //     setInputs((inputs) => ({ ...inputs, [name]: value }));
-  //   }
+  const registerHandler = (event) => {
+    event.preventDefault();
+    const body = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+      roles: 1,
+      // checkebox: event.target.checkebox.value,
+    };
+    registerAuth(body)
+      .then((response) => {
+        const registerResponse = response.data.result;
+        console.log(registerResponse);
+        toast.info("Account Created Successfully, Please Login", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // setTimeout(() => {
+        //   router.push("/");
+        // }, 3000);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Register aborted!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
+  const notify = () => {
+    toast.info("Account Created Successfully, Please Login", {
+      position: "top",
+    });
+  };
+ 
   return (
     <section className={styles.authWrapperSection}>
+      <ToastContainer />
       <p className={styles.title}>Create Account</p>
-      <form>
+      <form onSubmit={registerHandler}>
         <div className={`${styles.formAuth} form-group`}>
           <input
-            type="text"
+            type="email"
             name="email"
             placeholder="User name or email address *"
             // value={email}
@@ -74,3 +115,15 @@ export default function Register() {
     </section>
   );
 }
+
+ //   const [inputs, setInputs] = useState({
+  //     email: "",
+  //     password: "",
+  //   });
+  //   const [submitted, setSubmitted] = useState(false);
+  //   const { email, password } = inputs;
+
+  //   function handleChange(e) {
+  //     const { name, value } = e.target;
+  //     setInputs((inputs) => ({ ...inputs, [name]: value }));
+  //   }

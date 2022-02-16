@@ -1,0 +1,159 @@
+.productMainWrapper {
+    padding: var( --padding);
+    height: 100%;
+}
+
+.productTitle {
+    font-weight: normal;
+    font-size: 1.5vw;
+    color: var(--dark);
+}
+
+.productPrice {
+    font-weight: bold;
+    font-size: 1.8vw;
+    color: var(--dark);
+}
+
+.productStock {
+    font-weight: 400;
+    font-size: 1vw;
+    color: var(--dark);
+}
+
+.productStock i {
+    font-weight: 400;
+    margin-right: 10px;
+    font-size: 1vw;
+    color: var(--dark);
+}
+
+.productRate {
+    font-weight: 400;
+    font-size: 0.8vw;
+    color: var(--dark);
+}
+
+.productDescription {
+    font-weight: normal;
+    font-size: 1vw;
+    color: #4D4D4D;
+    margin: 3vw auto;
+}
+
+.additional {
+    font-weight: 400;
+    margin-right: 10px;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    font-size: 0.9vw;
+    color: #262626;
+}
+
+.shippingOptions {
+    font-weight: normal;
+    font-size: 1vw;
+    color: #1A1A1A;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+
+.shippingOptions p {
+    padding-right: 3vw;
+}
+
+.shippingOptions i {
+    padding-right: 1vw;
+}
+
+.socialMediaIcon div {
+    margin: 0.5vw;
+    height: 35px;
+    width: 35px;
+    border-radius: 22px;
+    border: 0.5px solid black;
+    text-align: center;
+    padding: 0.2vw;
+}
+
+.socialMediaIcon i {
+    font-size: 1.3vw;
+}
+
+.productDetailNav {
+    padding: 1vw;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.productDetailNav p {
+    width: 17vw;
+    padding: 1vw;
+    cursor: pointer;
+}
+
+
+/* btn product */
+
+.counter {
+    border: 1px solid #4D4D4D;
+    height: 5.5vh;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.productDescButton {
+    font-weight: bold;
+    border-radius: 0;
+    margin: 0.5vw;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.2vw;
+}
+
+
+/*  */
+
+.productDescriptionSection {
+    font-weight: normal;
+    font-size: 1vw;
+    color: #4D4D4D;
+    margin: 3vw auto;
+    width: 40%;
+}
+
+.productDescriptionSectionP {
+    margin: 2vw auto;
+}
+
+
+/* coment review */
+
+.cardReviewComment {
+    border-bottom: 1px solid rgba(82, 82, 82, 0.377);
+    padding: 2vh;
+    margin: 2vw auto;
+}
+
+.userReviewImage {
+    margin: 1vw 2vw;
+}
+
+.commentTimeWrapper {
+    margin: auto;
+}
+
+.commentQuote {
+    font-size: 1vw;
+    color: var(--dark);
+}
+
+.commentTime {
+    font-size: 0.8vw;
+    color: #989898;
+}
+
+.replyBtn {
+    font-size: 0.8vw;
+    color: #2F2F2F;
+}
