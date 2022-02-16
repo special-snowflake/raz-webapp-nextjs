@@ -58,12 +58,12 @@ function SideBar(data) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-          }}
-        >
+          }}>
           <div className={styles["range-slider"]}>
             <p
-              className={styles["min-max"]}
-            >{`Min: $${filterMin} - Max: $${filterMax}`}</p>
+              className={
+                styles["min-max"]
+              }>{`Min: $${filterMin} - Max: $${filterMax}`}</p>
             <Range
               allowCross={false}
               min={0}
@@ -82,8 +82,7 @@ function SideBar(data) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-          }}
-        >
+          }}>
           <div className={styles["brand-item"]}>
             <input type="checkbox" id="ikewa" name="ikewa" />
             <label htmlFor="ikewa">IKEWA</label>
@@ -103,8 +102,7 @@ function SideBar(data) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-          }}
-        >
+          }}>
           <div className={styles["color-item-container"]}>
             <input type="checkbox" id={styles["blue"]} name="blue" />
           </div>
