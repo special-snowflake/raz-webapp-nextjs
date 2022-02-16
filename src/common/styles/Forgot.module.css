@@ -8,7 +8,7 @@
 }
 
 .form {
-  width: 50%;
+  width: 100%;
 }
 
 .email {
@@ -26,6 +26,7 @@
 
 .form button {
   padding: 1rem;
+  width: 100%;
   background-color: var(--dark);
   border: var(--border-dark);
   color: white;
@@ -35,4 +36,20 @@
   border: var(--border-dark);
   background-color: white;
   color: var(--dark);
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .form {
+    width: 50%;
+  }
+
+  .form button {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
 }
