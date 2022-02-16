@@ -13,10 +13,10 @@ function PageTitle({ title, subTitle }) {
         />
       </Head>
       <main className={styles["main"]}>
-        <header className={styles["header"]}>
+        <section className={styles["header"]}>
           <h1>{title}</h1>
           <p>{subTitle}</p>
-        </header>
+        </section>
       </main>
     </>
   );

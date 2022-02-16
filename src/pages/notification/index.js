@@ -1,6 +1,7 @@
 import styles from "src/common/styles/Notification.module.css";
 
 import PageTitle from "src/common/components/PageTitle";
+import Footer from "src/common/components/footer";
 
 function Notification(props) {
   return (
@@ -42,16 +43,19 @@ function Notification(props) {
             </p>
           </div>
         </div>
-        <div className={styles["pagination-buttons"]}>
-          <button className={`${styles["button"]} ${styles["active"]}`}>
+        <div className={styles["pagination"]}>
+          <button
+            className={`${styles["pagination-button"]} ${styles["active"]}`}
+          >
             01
           </button>
-          <button className={`${styles["button"]}`}>02</button>
-          <button className={`${styles["button"]}`}>03</button>
-          <button className={`${styles["button"]}`}>04</button>
-          <button className={`${styles["button"]}`}>05</button>
+          <button className={`${styles["pagination-button"]}`}>02</button>
+          <button className={`${styles["pagination-button"]}`}>03</button>
+          <button className={`${styles["pagination-button"]}`}>04</button>
+          <button className={`${styles["pagination-button"]}`}>05</button>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

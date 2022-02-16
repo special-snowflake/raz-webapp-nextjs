@@ -7,6 +7,7 @@
   --red: #d94141;
   --border-gray: 1px solid var(--gray);
   --border-dark: 1px solid var(--dark);
+  --border-transparent: 1px solid transparent;
   --font-family: "Arimo", sans-serif;
   --padding: 4vw 6vw;
   --padding-big: 5vw 10vw;

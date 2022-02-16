@@ -37,21 +37,24 @@
   font-weight: 700;
 }
 
-.pagination-buttons {
+.pagination {
   display: flex;
   grid-gap: 0.5rem;
 }
 
-.button,
-.button.active:hover {
+.pagination-button {
   padding: 1rem;
   border: var(--border-gray);
   background-color: white;
   color: var(--dark);
 }
 
-.button.active,
-.button:hover {
+.pagination-button.active:hover {
+  opacity: 0.7;
+}
+
+.pagination-button.active,
+.pagination-button:hover {
   border: 1px solid var(--dark);
   background-color: var(--dark);
   color: white;

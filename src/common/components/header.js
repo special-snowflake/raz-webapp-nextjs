@@ -1,47 +1,156 @@
-import styles from "src/common/styles/Navbar.module.css";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import styles from "src/common/styles/Header.module.css";
+import { useState } from "react";
 
 function Header() {
   const [login, setLogin] = useState(false);
   const [toggleAuth, setToggleAuth] = useState(false);
-  const [toggleMenu, setToggleMenu] = useState(false);
 
   const toggleAuthSwitch = () => {
     toggleAuth ? setToggleAuth(false) : setToggleAuth(true);
   };
 
-  const toggleMenuSwitch = () => {
-    toggleMenu ? setToggleMenu(false) : setToggleMenu(true);
-  };
-
   return (
-    <header className={styles["wrapper-header"]}>
-      <h1 className={styles["title-brand"]}>RAZ</h1>
-      <ul className={styles["wrapper-ul"]}>
-        <li className={styles["list-menu"]}>HOME</li>
-        <li className={styles["list-menu"]}>
-          PAGES <i className="bi bi-caret-down-fill"></i>
-          <ul className={styles["wrapper-submenu"]}>
-            <li className={styles["list-submenu"]}>asdasd</li>
-            <li className={styles["list-submenu"]}>asdasd</li>
-            <li className={styles["list-submenu"]}>asdasd</li>
-            <li className={styles["list-submenu"]}>asdasd</li>
-          </ul>
-        </li>
-        <li className={styles["list-menu"]}>
-          SHOP <i className="bi bi-caret-down-fill"></i>
-        </li>
-        <li className={styles["list-menu"]}>BLOG</li>
-      </ul>
-      <div className={styles["wrapper-icon"]}>
-        <i className={`bi bi-search ${styles.icon}`}></i>
-        <i className={`bi bi-heart ${styles.icon}`}></i>
-        <i className={`bi bi-cart ${styles.icon}`}></i>
-        <div className={styles["wrapper-btn-menu"]} onClick={toggleAuthSwitch}>
-          <span></span>
-          <span></span>
-          <span></span>
+    <header className={styles.header}>
+      <div className={styles["container"]}>
+        <input type="checkbox" id="check" className={styles.check} />
+        <div className={styles["logo-container"]}>
+          <h3 className={styles.logo}>
+            RAZ <span>Garlic</span>
+          </h3>
+        </div>
+
+        <div className={styles["nav-btn"]}>
+          <div className={styles["nav-links"]}>
+            <ul className={styles["wrapper-ul"]}>
+              <li className={styles["nav-link"]}>
+                <a href="#" className={styles["tag-a"]}>
+                  Home
+                </a>
+              </li>
+
+              <li className={styles["nav-link"]}>
+                <a href="#" className={styles["tag-a"]}>
+                  PAGES{" "}
+                  <i className={`bi bi-caret-down-fill ${styles.icon}`}></i>
+                </a>
+                <div className={styles.dropdown}>
+                  <ul className={styles["wrapper-ul"]}>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        About Us
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        Contact Us
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        Comming Soon <i className="bi bi-caret-down-fill"></i>
+                      </a>
+                      <div
+                        className={styles["dropdown"]}
+                        style={{
+                          position: "absolute",
+                          left: "95%",
+                          top: "0",
+                          paddingLeft: "0.3rem",
+                          cursor: "pointer",
+                          transform: "translateX(10px)"
+                        }}>
+                        <ul className={styles["wrapper-ul"]}>
+                          <li className={styles["dropdown-link"]}>
+                            <a href="#" className={styles["tag-a-menu"]}>
+                              Comming Soon 001
+                            </a>
+                          </li>
+                          <li className={styles["dropdown-link"]}>
+                            <a href="#" className={styles["tag-a-menu"]}>
+                              Comming Soon 002
+                            </a>
+                          </li>
+
+                          <div className={styles.arrow}></div>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        404 Page
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        FAQ Page
+                      </a>
+                    </li>
+                    <div className={styles.arrow}></div>
+                  </ul>
+                </div>
+              </li>
+
+              <li className={styles["nav-link"]}>
+                <a href="#" className={styles["tag-a"]}>
+                  SHOP <i className="bi bi-caret-down-fill"></i>
+                </a>
+                <div className={styles.dropdown}>
+                  <ul className={styles["wrapper-ul"]}>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        Order Page
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        Shopping Cart
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        Check Out
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        My Account
+                      </a>
+                    </li>
+                    <li className={styles["dropdown-link"]}>
+                      <a href="#" className={styles["tag-a-menu"]}>
+                        Order Tracking
+                      </a>
+                    </li>
+                    <div className={styles.arrow}></div>
+                  </ul>
+                </div>
+              </li>
+
+              <li className={styles["nav-link"]}>
+                <a href="#" className={styles["tag-a"]}>
+                  BLOG
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles["wrapper-icon"]}>
+            <i className={`bi bi-search ${styles.icon2}`}></i>
+            <i className={`bi bi-heart ${styles.icon2}`}></i>
+            <i className={`bi bi-cart ${styles.icon2}`}></i>
+            <div
+              className={styles["wrapper-btn-menu"]}
+              onClick={toggleAuthSwitch}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles["hamburger-menu-container"]}>
+          <div className={styles["hamburger-menu"]}>
+            <div className={styles.div}></div>
+          </div>
         </div>
       </div>
 
