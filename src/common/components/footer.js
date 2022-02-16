@@ -47,7 +47,7 @@ function Footer() {
                 <i className={`bi bi-clock ${styles["icon"]} `}></i>
               </div>
             </div>
-            <div className="col-lg-9 col-sm-1 d-flex flex-column justify-content-between">
+            <div className="col-lg-9 col-sm-1 d-flex flex-column justify-content-between mt-4">
               <p className={styles["title-contact"]}>raz-garlic@email.com</p>
               <p className={styles["title-contact"]}>+62 8121322210</p>
               <p className={styles["title-contact"]}>

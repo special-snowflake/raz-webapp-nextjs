@@ -1,0 +1,38 @@
+.main {
+  padding: var(--padding-big);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 1rem;
+}
+
+.form {
+  width: 50%;
+}
+
+.email {
+  border: var(--border-gray);
+  width: 100%;
+  height: 4rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.email:focus {
+  border: var(--border-dark);
+  outline: none;
+}
+
+.form button {
+  padding: 1rem;
+  background-color: var(--dark);
+  border: var(--border-dark);
+  color: white;
+}
+
+.form button:hover {
+  border: var(--border-dark);
+  background-color: white;
+  color: var(--dark);
+}
