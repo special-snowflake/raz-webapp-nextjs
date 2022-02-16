@@ -28,8 +28,6 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  /* identical to box height */
-
   color: #1a1a1a;
 }
 
@@ -60,6 +58,7 @@
 .wrapper-btn-menu {
   display: inline-block;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .wrapper-menu {
@@ -72,10 +71,24 @@
   padding: 10px;
   list-style: none;
   background-color: #1a1a1a;
-  /* display: none; */
+  display: none;
 }
 
-.wrapper-menu > li {
+.wrapper-menu-show {
+  width: 200px;
+  text-align: start;
+  position: absolute;
+  top: 310px;
+  right: 80px;
+  border: 1px solid black;
+  padding: 10px;
+  list-style: none;
+  background-color: #1a1a1a;
+  display: block;
+}
+
+.wrapper-menu > li,
+.wrapper-menu-show > li {
   padding-left: 30px;
   font-family: Arimo;
   font-style: normal;
@@ -86,6 +99,23 @@
   cursor: pointer;
 }
 
-.wrapper-menu > li:hover {
+.wrapper-menu > li:hover,
+.wrapper-menu-show > li:hover {
   color: #fff;
+}
+
+.wrapper-submenu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  top: 300px;
+}
+
+.wrapper-submenu-show {
+  display: block;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  top: 300px;
 }
