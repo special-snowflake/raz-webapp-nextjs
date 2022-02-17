@@ -147,7 +147,7 @@ function Product(props) {
           <div className={styles['product-list-sort']}>
             <div className={styles['count']}>
               {' '}
-              {listProduct !== null && showHeader()}
+              {meta !== null && showHeader()}
             </div>
             <div
               onMouseEnter={() => setButtonHovered(true)}
