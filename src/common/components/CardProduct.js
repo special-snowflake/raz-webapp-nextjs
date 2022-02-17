@@ -1,23 +1,37 @@
-import Image from "next/image";
+import Image from 'next/image';
+import {useEffect, useState} from 'react';
 
+import styles from 'src/common/styles/CardProduct.module.css';
 
-import styles from "src/common/styles/CardProduct.module.css";
+import defaultProduct from 'public/defaultProduct.jpg';
 
-function Card(data) {
+function Card(props) {
+  const [image, setImage] = useState(defaultProduct);
+
+  useEffect(() => {
+    if (props.image && props.image !== null) {
+      const URL = process.env.NEXT_PUBLIC_API_URL;
+      const imageBackend = URL + '/' + props.image;
+      setImage(imageBackend);
+    }
+  }, [props]);
   return (
-    <div className={styles["card-wrapper"]}>
-      <div className={styles["img-wrapper"]}>
+    <div className={styles['card-wrapper']}>
+      <div className={styles['img-wrapper']}>
         <Image
-          alt="product name"
-          src={"/couch.jpg"}
-          layout="fill"
-          objectFit="cover"
+          alt='product name'
+          src={image}
+          layout='fill'
+          objectFit='cover'
           priority={true}
+          onError={() => {
+            setImage(defaultProduct);
+          }}
         />
       </div>
-      <div className={styles["product-detail"]}>
-        <p className={styles["product-name"]}>Sofa & Marwa</p>
-        <p className={styles["product-price"]}>$99.8</p>
+      <div className={styles['product-detail']}>
+        <p className={styles['product-name']}>{props.name}</p>
+        <p className={styles['product-price']}>${props.price}</p>
       </div>
     </div>
   );

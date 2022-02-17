@@ -13,18 +13,21 @@ import {getBrands} from 'src/modules/utils/brand';
 import 'rc-slider/assets/index.css';
 import styles from 'src/common/styles/SideBar.module.css';
 
-function SideBar(data) {
-  const [filterMin, setFilterMin] = useState(0);
-  const [filterMax, setFilterMax] = useState(2000);
+function SideBar(props) {
+  const refRange = React.createRef();
+  const router = useRouter();
+  console.log('query router', router.query);
+  const [filterMin, setFilterMin] = useState(router.query.priceMin || 0);
+  const [filterMax, setFilterMax] = useState(router.query.priceMax || 20000);
 
   const [categoryQuantity, setCategoryQuantity] = useState(null);
   const [brands, setBrands] = useState(null);
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [checkedBrand, setCheckedBrand] = useState([]);
-  const [checkedColor, setCheckedColor] = useState([]);
-
-  const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState(
+    router.query.idCategory || null,
+  );
+  const [checkedBrand, setCheckedBrand] = useState(router.query.idBrand || []);
+  const [checkedColor, setCheckedColor] = useState(router.query.color || []);
 
   const getListCategoryQty = () => {
     const filter = '?sort=Quantity DESC';
@@ -54,6 +57,18 @@ function SideBar(data) {
       );
       elements.push(data);
     });
+    elements.push(
+      <React.Fragment key={`all`}>
+        <a
+          className={styles['category-item']}
+          onClick={() => {
+            setSelectedCategory('');
+          }}>
+          <p>All</p>
+          <p></p>
+        </a>
+      </React.Fragment>,
+    );
     return elements;
   };
 
@@ -91,7 +106,7 @@ function SideBar(data) {
               type='checkbox'
               id='band'
               name='brand'
-              value={element.brand}
+              value={element.id}
               onChange={onChangeBrand}
             />
             <label htmlFor='brand'>{element.brand}</label>
@@ -122,23 +137,24 @@ function SideBar(data) {
     const priceMin = filterMin;
     const priceMax = filterMax;
     let idCategory = '';
-    if (selectedCategory != null) {
+    if (selectedCategory !== null) {
       idCategory = selectedCategory;
     }
     let idBrand = [];
-    if (checkedBrand != null) {
+    if (checkedBrand !== null) {
       idBrand = checkedBrand;
     }
     let color = [];
-    if (checkedColor != null) {
+    if (checkedColor !== null) {
       color = checkedColor;
     }
     const search = router.query.search || '';
     const sort = router.query.sort || 'Latest';
+    const page = router.query.page || '1';
     Router.push({
       pathname: '/product',
       query: {
-        page: '1',
+        page,
         search,
         priceMin,
         priceMax,
@@ -148,6 +164,14 @@ function SideBar(data) {
         sort,
       },
     });
+    console.log(
+      filterMin,
+      filterMax,
+      checkedColor,
+      checkedBrand,
+      selectedCategory,
+    );
+    console.log('this is the problem');
   }, [filterMin, filterMax, checkedColor, checkedBrand, selectedCategory]);
 
   const log = (value) => {
@@ -181,12 +205,17 @@ function SideBar(data) {
             <Range
               allowCross={false}
               min={0}
-              max={10000}
-              defaultValue={[0, 2000]}
-              onChange={log}
+              max={1000}
+              ref={refRange}
+              defaultValue={[filterMin, filterMax]}
             />
           </div>
-          <button type='submit' className={`${styles['filter-button']}`}>
+          <button
+            type='submit'
+            className={`${styles['filter-button']}`}
+            onClick={() => {
+              log(refRange.current.state.bounds);
+            }}>
             Filter
           </button>
         </form>
