@@ -1,6 +1,5 @@
-
-function InvalidRoute() {
-  return <div>InvalidRoute</div>;
+function NotFound() {
+  return <h1>HALAMAN NotFound</h1>;
 }
 
-export default InvalidRoute;
+export default NotFound;

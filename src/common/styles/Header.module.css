@@ -28,6 +28,7 @@ body {
 } */
 
 .header {
+  /* border: 1px solid black; */
   position: fixed;
   background-color: #fff;
   top: 0;
