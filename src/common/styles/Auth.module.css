@@ -1,64 +1,64 @@
 .authWrapper {
-    padding: var(--padding);
-    margin: auto;
+  padding: var(--padding);
+  margin: auto;
 }
 
 .authWrapperSection {
-    padding: 2vw;
-    margin: auto;
-    width: 100%;
+  padding: 2vw;
+  margin: auto;
+  width: 100%;
 }
 
 .authWrapperSection {
-    margin: 3vw;
+  margin: 3vw;
 }
 
 .title {
-    font-family: Arimo;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2vw;
-    text-align: left;
-    color: var(--dark);
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2vw;
+  text-align: left;
+  color: var(--dark);
 }
 
 .authWrapperSection button {
-    margin-top: 3vw;
-    margin-bottom: 4vw;
-    border: none;
-    border-radius: 0;
-    width: max(25%, 60px);
-    height: 50px;
+  margin-top: 3vw;
+  margin-bottom: 4vw;
+  border: none;
+  border-radius: 0;
+  width: max(25%, 60px);
+  height: 50px;
 }
 
 .formAuth {
-    padding: 1vh 0;
+  padding: 1vh 0;
 }
 
 .formAuth input {
-    padding: 2vh;
-    border-radius: 0;
+  padding: 2vh;
+  border-radius: 0;
 }
 
 .formAuth input::placeholder {
-    font-size: 0.8vw;
+  font-size: 0.8vw;
 }
 
 .forgotPassword {
-    color: var(--red);
-    margin-left: 0;
+  color: var(--red);
+  margin-left: 0;
 }
 
 .RegisChecker {
-    margin-top: 3vw;
+  margin-top: 3vw;
 }
 
 .forgotPassword,
 .authWrapperSection label {
-    font-family: Arimo;
-    font-style: normal;
-    font-weight: normal;
-    padding: 3px;
-    margin: auto 5px auto 2px;
-    font-size: 1vw;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  padding: 3px;
+  margin: auto 5px auto 2px;
+  font-size: 1vw;
 }

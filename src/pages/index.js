@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "src/common/styles/Home.module.css";
 import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
