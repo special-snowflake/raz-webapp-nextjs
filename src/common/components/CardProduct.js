@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+
 import styles from "src/common/styles/CardProduct.module.css";
 
 function Card(data) {
@@ -11,6 +12,7 @@ function Card(data) {
           src={"/couch.jpg"}
           layout="fill"
           objectFit="cover"
+          priority={true}
         />
       </div>
       <div className={styles["product-detail"]}>
