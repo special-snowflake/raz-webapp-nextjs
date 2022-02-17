@@ -1,0 +1,5 @@
+.wrapper-radio {
+  display: flex;
+  width: 40%;
+  border: 1px solid black;
+}

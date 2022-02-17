@@ -4,6 +4,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding: var(--padding);
+  margin-top: 10rem;
 }
 
 .header {
