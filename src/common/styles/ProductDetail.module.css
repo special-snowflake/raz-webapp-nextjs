@@ -3,42 +3,64 @@
     height: 100%;
 }
 
+.galleryImageWrapper {
+    width: 85%;
+    height: max(30%, 10%);
+    margin: 0 auto;
+}
+
+.mainImg {
+    width: 100%;
+    height: max(50vh, 20%);
+    margin-top: 45px;
+}
+
+.imgProductContainer {
+    width: 75%;
+    height: max(30%, 10%);
+    margin: auto;
+}
+
 .productTitle {
     font-weight: normal;
-    font-size: 1.5vw;
+    font-size: max(1.3rem, 1.5vw);
     color: var(--dark);
 }
 
 .productPrice {
     font-weight: bold;
-    font-size: 1.8vw;
+    font-size: max(1.4rem, 1.8vw);
     color: var(--dark);
 }
 
 .productStock {
     font-weight: 400;
-    font-size: 1vw;
+    font-size: max(0.6rem, 1vw);
     color: var(--dark);
 }
 
 .productStock i {
     font-weight: 400;
     margin-right: 10px;
-    font-size: 1vw;
+    font-size: max(0.6rem, 1vw);
     color: var(--dark);
 }
 
 .productRate {
     font-weight: 400;
-    font-size: 0.8vw;
+    font-size: max(0.5rem, 0.8vw);
     color: var(--dark);
 }
 
 .productDescription {
     font-weight: normal;
-    font-size: 1vw;
+    font-size: max(0.9rem, 1vw);
     color: #4D4D4D;
     margin: 3vw auto;
+}
+
+.productDescriptionWrapper {
+    margin: 30px auto;
 }
 
 .additional {
@@ -46,13 +68,13 @@
     margin-right: 10px;
     margin-top: 2vw;
     margin-bottom: 2vw;
-    font-size: 0.9vw;
+    font-size: max(0.5rem, 0.8vw);
     color: #262626;
 }
 
 .shippingOptions {
     font-weight: normal;
-    font-size: 1vw;
+    font-size: max(0.7rem, 1vw);
     color: #1A1A1A;
     margin-top: 1vw;
     margin-bottom: 2vw;
@@ -77,16 +99,17 @@
 }
 
 .socialMediaIcon i {
-    font-size: 1.3vw;
+    font-size: max(1.3rem, 1.3vw);
+    /* font-size: 1.3vw; */
 }
 
 .productDetailNav {
     padding: 1vw;
-    text-align: center;
-    font-size: 1.5vw;
 }
 
 .productDetailNav p {
+    text-align: center;
+    font-size: max(0.5rem, 1vw);
     width: 17vw;
     padding: 1vw;
     cursor: pointer;
@@ -97,8 +120,8 @@
 
 .counter {
     border: 1px solid #4D4D4D;
-    height: 5.5vh;
-    font-size: 1vw;
+    height: max(6vh, 30px);
+    font-size: max(0.5rem, 1vw);
     font-weight: bold;
 }
 
@@ -106,9 +129,10 @@
     font-weight: bold;
     border-radius: 0;
     margin: 0.5vw;
+    height: 6vh;
     padding-left: 15px;
     padding-right: 15px;
-    font-size: 1.2vw;
+    font-size: max(0.6rem, 1.2vw);
 }
 
 
@@ -116,13 +140,19 @@
 
 .productDescriptionSection {
     font-weight: normal;
-    font-size: 1vw;
+    font-size: max(0.6rem, 1vw);
     color: #4D4D4D;
     margin: 3vw auto;
-    width: 40%;
+    width: 50%;
 }
 
-.productDescriptionSectionP {
+@media screen and (max-width: 520px) {
+    .productDescriptionSection {
+        width: 100%;
+    }
+}
+
+.productDescriptionSection P {
     margin: 2vw auto;
 }
 
@@ -144,16 +174,16 @@
 }
 
 .commentQuote {
-    font-size: 1vw;
+    font-size: max(0.6rem, 1vw);
     color: var(--dark);
 }
 
 .commentTime {
-    font-size: 0.8vw;
+    font-size: max(0.5rem, 0.8vw);
     color: #989898;
 }
 
 .replyBtn {
-    font-size: 0.8vw;
+    font-size: max(0.5rem, 0.8vw);
     color: #2F2F2F;
 }
