@@ -1,8 +1,9 @@
 import styles from "src/common/styles/Header.module.css";
 import { useState } from "react";
+import Link from "next/link";
 
 function Header() {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [toggleAuth, setToggleAuth] = useState(false);
 
   const toggleAuthSwitch = () => {
@@ -23,9 +24,9 @@ function Header() {
           <div className={styles["nav-links"]}>
             <ul className={styles["wrapper-ul"]}>
               <li className={styles["nav-link"]}>
-                <a href="#" className={styles["tag-a"]}>
-                  Home
-                </a>
+                <Link href="/" className={styles["tag-a"]}>
+                  <a className={styles["tag-a"]}>HOME</a>
+                </Link>
               </li>
 
               <li className={styles["nav-link"]}>
@@ -36,14 +37,14 @@ function Header() {
                 <div className={styles.dropdown}>
                   <ul className={styles["wrapper-ul"]}>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
-                        About Us
-                      </a>
+                      <Link href="about" passHref>
+                        <a className={styles["tag-a-menu"]}>About Us</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
-                        Contact Us
-                      </a>
+                      <Link href="/contact" passHref>
+                        <a className={styles["tag-a-menu"]}>Contact Us</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
                       <a href="#" className={styles["tag-a-menu"]}>
@@ -76,14 +77,14 @@ function Header() {
                       </div>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
-                        404 Page
-                      </a>
+                      <Link href="/404">
+                        <a className={styles["tag-a-menu"]}>404 Page</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
-                        FAQ Page
-                      </a>
+                      <Link href="/faq">
+                        <a className={styles["tag-a-menu"]}>FAQ Page</a>
+                      </Link>
                     </li>
                     <div className={styles.arrow}></div>
                   </ul>
@@ -127,9 +128,9 @@ function Header() {
               </li>
 
               <li className={styles["nav-link"]}>
-                <a href="#" className={styles["tag-a"]}>
-                  BLOG
-                </a>
+                <Link href="/blog" passHref>
+                  <a className={styles["tag-a"]}>BLOG</a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -161,7 +162,11 @@ function Header() {
           className={
             !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
           }>
-          <li>Login</li>
+          <li>
+            <Link href="/auth">
+              <a className={styles["tag-a-menu"]}>Login</a>
+            </Link>{" "}
+          </li>
           <li>Register</li>
           <li>Chat</li>
           <li>Notification</li>
@@ -175,7 +180,11 @@ function MenuLogin({ show }) {
   return (
     <ul
       className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
-      <li>Profile</li>
+      <li>
+        <Link href="/seller" passHref>
+          <a className={styles["tag-a-menu"]}>Profile</a>
+        </Link>
+      </li>
       <li>Chat</li>
       <li>Notification</li>
       <li>Logout</li>
