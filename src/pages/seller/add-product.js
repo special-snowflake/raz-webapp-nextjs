@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
+import {useSelector} from 'react-redux';
 
 import PageTitle from 'src/common/components/PageTitle';
 import Header from 'src/common/components/header';
@@ -14,6 +15,7 @@ import {getBrands} from 'src/modules/utils/brand';
 import styles from 'src/common/styles/SellerAddProduct.module.css';
 import {toast} from 'react-toastify';
 import addImage from 'src/assets/addMoreImage.png';
+import {addProduct} from 'src/modules/utils/product';
 
 function AddProduct() {
   const inputFileRef = React.createRef();
@@ -22,6 +24,8 @@ function AddProduct() {
   const [category, setCategory] = useState(null);
   const [brands, setBrands] = useState(null);
   const [categoryChecked, setCategoryChecked] = useState([]);
+
+  const user = useSelector((state) => state.auth.userData);
 
   const clickImage = () => {
     inputFileRef.current.click();
@@ -160,20 +164,22 @@ function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const body = new FormData();
     const name = e.target.name.value;
     const description = e.target.description.value;
     const productCondition = e.target.productCondition.value;
     const color = e.target.color.value;
     const brand = e.target.idBrand.value;
-    const category = categoryChecked;
+    const categories = categoryChecked;
+
     if (
       !name ||
       !description ||
       !productCondition ||
       !color ||
       !brand ||
-      category.length < 1 ||
+      categories.length < 1 ||
       selectedFiles.length < 1
     ) {
       return toast.warning('Please fill all the field');
@@ -186,11 +192,30 @@ function AddProduct() {
     body.append('productCondition', productCondition);
     body.append('color', color);
     body.append('idBrand', brand);
-    body.append('idCategory', categoryChecked);
+    let categoryArray = '[';
+    for (let i = 0; i < categories.length; i++) {
+      if (i === categories.length - 1) {
+        categoryArray += categories[i];
+      } else {
+        categoryArray += categories[i] + ',';
+      }
+    }
+    categoryArray += ']';
+    body.append('category', categoryArray);
     selectedImages.forEach((element) => {
       body.append('images', element, element.name);
     });
-    console.log(body);
+    console.log(categoryArray);
+    const {token} = user;
+    addProduct(body, token)
+      .then((res) => {
+        console.log(res.data);
+        toast.success('Success');
+      })
+      .catch((err) => {
+        toast.error('Failed');
+        console.log(err.response);
+      });
   };
   return (
     <>
