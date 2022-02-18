@@ -49,7 +49,3 @@ a {
   border-radius: 100%;
   cursor: pointer;
 }
-
-.photo-user:hover {
-  border-radius: 10%;
-}
