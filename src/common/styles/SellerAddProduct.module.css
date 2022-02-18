@@ -1,5 +1,159 @@
-.wrapper-radio {
+.container {
   display: flex;
-  width: 40%;
-  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
+  /* flex-direction: column; */
+  /* background-color: red; */
+}
+
+.wrapper-main {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.title {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  display: inline-block;
+  color: #1a1a1a;
+  padding-bottom: 20px;
+}
+
+.inputSmal {
+  background: #ffffff;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  margin: 10px 0;
+  height: 60px;
+}
+
+.inputBig {
+  background: #ffffff;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  margin: 20px 0;
+  height: 150px;
+}
+
+.title-stock {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+  color: #4d4d4d;
+}
+
+.wrapper-radio {
+  margin-bottom: 30px;
+}
+
+/* input */
+.radio {
+  display: none;
+}
+
+/* label */
+.radio-item {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  /* background-color: blue; */
+}
+
+/* span */
+.label-radio {
+  position: relative;
+  line-height: 22px;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+  color: #4a4141;
+}
+
+.label-radio:before,
+.label-radio:after {
+  content: "";
+}
+
+.label-radio:before {
+  border: 1px solid #222021;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.label-radio:after {
+  background: #222021;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: 300ms;
+  opacity: 0;
+}
+
+.radio-item .radio:checked + .label-radio:after {
+  opacity: 1;
+}
+
+.wrapper-check {
+  /* border: 1px solid black; */
+  margin-bottom: 40px;
+}
+
+.checkbox-label {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+  color: #4a4141;
+  margin: 0 10px;
+}
+
+.main-image {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+/* .wrapper-image {
+} */
+
+.input-image {
+  cursor: pointer;
+  margin-bottom: 5px;
+  width: 300px;
+  height: 100%;
+  object-fit: cover;
+  /* padding: 10px; */
+  margin-right: 10px;
+}
+
+.btn-sell {
+  background: #1a1a1a;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+  height: 50px;
+  width: 20%;
 }
