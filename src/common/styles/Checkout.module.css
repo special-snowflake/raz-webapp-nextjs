@@ -1,0 +1,71 @@
+/*  */
+
+.checkoutWrapper {
+    width: 60%;
+    margin: 10vh auto;
+    min-height: 50vh;
+}
+
+.checkoutWrapper input {
+    width: max(60%, 400px);
+    margin: 3vh auto;
+    height: 60px;
+    border-radius: 0;
+}
+
+.visaOptions {
+    width: max(60%, 400px);
+    margin: 3vh auto;
+    height: 60px;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 0;
+}
+
+.payIcon {
+    margin: auto;
+    padding: 1.5vh;
+    color: rgb(51, 82, 185);
+    font-weight: bolder;
+    font-size: 2vw;
+    font-style: italic;
+}
+
+
+/* .visaOptions p {
+    margin: 2vh auto;
+    float: left;
+} */
+
+.visaOptions select {
+    border: none;
+    background-color: white;
+    width: 80%;
+}
+
+.checkoutBtn {
+    border-radius: 0;
+    font-size: 1rem;
+    margin: auto auto auto 137px;
+    width: 100px;
+    text-align: center;
+    height: 60px;
+}
+
+.checkoutTitle {
+    font-weight: normal;
+    font-size: 2rem;
+    width: 100%;
+    color: var(--dark);
+    margin: auto auto auto 137px;
+}
+
+.checkoutBtnNmbr {
+    border-radius: 0;
+    font-size: 1rem;
+    margin: auto;
+    width: 67px;
+    text-align: center;
+    border: 1px solid rgb(218, 218, 218);
+    background-color: white;
+    height: 60px;
+}

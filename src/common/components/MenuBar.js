@@ -23,8 +23,21 @@ function MenuBar() {
       </li>
 
       <li className={styles["menu-item"]}>
-        My Product <i className="bi bi-caret-down-fill"></i>
+        <Link href="/seller/product" className={styles["menu-item"]}>
+          <a
+            className={
+              router.pathname === "/seller/product"
+                ? styles["active"]
+                : styles["menu-link"]
+            }>
+            My Product<i className="bi bi-caret-down-fill"></i>
+          </a>
+        </Link>
       </li>
+      {/* <li className={styles["menu-item"]}>
+        My Product <i className="bi bi-caret-down-fill"></i>
+        
+      </li> */}
 
       <li className={styles["menu-item"]}>
         <Link href="/seller/add-product" className={styles["menu-item"]}>
@@ -40,8 +53,19 @@ function MenuBar() {
       </li>
 
       <li className={styles["menu-item"]}>
-        My Order <i className="bi bi-caret-down-fill"></i>
+        <Link href="/seller/order" className={styles["menu-item"]}>
+          <a
+            className={
+              router.pathname === "/seller/order"
+                ? styles["active"]
+                : styles["menu-link"]
+            }>
+            My Order <i className="bi bi-caret-down-fill"></i>
+          </a>
+        </Link>
       </li>
+
+     
     </ul>
   );
 }
