@@ -1,8 +1,12 @@
 import axios from "axios";
+const url = process.env.NEXT_PUBLIC_API_URL + "/products";
 
-const host = process.env.NEXT_PUBLIC_API_URL;
+export const searchProducts = (filter) => {
+  const urlSearch = url + "/search" + filter;
+  return axios.get(urlSearch);
+};
 
-export const getBrandApi = (token) => {
-  const url = `${host}/brand`;
-  return axios.get(url);
+export const geProductId = (id) => {
+  const urlDetail = url + "/detail/" + id;
+  return axios.get(urlDetail);
 };

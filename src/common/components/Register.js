@@ -13,7 +13,7 @@ export default function Register() {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-      roles: 1,
+      roles: event.target.roles.value,
       // checkebox: event.target.checkebox.value,
     };
     registerAuth(body)
@@ -93,7 +93,8 @@ export default function Register() {
             className="form-check-input"
             type="checkbox"
             id="inlineCheckbox1"
-            value="customer"
+            value="1"
+            name="roles"
           />
           <label className="form-check-label">I'm Customer</label>
         </div>
@@ -102,7 +103,8 @@ export default function Register() {
             className="form-check-input"
             type="checkbox"
             id="inlineCheckbox2"
-            value="seller"
+            value="2"
+            name="roles"
           />
           <label className="form-check-label">I'm Seller</label>
         </div>

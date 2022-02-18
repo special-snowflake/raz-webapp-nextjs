@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost:3000"]
+    domains: ["http://localhost:8000", "localhost:8000", "localhost"]
   }
 };
