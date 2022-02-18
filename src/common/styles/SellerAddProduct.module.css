@@ -25,14 +25,20 @@
   padding-bottom: 20px;
 }
 
-.inputSmal {
+.inputSmall {
   background: #ffffff;
+  padding: 5px 10px;
   border: 1px solid #cecece;
   box-sizing: border-box;
   margin: 10px 0;
   height: 60px;
 }
-
+.textDescription {
+  background-color: #ffffff;
+  padding: 5px 10px;
+  resize: none;
+  margin: 10px 0;
+}
 .inputBig {
   background: #ffffff;
   border: 1px solid #cecece;
@@ -74,14 +80,13 @@
   font-family: Arimo;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
   line-height: 28px;
   color: #4a4141;
 }
 
 .label-radio:before,
 .label-radio:after {
-  content: "";
+  content: '';
 }
 
 .label-radio:before {
@@ -117,17 +122,13 @@
   font-family: Arimo;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
   line-height: 28px;
   color: #4a4141;
   margin: 0 10px;
 }
 
 .main-image {
-  /* border: 1px solid black; */
   display: flex;
-  justify-content: space-around;
-
   flex-wrap: wrap;
   padding: 10px;
   margin-bottom: 40px;
@@ -151,9 +152,54 @@
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
-  font-size: 14px;
   line-height: 16px;
   color: #ffffff;
   height: 50px;
   width: 20%;
+}
+.inputCheckBox {
+  width: 20px;
+  height: 20px;
+}
+.imageWrapperAdd {
+  margin-bottom: 20px;
+  width: calc(200px + 2vw);
+  height: calc(200px + 2vw);
+  margin-right: calc(20px + 2vw);
+  position: relative;
+  font-size: 18px;
+}
+.deleteImageProduct {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  inset: auto;
+  z-index: 1;
+  color: transparent;
+  transition: background-color 0.3s ease;
+  /* transition: color 0.3s ease; */
+}
+.deleteImageProduct:hover {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.labelBlue {
+  border-bottom: 5px solid blue;
+}
+.labelMustard {
+  border-bottom: 5px solid yellow;
+}
+.labelGreen {
+  border-bottom: 5px solid green;
+}
+.labelDjon {
+  border-bottom: 5px solid burlywood;
+}
+.labelRed {
+  border-bottom: 5px solid red;
+}
+.labelBlack {
+  border-bottom: 5px solid black;
 }
