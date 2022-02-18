@@ -1,9 +1,12 @@
 import styles from "src/common/styles/Header.module.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 
 function Header() {
-  const [login, setLogin] = useState(true);
+  const user = useSelector((state) => state.auth.userData);
+  const { token } = user;
+
   const [toggleAuth, setToggleAuth] = useState(false);
 
   const toggleAuthSwitch = () => {
@@ -155,7 +158,7 @@ function Header() {
         </div>
       </div>
 
-      {login ? (
+      {token ? (
         <MenuLogin show={toggleAuth} />
       ) : (
         <ul
@@ -167,9 +170,17 @@ function Header() {
               <a className={styles["tag-a-menu"]}>Login</a>
             </Link>{" "}
           </li>
-          <li>Register</li>
-          <li>Chat</li>
-          <li>Notification</li>
+          <li>
+            <Link href="/chat">
+              <a className={styles["tag-a-menu"]}>Chat</a>
+            </Link>{" "}
+          </li>
+
+          <li>
+            <Link href="/notification">
+              <a className={styles["tag-a-menu"]}>Notification</a>
+            </Link>{" "}
+          </li>
         </ul>
       )}
     </header>
@@ -185,9 +196,19 @@ function MenuLogin({ show }) {
           <a className={styles["tag-a-menu"]}>Profile</a>
         </Link>
       </li>
-      <li>Chat</li>
-      <li>Notification</li>
-      <li>Logout</li>
+      <li>
+        <Link href="/chat" passHref>
+          <a className={styles["tag-a-menu"]}>Chat</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/notification" passHref>
+          <a className={styles["tag-a-menu"]}>Notification</a>
+        </Link>
+      </li>
+      <li>
+        <p className={styles["tag-a-menu"]}>Logout</p>
+      </li>
     </ul>
   );
 }
