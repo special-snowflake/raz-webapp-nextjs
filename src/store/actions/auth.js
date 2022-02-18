@@ -5,6 +5,13 @@ import { loginAuth } from "src/modules/utils/auth";
 export const loginAction = (body) => {
   return {
     type: ACTION_STRING.authLogin,
-    payload: loginAuth(body),
+    payload: loginAuth(body)
+  };
+};
+
+export const logoutAction = (config) => {
+  return {
+    type: ACTION_STRING.authLogout,
+    payload: logoutApi(config)
   };
 };
