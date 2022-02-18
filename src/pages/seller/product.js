@@ -1,10 +1,23 @@
-import MyproductTemp from "src/common/components/MyproductTemp.js";
+import CardProduct from "src/common/components/CardProductSeller.js";
+import styles from "src/common/styles/CardSellerProduct.module.css";
 
 function Product() {
   return (
     <>
-      <h1>Halaman Product Seller</h1>
-      <MyproductTemp />
+     <div className={styles.productWrapper}>
+        <div className={`${styles.row} row`}>
+          <div className="col-6 col-md-6">
+            <p>Product</p>
+          </div>
+          <div className="col-3 col-md-3">
+            <p>Stock Status</p>
+          </div>
+          <div className={`${styles.price} col-3 col-md-3`}>
+            <p>Price</p>
+          </div>
+        </div>
+      </div>
+      <CardProduct />
     </>
   );
 }
