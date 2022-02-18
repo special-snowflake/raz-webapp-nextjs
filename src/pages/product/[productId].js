@@ -34,7 +34,7 @@ export default function DetailProduct(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [router.query, props.token]);
+  }, [router.query]);
 
   const addCounter = () => {
     const newCounter = counter + 1;
