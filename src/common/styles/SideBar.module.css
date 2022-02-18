@@ -24,6 +24,7 @@
 
 .category-item {
   display: flex;
+  cursor: pointer;
   justify-content: space-between;
 }
 
@@ -98,7 +99,7 @@
 
 .colors-wrapper form input:after {
   line-height: 2rem;
-  content: "";
+  content: '';
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -106,7 +107,7 @@
 }
 
 .colors-wrapper form input:checked:after {
-  content: "✔";
+  content: '✔';
   color: white;
   text-align: center;
 }
