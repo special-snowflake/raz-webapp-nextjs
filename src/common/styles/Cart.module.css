@@ -177,3 +177,25 @@
     color: white;
     text-align: center;
 }
+
+.EmptyCartTitle {
+    font-weight: normal;
+    font-size: max(3.5vw, 2rem);
+    text-align: center;
+    color: var(--dark);
+    height: 100px;
+    padding: 1rem
+}
+
+.EmptyCartDescription {
+    font-weight: normal;
+    font-size: 1vw;
+    text-align: center;
+    color: #4D4D4D;
+}
+
+.emptyImg {
+    margin: auto;
+    padding: 1vh;
+    width: 300px;
+}

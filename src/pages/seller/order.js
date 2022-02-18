@@ -1,9 +1,19 @@
 import OrderCard from "src/common/components/CardOrder";
 import styles from "src/common/styles/CardOrder.module.css";
+import MenuBar from "src/common/components/MenuBar";
+import PageTitle from "src/common/components/PageTitle";
+import Header from "src/common/components/header";
+import Footer from "src/common/components/footer";
 
 function Order() {
   return (
     <>
+     <Header />
+      <PageTitle
+        title="Selling Product"
+        subTitle="See your notifications for the latest updates"
+      />
+    <MenuBar />
       <div className={styles.productWrapper}>
         <div className={`${styles.row} row`}>
           <div className="col-5 col-md-5">
@@ -26,6 +36,7 @@ function Order() {
         </div>
       </div>
       <OrderCard />
+      <Footer />
     </>
   );
 }

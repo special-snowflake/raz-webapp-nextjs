@@ -1,5 +1,9 @@
 function NotFound() {
-  return <h1>HALAMAN NotFound</h1>;
+  return (
+    <div className="d-flex">
+      <h1>Not Found</h1>;
+    </div>
+  );
 }
 
 export default NotFound;
