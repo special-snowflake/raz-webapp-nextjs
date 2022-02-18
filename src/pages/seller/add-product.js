@@ -2,7 +2,7 @@ import PageTitle from "src/common/components/PageTitle";
 import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
 import MenuBar from "src/common/components/MenuBar";
-import styles from "src/common/styles/sellerAddProduct.module.css";
+import styles from "src/common/styles/SellerAddProduct.module.css";
 
 function AddProduct() {
   return (
