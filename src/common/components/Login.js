@@ -47,7 +47,7 @@ function Login(props) {
         progress: undefined
       });
     }
-  });
+  }, []);
   // const notify = () => {
   //   toast.info("Login success", {
   //     position: "top",

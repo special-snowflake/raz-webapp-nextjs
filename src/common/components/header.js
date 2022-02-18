@@ -18,8 +18,12 @@ function Header() {
       <div className={styles["container"]}>
         <input type="checkbox" id="check" className={styles.check} />
         <div className={styles["logo-container"]}>
-          <h3 className={styles.logo}>
-            RAZ <span>Garlic</span>
+          <h3>
+            <Link href="/" passHref>
+              <a className={styles.logo}>
+                RAZ <span>Garlic</span>
+              </a>
+            </Link>
           </h3>
         </div>
 
@@ -40,7 +44,7 @@ function Header() {
                 <div className={styles.dropdown}>
                   <ul className={styles["wrapper-ul"]}>
                     <li className={styles["dropdown-link"]}>
-                      <Link href="about" passHref>
+                      <Link href="/about" passHref>
                         <a className={styles["tag-a-menu"]}>About Us</a>
                       </Link>
                     </li>
