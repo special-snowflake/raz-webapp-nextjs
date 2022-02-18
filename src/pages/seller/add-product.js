@@ -18,8 +18,10 @@ import addImage from 'src/assets/addMoreImage.png';
 function AddProduct() {
   const inputFileRef = React.createRef();
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedImages, setSelectedImages] = useState([]);
   const [category, setCategory] = useState(null);
   const [brands, setBrands] = useState(null);
+  const [categoryChecked, setCategoryChecked] = useState([]);
 
   const clickImage = () => {
     inputFileRef.current.click();
@@ -30,6 +32,10 @@ function AddProduct() {
       return toast.warn('Maximum input 3 photos');
 
     if (e.target.files) {
+      const images = [e.target.files];
+      images.forEach((element) => {
+        setSelectedImages([...selectedImages, ...element]);
+      });
       const fileArray = Array.from(e.target.files).map((file) =>
         URL.createObjectURL(file),
       );
@@ -90,7 +96,8 @@ function AddProduct() {
             type='checkbox'
             id={element.category}
             name='category'
-            value={element.id}
+            defaultValue={element.id}
+            onChange={onChangeCategory}
             className={styles.inputCheckBox}
           />
           <label
@@ -104,21 +111,34 @@ function AddProduct() {
     return elements;
   };
 
+  const onChangeCategory = (e) => {
+    const isChecked = e.target.checked;
+    console.log(isChecked, e.target.value);
+    if (isChecked) {
+      setCategoryChecked([...categoryChecked, e.target.value]);
+    } else {
+      const index = categoryChecked.indexOf(e.target.value);
+      const array = categoryChecked;
+      array.splice(index);
+      setCategoryChecked([...array]);
+    }
+  };
+
   useEffect(() => {
     getListBrand();
     getListCategory();
   }, []);
 
   const deleteImageProduct = (index) => {
-    console.log(index);
-    let array = selectedFiles;
-    console.log(array);
+    let array = [...selectedFiles];
     array.splice(index, 1);
-    console.log(array);
     setSelectedFiles(array);
+    let arrayImg = [...selectedImages];
+    arrayImg.splice(index, 1);
+    setSelectedImages(arrayImg);
   };
+
   const renderPhotos = (photos) => {
-    // const photos = selectedFiles;
     return photos.map((photo, index) => {
       return (
         <React.Fragment key={`image-product ${index}`}>
@@ -140,8 +160,38 @@ function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const body = new FormData();
+    const name = e.target.name.value;
+    const description = e.target.description.value;
+    const productCondition = e.target.productCondition.value;
+    const color = e.target.color.value;
+    const brand = e.target.idBrand.value;
+    const category = categoryChecked;
+    if (
+      !name ||
+      !description ||
+      !productCondition ||
+      !color ||
+      !brand ||
+      category.length < 1 ||
+      selectedFiles.length < 1
+    ) {
+      return toast.warning('Please fill all the field');
+    }
+    selectedFiles.forEach((element) => {
+      console.log(element);
+    });
+    body.append('name', name);
+    body.append('description', description);
+    body.append('productCondition', productCondition);
+    body.append('color', color);
+    body.append('idBrand', brand);
+    body.append('idCategory', categoryChecked);
+    selectedImages.forEach((element) => {
+      body.append('images', element, element.name);
+    });
+    console.log(body);
   };
-  console.log(selectedFiles, 'selected');
   return (
     <>
       <Header />
@@ -197,7 +247,7 @@ function AddProduct() {
                     <input
                       type='radio'
                       id='new'
-                      name='condition'
+                      name='productCondition'
                       defaultValue='new'
                       className={styles['radio']}
                     />
@@ -210,7 +260,7 @@ function AddProduct() {
                     <input
                       type='radio'
                       id='used'
-                      name='condition'
+                      name='productCondition'
                       defaultValue='used'
                       className={styles['radio']}
                     />
@@ -243,7 +293,9 @@ function AddProduct() {
                       defaultValue='blue'
                       className={styles['radio']}
                     />
-                    <label className={styles['label-radio']} htmlFor='blue'>
+                    <label
+                      className={`${styles.labelBlue} ${styles['label-radio']}`}
+                      htmlFor='blue'>
                       BLUE
                     </label>
                   </div>
@@ -252,11 +304,13 @@ function AddProduct() {
                     <input
                       type='radio'
                       id='djon'
-                      name='colors'
+                      name='color'
                       defaultValue='djon'
                       className={styles['radio']}
                     />
-                    <label className={styles['label-radio']} htmlFor='djon'>
+                    <label
+                      className={`${styles.labelDjon} ${styles['label-radio']}`}
+                      htmlFor='djon'>
                       DJON
                     </label>
                   </div>
@@ -266,10 +320,12 @@ function AddProduct() {
                       type='radio'
                       id='red'
                       defaultValue='red'
-                      name='colors'
+                      name='color'
                       className={styles['radio']}
                     />
-                    <label className={styles['label-radio']} htmlFor='red'>
+                    <label
+                      className={`${styles.labelRed} ${styles['label-radio']}`}
+                      htmlFor='red'>
                       RED
                     </label>
                   </div>
@@ -278,11 +334,13 @@ function AddProduct() {
                     <input
                       type='radio'
                       id='green'
-                      name='colors'
+                      name='color'
                       defaultValue='green'
                       className={styles['radio']}
                     />
-                    <label className={styles['label-radio']} htmlFor='green'>
+                    <label
+                      className={`${styles.labelGreen} ${styles['label-radio']}`}
+                      htmlFor='green'>
                       GREEN
                     </label>
                   </div>
@@ -290,13 +348,30 @@ function AddProduct() {
                   <div className={styles['radio-item']}>
                     <input
                       type='radio'
-                      id='blue'
-                      name='colors'
+                      id='black'
+                      name='color'
+                      defaultValue='black'
                       className={styles['radio']}
                     />
-                    <label className={styles['label-radio']} htmlFor='blue'>
-                      BLUE
+                    <label
+                      className={`${styles.labelBlack} ${styles['label-radio']}`}
+                      htmlFor='black'>
+                      BLACK
                     </label>
+                    <div className={styles['radio-item']}>
+                      <input
+                        type='radio'
+                        id='mustard'
+                        defaultValue='mustard'
+                        name='color'
+                        className={styles['radio']}
+                      />
+                      <label
+                        className={`${styles.labelMustard} ${styles['label-radio']}`}
+                        htmlFor='mustard'>
+                        MUSTARD
+                      </label>
+                    </div>
                   </div>
                 </div>
 
@@ -309,7 +384,12 @@ function AddProduct() {
                 <div className={styles['wrapper-check']}>{showCategory()}</div>
 
                 <p className={styles.title}>Photo of Goods</p>
-                <div className={styles['main-image']}>
+                <div
+                  className={`${
+                    selectedFiles.length < 2
+                      ? 'justify-content-start'
+                      : 'justify-content-between'
+                  } ${styles['main-image']}`}>
                   {selectedFiles.length !== 0 && renderPhotos(selectedFiles)}
                   <input
                     type='file'
@@ -331,7 +411,9 @@ function AddProduct() {
                     </div>
                   )}
                 </div>
-                <button className={styles['btn-sell']}>Sell Product</button>
+                <button className={styles['btn-sell']} type='submit'>
+                  Sell Product
+                </button>
               </>
             ) : (
               <LoadingBox />
