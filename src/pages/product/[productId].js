@@ -135,8 +135,8 @@ export default function DetailProduct(props) {
           <div
             className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}
           >
-            {menu.map((productMenu) => (
-              <p onClick={() => setProductsMenu(productMenu)}>
+            {menu.map((productMenu, idx) => (
+              <p key={idx} onClick={() => setProductsMenu(productMenu)}>
                 {productMenu.toLocaleUpperCase()}
               </p>
             ))}
@@ -240,9 +240,9 @@ const Review = () => {
               </div>
               <div>
                 <p className={styles.commentQuote}>
-                  “Theme is very flexible and easy to use. Perfect for us.
+                  {`“Theme is very flexible and easy to use. Perfect for us.
                   Customer support has been excellent and answered every
-                  question we've thrown at them with 12 hours.”
+                  question we've thrown at them with 12 hours.”`}
                 </p>
                 <div className="d-flex align-items-center">
                   <p className={styles.commentTime}>
@@ -276,9 +276,9 @@ const Review = () => {
                 </div>
                 <div>
                   <p className={styles.commentQuote}>
-                    “Theme is very flexible and easy to use. Perfect for us.
-                    Customer support has been excellent and answered every
-                    question we've thrown at them with 12 hours.”
+                  {`“Theme is very flexible and easy to use. Perfect for us.
+                  Customer support has been excellent and answered every
+                  question we've thrown at them with 12 hours.”`}
                   </p>
                   <div className="d-flex align-items-center">
                     <p className={styles.commentTime}>
@@ -312,9 +312,9 @@ const Review = () => {
               </div>
               <div>
                 <p className={styles.commentQuote}>
-                  “Theme is very flexible and easy to use. Perfect for us.
+                {`“Theme is very flexible and easy to use. Perfect for us.
                   Customer support has been excellent and answered every
-                  question we've thrown at them with 12 hours.”
+                  question we've thrown at them with 12 hours.”`}
                 </p>
                 <div className="d-flex align-items-center">
                   <p className={styles.commentTime}>
