@@ -2,6 +2,7 @@ import styles from "src/common/styles/MenuBar.module.css";
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
+// import MyproductTemp from "src/common/components/MyproductTemp";
 
 function MenuBar() {
   const router = useRouter();
