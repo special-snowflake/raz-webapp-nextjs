@@ -1,9 +1,18 @@
 import styles from "src/common/styles/Cart.module.css";
 import CardCart from "src/common/components/CardCart";
+// import EmptyCart from "src/common/components/EmptyCart";
+import PageTitle from "src/common/components/PageTitle";
+import Header from "src/common/components/header";
+import Footer from "src/common/components/footer";
 
 export default function Cart() {
   return (
     <>
+     <Header />
+      <PageTitle
+        title="Selling Product"
+        subTitle="See your notifications for the latest updates"
+      />
       <div className="row">
         <section className="col-10 col-sm-10 col-md-8">
           <div className={styles.cartWrapper}>
@@ -97,7 +106,10 @@ export default function Cart() {
             </button>
           </div>
         </section>
+      {/* <EmptyCart /> */}
+      {/* Conditinal fetching .. . .  */}
       </div>
+    <Footer />
     </>
   );
 }

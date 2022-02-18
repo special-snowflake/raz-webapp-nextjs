@@ -65,8 +65,9 @@ function Header() {
                           top: "0",
                           paddingLeft: "0.3rem",
                           cursor: "pointer",
-                          transform: "translateX(10px)"
-                        }}>
+                          transform: "translateX(10px)",
+                        }}
+                      >
                         <ul className={styles["wrapper-ul"]}>
                           <li className={styles["dropdown-link"]}>
                             <a href="#" className={styles["tag-a-menu"]}>
@@ -105,22 +106,22 @@ function Header() {
                 <div className={styles.dropdown}>
                   <ul className={styles["wrapper-ul"]}>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
+                      <a href="/cart" className={styles["tag-a-menu"]}>
                         Order Page
                       </a>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
+                      <a href="/cart" className={styles["tag-a-menu"]}>
                         Shopping Cart
                       </a>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
+                      <a href="/cart/checkout" className={styles["tag-a-menu"]}>
                         Check Out
                       </a>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
+                      <a href="/profile" className={styles["tag-a-menu"]}>
                         My Account
                       </a>
                     </li>
@@ -143,11 +144,17 @@ function Header() {
           </div>
           <div className={styles["wrapper-icon"]}>
             <i className={`bi bi-search ${styles.icon2}`}></i>
-            <i className={`bi bi-heart ${styles.icon2}`}></i>
-            <i className={`bi bi-cart ${styles.icon2}`}></i>
+            {/* search kosong */}
+            <Link href="/favorite" passHref>
+              <i className={`bi bi-heart ${styles.icon2}`}></i>
+            </Link>
+            <Link href="/cart" passHref>
+              <i className={`bi bi-cart ${styles.icon2}`}></i>
+            </Link>
             <div
               className={styles["wrapper-btn-menu"]}
-              onClick={toggleAuthSwitch}>
+              onClick={toggleAuthSwitch}
+            >
               <span></span>
               <span></span>
               <span></span>
@@ -168,7 +175,8 @@ function Header() {
         <ul
           className={
             !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
-          }>
+          }
+        >
           <li>
             <Link href="/auth">
               <a className={styles["tag-a-menu"]}>Login</a>
@@ -194,7 +202,8 @@ function Header() {
 function MenuLogin({ show }) {
   return (
     <ul
-      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
+      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}
+    >
       <li>
         <Link href="/seller" passHref>
           <a className={styles["tag-a-menu"]}>Profile</a>

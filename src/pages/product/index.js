@@ -137,6 +137,11 @@ function Product(props) {
     setIsLoading(true);
     getListProduct(filter);
   }, [router]);
+
+  // const onClickHandler = (id) => {
+  //   router.push(`/product/${id[0]}`); //[0] or not
+  //   console.log(id);
+  // };
   return (
     <>
       <Header />

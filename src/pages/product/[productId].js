@@ -7,9 +7,9 @@ import usertwo from "src/assets/usertwo.png";
 import userthree from "src/assets/userthree.png";
 import { useRouter } from "next/router";
 import ProductSlider from "src/common/components/ProductSlider";
-import { geProductId } from "src/modules/utils/getDetailProduct";
+import { geProductId } from "src/modules/utils/product";
 
-export default function productId(props) {
+export default function DetailProduct(props) {
   const router = useRouter();
   const [counter, setCounter] = useState(0);
   const [product, setProduct] = useState({});
@@ -221,7 +221,9 @@ const Review = () => {
       <section>
         {/* <h1>THIS IS SECTION REVIEW </h1> */}
         {/* multiple comment */}
-        <div className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
+        <div
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
+        >
           {/* parent comment */}
           <div>
             <div className="d-flex align-items-center">
@@ -292,7 +294,9 @@ const Review = () => {
           </div>
         </div>
         {/* single comment */}
-        <div className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
+        <div
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
+        >
           <div>
             <div className="d-flex align-items-center">
               <div className={styles.userReviewImage}>
