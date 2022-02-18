@@ -44,3 +44,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.photo-user {
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.photo-user:hover {
+  border-radius: 10%;
+}

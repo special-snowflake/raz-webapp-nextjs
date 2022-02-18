@@ -2,6 +2,7 @@ import PageTitle from "src/common/components/PageTitle";
 import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
 import MenuBar from "src/common/components/MenuBar";
+import ProfileSeller from "src/common/components/ProfileSeller";
 
 function Profile() {
   return (
@@ -13,7 +14,7 @@ function Profile() {
       />
       <MenuBar />
       <main>
-        <h1>BODY</h1>
+        <ProfileSeller />
       </main>
 
       <Footer />
