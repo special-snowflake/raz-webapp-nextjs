@@ -14,25 +14,29 @@ function Login(props) {
     event.preventDefault();
     const body = {
       email: event.target.email.value,
-      password: event.target.password.value,
+      password: event.target.password.value
     };
     props.loginDispatch(body);
   };
   useEffect(() => {
-    if (props.auth.isFulfilled === true) {
-      toast.info("Login success", {
+    if (props.auth.isFulfilled == true) {
+      console.log("LOGIN MASUK");
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+      return toast.info("Login success", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
-      // router.push("/");
+
       // console.log("/")
     }
-    if(props.auth.isRejected) {
+    if (props.auth.isRejected) {
       toast.error("Wrong email/password!", {
         position: "top-right",
         autoClose: 2000,
@@ -40,10 +44,10 @@ function Login(props) {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
     }
-  });
+  }, []);
   // const notify = () => {
   //   toast.info("Login success", {
   //     position: "top",
@@ -52,8 +56,8 @@ function Login(props) {
 
   return (
     <section className={styles.authWrapperSection}>
-      <ToastContainer />
       <p className={styles.title}>Login</p>
+      <ToastContainer />
       <form onSubmit={submitHandler}>
         <div className={`${styles.formAuth} form-group`}>
           <input
@@ -108,7 +112,7 @@ function Login(props) {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
+    auth: state.auth
   };
 };
 
@@ -117,7 +121,7 @@ const mapDispatchToProps = (dispatch) => {
     loginDispatch: (body) => {
       dispatch(loginAction(body));
       console.log("login body :" + body);
-    },
+    }
   };
 };
 

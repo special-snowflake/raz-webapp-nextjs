@@ -5,7 +5,8 @@ module.exports = {
       "http://localhost:8000",
       "localhost:8000",
       "localhost",
-      "raz-garlic.herokuapp.com",
-    ],
-  },
+      "https://raz-garlic.herokuapp.com",
+      "raz-garlic.herokuapp.com"
+    ]
+  }
 };
