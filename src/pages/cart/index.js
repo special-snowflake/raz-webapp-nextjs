@@ -70,7 +70,7 @@ export default function Cart() {
               <div className={`${styles.shippingTitle} col`}>Shipping</div>
               <div className={`${styles.shippingOptions} col`}>
                 <form>
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
                       className="form-check-input"
                       type="radio"
