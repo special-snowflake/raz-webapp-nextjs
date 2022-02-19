@@ -1,0 +1,89 @@
+.wrapper {
+  margin-top: 75px;
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  height: 88vh;
+}
+
+.circle {
+  width: 300px;
+  height: 300px;
+  /* border: 1px solid black; */
+  background-color: #d8d8d8;
+  border-radius: 100%;
+}
+
+.line {
+  margin-right: 10px;
+  width: 119px;
+  height: 2px;
+  background-color: #1a1a1a;
+  display: inline-block;
+  text-align: center;
+}
+
+.title {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 86px;
+  line-height: 99px;
+  color: #1a1a1a;
+  padding: 30px 0;
+}
+
+.message {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 46px;
+  line-height: 53px;
+  color: #1a1a1a;
+  padding: 10px 0;
+}
+
+.description {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 37px;
+  color: #4d4d4d;
+}
+
+.wrapper-homepage {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 20px 0;
+}
+
+.homepage {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.homepage:hover {
+  color: #4d4d4d;
+}
+
+.wrapper-404 {
+  padding: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .circle {
+    display: none;
+  }
+
+  .wrapper-404 {
+    padding: 10px 80px;
+  }
+}
