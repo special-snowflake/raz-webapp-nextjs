@@ -30,6 +30,7 @@ function AddProduct() {
       });
 
     if (e.target.files) {
+      console.log(e.target.files);
       const fileArray = Array.from(e.target.files).map((file) =>
         URL.createObjectURL(file)
       );
@@ -38,10 +39,10 @@ function AddProduct() {
 
       Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
     }
+    console.log("FILE-UPLOAD", e.target.files);
   };
 
   const renderPhotos = (photos) => {
-    console.log("PHOTOS", photos);
     return photos.map((photo, index) => {
       return (
         <img

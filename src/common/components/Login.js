@@ -47,7 +47,7 @@ function Login(props) {
         progress: undefined
       });
     }
-  }, []);
+  }, [props.auth.isFulfilled, props.auth.isRejected, router]);
   // const notify = () => {
   //   toast.info("Login success", {
   //     position: "top",
