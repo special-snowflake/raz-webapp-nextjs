@@ -30,7 +30,7 @@ function Product(props) {
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err.response.data);
+        // console.log(err.response.data);
       });
   };
 
@@ -138,10 +138,7 @@ function Product(props) {
     getListProduct(filter);
   }, [router]);
 
-  // const onClickHandler = (id) => {
-  //   router.push(`/product/${id[0]}`); //[0] or not
-  //   console.log(id);
-  // };
+  
   return (
     <>
       <Header />

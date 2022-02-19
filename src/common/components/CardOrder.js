@@ -2,7 +2,7 @@ import styles from "src/common/styles/CardOrder.module.css";
 import Image from "next/image";
 import pic from "src/assets/b_OKITO-PLY-DINING-Chair-3.png";
 
-export default function OrderCard() {
+export default function OrderCard(props) {
   return (
     <>
       {/* content */}
@@ -21,6 +21,7 @@ export default function OrderCard() {
           </div>
           <div className={`${styles.price} col-2 col-md-2`}>
             <p>Price</p>
+            <p>{props.totalPrice}</p>
           </div>
           <div className="col-1 col-md-1 d-flex justify-content-center py-3">
             <p>02</p>

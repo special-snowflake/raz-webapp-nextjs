@@ -8,6 +8,10 @@ import userthree from "src/assets/userthree.png";
 import { useRouter } from "next/router";
 import ProductSlider from "src/common/components/ProductSlider";
 import { geProductId } from "src/modules/utils/product";
+import Footer from 'src/common/components/footer';
+import Header from 'src/common/components/header';
+import PageTitle from 'src/common/components/PageTitle';
+
 
 export default function DetailProduct(props) {
   const router = useRouter();
@@ -22,18 +26,21 @@ export default function DetailProduct(props) {
   ];
   const [productsMenu, setProductsMenu] = useState("");
 
-  const id = router.query.id;
+  const productId = router.query.productId;
   useEffect(() => {
-    const token = props.token;
-    geProductId(token)
-      .then((response) => {
-        setProduct({ ...response.data.data });
-        console.log(response.data.data.name + ": " + response.data.data.id);
-        console.log(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(router);
+    // const token = props.token;
+    if (Object.keys(router.query).includes("productId")) {
+      geProductId(productId)
+        .then((res) => {
+          setProductsMenu(
+            {...res.data.data}
+            );
+            console.log(res.data.data)
+          // {...}
+        })
+        .catch((err) => console.log(err));
+    }
   }, [router.query]);
 
   const addCounter = () => {
@@ -46,6 +53,11 @@ export default function DetailProduct(props) {
   };
   return (
     <>
+    <Header />
+      <PageTitle
+        title="My Account"
+        subTitle="Register and log in with your account to be able to shop at will"
+      />
       <section className={styles.productMainWrapper}>
         <div>
           <nav aria-label="breadcrumb">
@@ -67,17 +79,17 @@ export default function DetailProduct(props) {
           <ProductSlider />
         </div>
         <div className={styles.productDescriptionWrapper}>
-          <p className={styles.productTitle}>{product.name}</p>
+          <p className={styles.productTitle}>{productsMenu.name}</p>
           <p className={styles.productRate}>Rate Example (2 reviews)</p>
           <div>
-            <p className={styles.productPrice}>{product.price}</p>
+            <p className={styles.productPrice}>{productsMenu.price}</p>
             <p className={styles.productStock}>
-              <i className="bi bi-check-circle"></i>19 Sold / {product.stock} In
+              <i className="bi bi-check-circle"></i>19 Sold / {productsMenu.stock} In
               Stock
             </p>
           </div>
           <div className={styles.productDescription}>
-            <p>{product.description}</p>
+            <p>{productsMenu.description}</p>
           </div>
         </div>
         <div className="d-flex align-items-center">
@@ -104,7 +116,7 @@ export default function DetailProduct(props) {
         </div>
         <div className={styles.additional}>
           <p>SKU: N/A</p>
-          <p>Categories: {product.category}</p>
+          <p>Categories: {productsMenu.category}</p>
           <p>Tag: Furniture, Chair, Scandinavian, Modern</p>
           <p>Product ID: 274</p>
         </div>
@@ -158,6 +170,7 @@ export default function DetailProduct(props) {
           </section>
         </section>
       </section>
+      <Footer/>
     </>
   );
 }

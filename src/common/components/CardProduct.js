@@ -19,6 +19,10 @@ function Card(props) {
     }
     console.log("product : " + id);
   }, [props]);
+  const onClickHandler = (id) => {
+    // router.push(`/product/${id[0]}`); //[0] or not
+    console.log(id);
+  };
   return (
     <>
       <Link href={`/product/${id}`} passHref>
@@ -33,11 +37,12 @@ function Card(props) {
               onError={() => {
                 setImage(defaultProduct);
               }}
+              onClickHandler={() => onClickHandler}
             />
           </div>
           <div className={styles["product-detail"]}>
             <p className={styles["product-name"]}>{props.name}</p>
-            <p className={styles["product-price"]}>${props.price}</p>
+            <p className={styles["product-price"]}>{props.price}</p>
           </div>
         </div>
       </Link>
