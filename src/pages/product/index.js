@@ -36,7 +36,7 @@ function Product(props) {
 
   const showCard = () => {
     if (listProduct.length === 0 || listProduct === null) {
-      return <h2>We can't find anything</h2>;
+      return <h2>{`We can't find anything`}</h2>;
     }
     const elements = [];
     listProduct.forEach((element) => {

@@ -100,7 +100,7 @@ function SideBar(props) {
     const elements = [];
     brands.forEach((element) => {
       const data = (
-        <React.Fragment key={` ${element.id}`}>
+        <React.Fragment key={`${element.id}`}>
           <div className={styles['brand-item']}>
             <input
               type='checkbox'
