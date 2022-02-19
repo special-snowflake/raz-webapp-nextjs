@@ -30,13 +30,13 @@ function Product(props) {
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err.response.data);
+        // console.log(err.response.data);
       });
   };
 
   const showCard = () => {
     if (listProduct.length === 0 || listProduct === null) {
-      return <h2>We can't find anything</h2>;
+      return <h2>{`We can't find anything`}</h2>;
     }
     const elements = [];
     listProduct.forEach((element) => {
@@ -138,10 +138,7 @@ function Product(props) {
     getListProduct(filter);
   }, [router]);
 
-  // const onClickHandler = (id) => {
-  //   router.push(`/product/${id[0]}`); //[0] or not
-  //   console.log(id);
-  // };
+  
   return (
     <>
       <Header />

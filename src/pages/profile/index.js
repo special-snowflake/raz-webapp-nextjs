@@ -3,7 +3,7 @@ import Header from "src/common/components/header";
 import PageTitle from "src/common/components/PageTitle";
 import Footer from "src/common/components/footer";
 
-function ComingSoon(props) {
+function Prrofile(props) {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ function ComingSoon(props) {
   );
 }
 
-export default ComingSoon;
+export default Prrofile;

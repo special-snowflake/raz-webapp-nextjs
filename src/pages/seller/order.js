@@ -1,11 +1,27 @@
+import { useState, useEffect } from "react";
+import { getUserTransaction } from "src/modules/utils/transaction";
 import OrderCard from "src/common/components/CardOrder";
 import styles from "src/common/styles/CardOrder.module.css";
 import MenuBar from "src/common/components/MenuBar";
 import PageTitle from "src/common/components/PageTitle";
 import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
+import { connect } from "react-redux";
 
-function Order() {
+function Order(props) {
+  const [order, setOrder] = useState({});
+  useEffect(() => {
+    const query = "?page=1&limit=5";
+    const token = props.token;
+    getUserTransaction(query, token)
+    .then((res) => {
+      setOrder({...res.data.data.result});
+      console.log(res.data.data.result);
+    })
+    .catch((err) => console.log(err));
+  }, [])
+
+
   return (
     <>
      <Header />
@@ -35,10 +51,18 @@ function Order() {
           </div>
         </div>
       </div>
+      <h1>{order.id}</h1>
       <OrderCard />
       <Footer />
     </>
   );
 }
 
-export default Order;
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.userData.token,
+    id: state.auth.userData.id,
+  };
+};
+
+export default connect(mapStateToProps)(Order);
