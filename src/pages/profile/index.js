@@ -7,7 +7,6 @@ function Prrofile(props) {
   return (
     <>
       <Header />
-
       <main className={styles["main"]}></main>
       <Footer />
     </>

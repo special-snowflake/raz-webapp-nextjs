@@ -21,9 +21,9 @@ function Login(props) {
   useEffect(() => {
     if (props.auth.isFulfilled == true) {
       console.log("LOGIN MASUK");
-      setTimeout(() => {
-        router.push("/");
-      }, 3000);
+      // setTimeout(() => {
+      //   router.push("/");
+      // }, 3000);
       return toast.info("Login success", {
         position: "top-right",
         autoClose: 2000,
@@ -47,7 +47,7 @@ function Login(props) {
         progress: undefined
       });
     }
-  }, [props.auth.isFulfilled, props.auth.isRejected, router]);
+  }, []);
   // const notify = () => {
   //   toast.info("Login success", {
   //     position: "top",
