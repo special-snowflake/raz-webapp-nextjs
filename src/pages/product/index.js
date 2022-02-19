@@ -1,24 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import Link from 'next/link';
-import Router, {useRouter} from 'next/router';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Router, { useRouter } from "next/router";
 
-import styles from 'src/common/styles/Product.module.css';
+import styles from "src/common/styles/Product.module.css";
 
-import PageTitle from 'src/common/components/PageTitle';
-import Card from 'src/common/components/CardProduct';
-import SideBar from 'src/common/components/SideBar';
-import Footer from 'src/common/components/footer';
-import Header from 'src/common/components/header';
-import LoadingBox from 'src/common/components/LoadingBox';
+import PageTitle from "src/common/components/PageTitle";
+import Card from "src/common/components/CardProduct";
+import SideBar from "src/common/components/SideBar";
+import Footer from "src/common/components/footer";
+import Header from "src/common/components/header";
+import LoadingBox from "src/common/components/LoadingBox";
 
-import {searchProducts} from 'src/modules/utils/product';
+import { searchProducts } from "src/modules/utils/product";
 
 function Product(props) {
   const [buttonIsHovered, setButtonHovered] = useState(false);
   const [listProduct, setListProduct] = useState(null);
   const [meta, setMeta] = useState(null);
   const router = useRouter();
-  console.log('query router index', router.query);
+  console.log("query router index", router.query);
   const [isLoading, setIsLoading] = useState(true);
 
   const getListProduct = (filter) => {
@@ -60,7 +60,7 @@ function Product(props) {
       return (
         <>
           <button
-            className={`${styles['pagination-button']} ${styles['disabled']}`}>
+            className={`${styles["pagination-button"]} ${styles["disabled"]}`}>
             1
           </button>
         </>
@@ -69,7 +69,7 @@ function Product(props) {
     if (meta.totalPage === 1) {
       return (
         <button
-          className={`${styles['pagination-button']} ${styles['active']}`}>
+          className={`${styles["pagination-button"]} ${styles["active"]}`}>
           1
         </button>
       );
@@ -81,10 +81,10 @@ function Product(props) {
         elements.push(
           <React.Fragment key={`pagination-${i}`}>
             <button
-              className={`${styles['pagination-button']} ${styles['active']}`}>
+              className={`${styles["pagination-button"]} ${styles["active"]}`}>
               {i}
             </button>
-          </React.Fragment>,
+          </React.Fragment>
         );
       } else {
         elements.push(
@@ -93,10 +93,10 @@ function Product(props) {
               onClick={() => {
                 onClickPagination(i);
               }}
-              className={`${styles['pagination-button']}`}>
+              className={`${styles["pagination-button"]}`}>
               {i}
             </button>
-          </React.Fragment>,
+          </React.Fragment>
         );
       }
     }
@@ -104,17 +104,17 @@ function Product(props) {
   };
 
   const onClickPagination = (page) => {
-    const query = {...router.query, ...{page}};
-    console.log('onclick pagination', page, query);
+    const query = { ...router.query, ...{ page } };
+    console.log("onclick pagination", page, query);
     Router.push({
-      pathname: '/product',
-      query,
+      pathname: "/product",
+      query
     });
   };
 
   const showHeader = () => {
     if (meta.totalData === 0) {
-      return 'Showing 0 from 0 Results';
+      return "Showing 0 from 0 Results";
     }
     const minData = meta.page * meta.limit - meta.limit + 1;
     const topData = meta.page * meta.limit;
@@ -124,16 +124,16 @@ function Product(props) {
 
   const handleSort = (sort) => {
     const page = 1;
-    const query = {...router.query, ...{sort}, ...{page}};
+    const query = { ...router.query, ...{ sort }, ...{ page } };
     Router.push({
-      pathname: '/product',
-      query,
+      pathname: "/product",
+      query
     });
   };
 
   useEffect(() => {
     const filter = router.asPath.slice(8);
-    console.log('query filter', filter);
+    console.log("query filter", filter);
     setIsLoading(true);
     getListProduct(filter);
   }, [router]);
@@ -142,53 +142,53 @@ function Product(props) {
   return (
     <>
       <Header />
-      <PageTitle title='Products' subTitle='Find and buy the one you like.' />
-      <main className={styles['main']}>
+      <PageTitle title="Products" subTitle="Find and buy the one you like." />
+      <main className={styles["main"]}>
         <SideBar />
-        <div className={styles['main-content']}>
-          <div className={styles['product-list-sort']}>
-            <div className={styles['count']}>
-              {' '}
+        <div className={styles["main-content"]}>
+          <div className={styles["product-list-sort"]}>
+            <div className={styles["count"]}>
+              {" "}
               {meta !== null && showHeader()}
             </div>
             <div
               onMouseEnter={() => setButtonHovered(true)}
               onMouseLeave={() => setButtonHovered(false)}
-              className={styles['dropdown']}>
-              <button className={styles['sort']}>
-                Sort by{' '}
+              className={styles["dropdown"]}>
+              <button className={styles["sort"]}>
+                Sort by{" "}
                 {buttonIsHovered ? (
-                  <i className='bi bi-caret-down-fill'></i>
+                  <i className="bi bi-caret-down-fill"></i>
                 ) : (
-                  <i className='bi bi-caret-down'></i>
+                  <i className="bi bi-caret-down"></i>
                 )}
               </button>
-              <div className={styles['dropdown-content']}>
+              <div className={styles["dropdown-content"]}>
                 <span
                   onClick={() => {
-                    handleSort('Latest');
+                    handleSort("Latest");
                   }}>
                   Latest
                 </span>
                 <span
                   onClick={() => {
-                    handleSort('Price ASC');
+                    handleSort("Price ASC");
                   }}>
                   Price: Lowest
                 </span>
                 <span
                   onClick={() => {
-                    handleSort('Price DESC');
+                    handleSort("Price DESC");
                   }}>
                   Price: Highest
                 </span>
               </div>
             </div>
           </div>
-          <div className={styles['product-list']}>
+          <div className={styles["product-list"]}>
             {listProduct !== null && !isLoading ? showCard() : <LoadingBox />}
           </div>
-          <div className={styles['pagination']}>
+          <div className={styles["pagination"]}>
             {meta !== null && showPagination()}
           </div>
         </div>

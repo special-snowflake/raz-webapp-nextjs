@@ -1,0 +1,167 @@
+.main {
+  padding: 2rem 7rem;
+  width: 100%;
+  height: fit-content;
+}
+
+.wrapper-photo {
+  width: 100%;
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.image2 {
+  border-radius: 100%;
+}
+
+.wrapper-image {
+  position: relative;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  /* background-color: red; */
+}
+
+.edit-photo {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  cursor: pointer;
+  color: #ffffff;
+  position: absolute;
+  inset: auto;
+  background-color: transparent;
+  opacity: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.edit-photo:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  outline: none;
+  border: none;
+}
+
+.wrapper-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: fit-content;
+  margin-left: 20px;
+  position: relative;
+}
+
+.title-name {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1a1a1a;
+}
+
+.title-role {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 37px;
+  color: #4d4d4d;
+}
+
+.icon {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.icon .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  left: 30px;
+  z-index: 1;
+}
+
+.icon:hover .tooltiptext {
+  visibility: visible;
+  font-size: 14px;
+}
+
+.wrapper {
+  border: 1px solid #d1d1d1;
+  /* margin: 50px 0; */
+  padding: 30px;
+}
+
+.wrapper-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-gender {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 37px;
+  color: #4d4d4d;
+}
+
+.gender {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1a1a1a;
+}
+
+.edit {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1a1a1a;
+}
+
+.edit:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.btn-logout {
+  margin: 40px 0;
+  background: #d94141;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  width: 200px;
+  height: 50px;
+  border: none;
+}
+
+.btn-logout:hover {
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
+}
+
+.input {
+  border: none;
+}
