@@ -8,6 +8,9 @@ function Header() {
   const { token } = user;
 
   const [toggleAuth, setToggleAuth] = useState(false);
+  const [hoverIconSearch, setHovericonSearch] = useState(false);
+  const [hoverIconLove, setHovericonLove] = useState(false);
+  const [hoverIconCart, setHovericonCart] = useState(false);
 
   const toggleAuthSwitch = () => {
     toggleAuth ? setToggleAuth(false) : setToggleAuth(true);
@@ -65,9 +68,8 @@ function Header() {
                           top: "0",
                           paddingLeft: "0.3rem",
                           cursor: "pointer",
-                          transform: "translateX(10px)",
-                        }}
-                      >
+                          transform: "translateX(10px)"
+                        }}>
                         <ul className={styles["wrapper-ul"]}>
                           <li className={styles["dropdown-link"]}>
                             <a href="#" className={styles["tag-a-menu"]}>
@@ -106,29 +108,29 @@ function Header() {
                 <div className={styles.dropdown}>
                   <ul className={styles["wrapper-ul"]}>
                     <li className={styles["dropdown-link"]}>
-                      <a href="/cart" className={styles["tag-a-menu"]}>
-                        Order Page
-                      </a>
+                      <Link href="/cart" passHref>
+                        <a className={styles["tag-a-menu"]}>Order Page</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="/cart" className={styles["tag-a-menu"]}>
-                        Shopping Cart
-                      </a>
+                      <Link href="/cart" passHref>
+                        <a className={styles["tag-a-menu"]}>Shooping Cart</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="/cart/checkout" className={styles["tag-a-menu"]}>
-                        Check Out
-                      </a>
+                      <Link href="/cart/checkout" passHref>
+                        <a className={styles["tag-a-menu"]}>Check Out</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="/profile" className={styles["tag-a-menu"]}>
-                        My Account
-                      </a>
+                      <Link href="/profile" passHref>
+                        <a className={styles["tag-a-menu"]}>My Account</a>
+                      </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
-                        Order Tracking
-                      </a>
+                      <Link href="#" passHref>
+                        <a className={styles["tag-a-menu"]}>Order Tracking</a>
+                      </Link>
                     </li>
                     <div className={styles.arrow}></div>
                   </ul>
@@ -143,18 +145,50 @@ function Header() {
             </ul>
           </div>
           <div className={styles["wrapper-icon"]}>
-            <i className={`bi bi-search ${styles.icon2}`}></i>
-            {/* search kosong */}
+            <i
+              className={
+                hoverIconSearch
+                  ? `bi bi-search-heart ${styles.icon2}`
+                  : `bi bi-search ${styles.icon2}`
+              }
+              onMouseEnter={() => {
+                setHovericonSearch(true);
+              }}
+              onMouseLeave={() => {
+                setHovericonSearch(false);
+              }}></i>
+
             <Link href="/favorite" passHref>
-              <i className={`bi bi-heart ${styles.icon2}`}></i>
+              <i
+                className={
+                  hoverIconLove
+                    ? `bi bi-heart-fill ${styles.icon2}`
+                    : `bi bi-heart ${styles.icon2}`
+                }
+                onMouseEnter={() => {
+                  setHovericonLove(true);
+                }}
+                onMouseLeave={() => {
+                  setHovericonLove(false);
+                }}></i>
             </Link>
             <Link href="/cart" passHref>
-              <i className={`bi bi-cart ${styles.icon2}`}></i>
+              <i
+                className={
+                  hoverIconCart
+                    ? `bi bi-cart-fill ${styles.icon2}`
+                    : `bi bi-cart ${styles.icon2}`
+                }
+                onMouseEnter={() => {
+                  setHovericonCart(true);
+                }}
+                onMouseLeave={() => {
+                  setHovericonCart(false);
+                }}></i>
             </Link>
             <div
               className={styles["wrapper-btn-menu"]}
-              onClick={toggleAuthSwitch}
-            >
+              onClick={toggleAuthSwitch}>
               <span></span>
               <span></span>
               <span></span>
@@ -175,8 +209,7 @@ function Header() {
         <ul
           className={
             !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
-          }
-        >
+          }>
           <li>
             <Link href="/auth">
               <a className={styles["tag-a-menu"]}>Login</a>
@@ -202,8 +235,7 @@ function Header() {
 function MenuLogin({ show }) {
   return (
     <ul
-      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}
-    >
+      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
       <li>
         <Link href="/seller" passHref>
           <a className={styles["tag-a-menu"]}>Profile</a>
