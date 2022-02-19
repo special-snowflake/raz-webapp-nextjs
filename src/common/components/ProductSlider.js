@@ -104,7 +104,7 @@ export default function App() {
           className="keen-slider thumbnail"
           style={{
             position: " absolute",
-            top: "70vh",
+            top: "60vh",
             left: "3vw",
             float: "left",
             display: "flex",
