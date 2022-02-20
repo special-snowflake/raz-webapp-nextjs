@@ -1,4 +1,5 @@
 import 'src/common/styles/globals.css';
+import 'src/common/styles/OverRideBootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,7 +8,7 @@ import {store} from 'src/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor} from 'src/store';
 import Script from 'next/script';
-import { ToastContainer } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 
 function MyApp({Component, pageProps}) {
   return (

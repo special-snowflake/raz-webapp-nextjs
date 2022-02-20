@@ -1,0 +1,19 @@
+.modal-header,
+.modal-body,
+.modal-footer {
+  border: none !important;
+}
+.modal-dialog {
+  margin: 25vh auto !important;
+  border-radius: 5px !important;
+}
+.modal-content {
+  border-radius: 5px !important;
+  border: none !important;
+}
+.modal-footer {
+  justify-content: space-between !important;
+}
+.modal-open{
+    padding-right: 0 !important;
+}
