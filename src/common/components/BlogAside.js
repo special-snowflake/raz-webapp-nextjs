@@ -54,7 +54,7 @@ export default function BlogAside() {
             <strong>Recent News</strong>
           </p>
           <div className={`${css.recentNews} d-flex align-items-center`}>
-            <Image src={blogImg} width={75} height={75} />
+            <Image src={blogImg} width={75} height={75} alt="blog"/>
             <div>
               <p className={css.recentNewsTitle}>How To Put Movies On Iphone</p>
               <p className={css.recentNewsTime}>24 Apr 2019, 45 mins ago</p>
@@ -101,7 +101,7 @@ export default function BlogAside() {
         <section>
           <div>
             <div className={css.ads}>
-              <Image src={blogImg} width="350" height="350" />
+              <Image src={blogImg} width="350" height="350" alt="blog" />
             <div className={css.adsContact}>
               <p>Advertosment +08123112</p>
             </div>

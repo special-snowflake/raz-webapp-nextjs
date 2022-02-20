@@ -20,7 +20,7 @@ export default function TrackingDetail(props) {
 
       <section className="row p-0 mx-auto">
         <div className="col col-md-5 col-lg-5 p-0 m-0">
-          <Image src={map} width={600} height={600}/>
+          <Image src={map} width={600} height={600} alt="img"  />
         </div>
         <div className="col col-md-6 col-lg-6 mx-auto">
             <div className={`${styles.authWrapperSection}`}>
@@ -46,7 +46,7 @@ export default function TrackingDetail(props) {
                 </div>
                 <div>
                   <div className={styles.imgdevider}>
-                    <Image src={devider} height={140} width={3} />
+                    <Image src={devider} height={140} width={3 } alt="img" />
                   </div>
                 </div>
                 <div className="col d-flex align-items-center">

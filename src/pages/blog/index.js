@@ -41,7 +41,7 @@ const Content = () => {
   return (
     <section className={css.BlogContentWrapper}>
       <div className={css.header}>
-        <Image height={300} layout="responsive" src={blogImg} />
+        <Image height={300} layout="responsive" src={blogImg} alt="img" />
       </div>
       <p className={css.contentTitle}>Scandinavian Style 2019</p>
       <div className={`${css.timePost} d-flex align-items-center`}>
@@ -68,7 +68,7 @@ const Content = () => {
         </p>
       </div>
       <div className="d-flex align-items-center">
-        <Link href="/blog/detail">
+        <Link href="/blog/detail" passHref>
           <button className={`${css.btnReadMore} btn btn-light`}>
             Read More
           </button>
