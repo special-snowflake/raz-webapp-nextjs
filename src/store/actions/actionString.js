@@ -1,6 +1,6 @@
 export const ACTION_STRING = {
   authLogin: "AUTH_LOGIN",
-  authLogout: "AUTH_LOgout",
+  authLogout: "AUTH_LOGOUT",
   cartAdd: "CART_ADD",
   cartAddQty: "CART_ADDQTY",
   cartSubQty: "CART_SUBQTY",

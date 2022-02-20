@@ -1,12 +1,17 @@
 import styles from "src/common/styles/Header.module.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import { logoutAction } from "src/store/actions/auth";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 // import Shop from "src/common/components/Shop";
 
 function Header() {
   const user = useSelector((state) => state.auth.userData);
-  const { token } = user;
+  const dispatch = useDispatch();
+  const router = useRouter();
+  // const { token } = user;
 
   const [toggleAuth, setToggleAuth] = useState(false);
   const [hoverIconSearch, setHovericonSearch] = useState(false);
@@ -17,6 +22,10 @@ function Header() {
     toggleAuth ? setToggleAuth(false) : setToggleAuth(true);
   };
 
+  const logoutHandler = () => {
+    dispatch(logoutAction(user.token));
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles["container"]}>
@@ -25,7 +34,7 @@ function Header() {
           <h3>
             <Link href="/" passHref>
               <a className={styles.logo}>
-                RAZ 
+                RAZ
                 {/* <span>Garlic</span> */}
               </a>
             </Link>
@@ -70,8 +79,9 @@ function Header() {
                           top: "0",
                           paddingLeft: "0.3rem",
                           cursor: "pointer",
-                          transform: "translateX(10px)"
-                        }}>
+                          transform: "translateX(10px)",
+                        }}
+                      >
                         <ul className={styles["wrapper-ul"]}>
                           <li className={styles["dropdown-link"]}>
                             <a href="#" className={styles["tag-a-menu"]}>
@@ -159,7 +169,8 @@ function Header() {
               }}
               onMouseLeave={() => {
                 setHovericonSearch(false);
-              }}></i>
+              }}
+            ></i>
 
             <Link href="/favorite" passHref>
               <i
@@ -173,7 +184,8 @@ function Header() {
                 }}
                 onMouseLeave={() => {
                   setHovericonLove(false);
-                }}></i>
+                }}
+              ></i>
             </Link>
             <Link href="/cart" passHref>
               <i
@@ -187,11 +199,13 @@ function Header() {
                 }}
                 onMouseLeave={() => {
                   setHovericonCart(false);
-                }}></i>
+                }}
+              ></i>
             </Link>
             <div
               className={styles["wrapper-btn-menu"]}
-              onClick={toggleAuthSwitch}>
+              onClick={toggleAuthSwitch}
+            >
               <span></span>
               <span></span>
               <span></span>
@@ -206,13 +220,14 @@ function Header() {
         </div>
       </div>
 
-      {token ? (
-        <MenuLogin show={toggleAuth} />
+      {user.token ? (
+        <MenuLogin show={toggleAuth} logout={logoutHandler} />
       ) : (
         <ul
           className={
             !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
-          }>
+          }
+        >
           <li>
             <Link href="/auth">
               <a className={styles["tag-a-menu"]}>Login</a>
@@ -235,10 +250,11 @@ function Header() {
   );
 }
 
-function MenuLogin({ show }) {
+function MenuLogin({ show, logout }) {
   return (
     <ul
-      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
+      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}
+    >
       <li>
         <Link href="/seller" passHref>
           <a className={styles["tag-a-menu"]}>Profile</a>
@@ -255,7 +271,9 @@ function MenuLogin({ show }) {
         </Link>
       </li>
       <li>
-        <p className={styles["tag-a-menu"]}>Logout</p>
+        <p onClick={logout} className={styles["tag-a-menu"]}>
+          Logout
+        </p>
       </li>
     </ul>
   );
