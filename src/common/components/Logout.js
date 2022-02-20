@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Modal} from 'react-bootstrap';
 import modalsCss from 'src/common/styles/Modals.module.css';
 
@@ -8,6 +8,9 @@ function Logout(props) {
   const hanndleLogout = () => {
     console.log('logout');
   };
+  useEffect(() => {
+    setIsShow(props.isShow);
+  }, [props]);
   return (
     <div>
       <Modal show={isShow}>
@@ -19,9 +22,8 @@ function Logout(props) {
             data-bs-dismiss='modal'
             aria-label='close'
             onClick={() => {
-              setModaleLogout({
-                show: false,
-              });
+              setIsShow(false);
+              props.callbackShow(false);
             }}></button>
         </Modal.Header>
         <Modal.Body>
@@ -38,6 +40,7 @@ function Logout(props) {
           <button
             onClick={() => {
               setIsShow(false);
+              props.callbackShow(false);
             }}
             className={`btn ${modalsCss['btn-gray']}`}>
             Cancel

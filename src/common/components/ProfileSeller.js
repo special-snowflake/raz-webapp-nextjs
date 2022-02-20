@@ -5,8 +5,6 @@ import photoDefault from "public/userDefault.webp";
 
 function ProfileSeller() {
   const inputFileRef = React.createRef();
-
-  // state
   const [edit, setEdit] = useState(false);
   const [uploadPhoto, setUploadPhoto] = useState(null);
   const [name, setName] = useState("");
