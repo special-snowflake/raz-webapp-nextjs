@@ -6,13 +6,21 @@ import Footer from "src/common/components/footer";
 import MenuBar from "src/common/components/MenuBar";
 import  {getSellerProduct} from "src/modules/utils/sellerProduct"
 import { useSelector } from "react-redux";
-import React,{ useState} from "react";
+import React,{ useState, useEffect} from "react";
 
 function Product(props) {
   const token = useSelector(state => state.auth.userData.token);
   console.log(token)
   const [producs, setProducts] = useState([]);
-  
+  useEffect(() => {
+    const query = "?filter=all&limit=5&page=1";
+    getSellerProduct(query, token)
+    .then((res) => {
+      setProducts({...res.data.data.result});
+      console.log(res.data.data.result);
+    })
+    .catch((err) => console.log(err));
+  }, [])
   return (
     <>
      <Header />
