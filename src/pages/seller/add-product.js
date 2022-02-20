@@ -173,6 +173,8 @@ function AddProduct() {
     const name = e.target.name.value;
     const description = e.target.description.value;
     const productCondition = e.target.productCondition.value;
+    const stock = e.target.stock.value;
+    const price = e.target.price.value;
     const color = e.target.color.value;
     const brand = e.target.idBrand.value;
     const categories = categoryChecked;
@@ -183,6 +185,8 @@ function AddProduct() {
       !productCondition ||
       !color ||
       !brand ||
+      !stock ||
+      !price ||
       categories.length < 1 ||
       selectedFiles.length < 1
     ) {
@@ -195,6 +199,8 @@ function AddProduct() {
     body.append('description', description);
     body.append('productCondition', productCondition);
     body.append('color', color);
+    body.append('price', price);
+    body.append('stock', stock);
     body.append('idBrand', brand);
     let categoryArray = '[';
     for (let i = 0; i < categories.length; i++) {
