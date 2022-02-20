@@ -84,6 +84,7 @@
   aspect-ratio: 10/16;
   /* filter: grayscale(0); */
   transform: scale(1.1);
+  border-radius: 50%;
 }
 
 .img-wrapper {
