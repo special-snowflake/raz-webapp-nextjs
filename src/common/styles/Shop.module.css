@@ -1,0 +1,22 @@
+.discount {
+    color: white;
+    background-color: white;
+    width: 20vw;
+    height: 20vh;
+    margin: auto 2rem;
+}
+
+.title {
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 0.571428px;
+    color: #1A1A1A;
+}
+
+.sales {
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 41px;
+    letter-spacing: 1.28571px;
+    color: #D94141;
+}

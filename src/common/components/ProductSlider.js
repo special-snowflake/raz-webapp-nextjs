@@ -104,11 +104,11 @@ export default function App() {
           className="keen-slider thumbnail"
           style={{
             position: " absolute",
-            top: "60vh",
+            top: "21vh",
             left: "3vw",
             float: "left",
             display: "flex",
-            width: "25vw",
+            width: "35vw",
             textAlign: "left",
             alignItems: "center",
             justifyContent: "center",
@@ -125,7 +125,9 @@ export default function App() {
               margin: "auto 30px",
             }}
           >
-            <Image src={one} />
+            <Image src={one} 
+            width={200} height={200}
+            />
           </div>
           <div
             className="keen-slider__slide number-slide2 "
@@ -133,7 +135,8 @@ export default function App() {
               margin: "auto 20px",
             }}
           >
-            <Image src={one} />
+            <Image src={two} 
+            width={200} height={200}/>
           </div>
           <div
             className="keen-slider__slide number-slide3 "
@@ -141,15 +144,8 @@ export default function App() {
               margin: "auto 10px",
             }}
           >
-            <Image src={two} />
-          </div>
-          <div
-            className="keen-slider__slide number-slide4"
-            style={{
-              margin: "auto 0px",
-            }}
-          >
-            <Image src={three} />
+            <Image src={three}
+            width={200} height={200} />
           </div>
         </div>
       </div>

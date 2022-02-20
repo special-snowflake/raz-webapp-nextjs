@@ -13,7 +13,8 @@ export default function Register() {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-      roles: event.target.roles.value,
+      roles: event.target.user.value,
+      roles: event.target.seller.value,
       // checkebox: event.target.checkebox.value,
     };
     registerAuth(body)
@@ -55,7 +56,6 @@ export default function Register() {
  
   return (
     <section className={styles.authWrapperSection}>
-      <ToastContainer />
       <p className={styles.title}>Create Account</p>
       <form onSubmit={registerHandler}>
         <div className={`${styles.formAuth} form-group`}>
@@ -94,7 +94,7 @@ export default function Register() {
             type="checkbox"
             id="inlineCheckbox1"
             value="1"
-            name="roles"
+            name="user"
           />
           <label className="form-check-label">I'm Customer</label>
         </div>
@@ -104,7 +104,7 @@ export default function Register() {
             type="checkbox"
             id="inlineCheckbox2"
             value="2"
-            name="roles"
+            name="seller"
           />
           <label className="form-check-label">I'm Seller</label>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import styles from "../../common/styles/Auth.module.css";
+import styles from "src/common/styles/Auth.module.css";
 import { loginAction } from "src/store/actions/auth";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
@@ -57,7 +57,6 @@ function Login(props) {
   return (
     <section className={styles.authWrapperSection}>
       <p className={styles.title}>Login</p>
-      <ToastContainer />
       <form onSubmit={submitHandler}>
         <div className={`${styles.formAuth} form-group`}>
           <input

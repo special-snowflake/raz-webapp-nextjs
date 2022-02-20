@@ -2,6 +2,7 @@ import styles from "src/common/styles/Header.module.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+// import Shop from "src/common/components/Shop";
 
 function Header() {
   const user = useSelector((state) => state.auth.userData);
@@ -21,7 +22,8 @@ function Header() {
           <h3>
             <Link href="/" passHref>
               <a className={styles.logo}>
-                RAZ <span>Garlic</span>
+                RAZ 
+                {/* <span>Garlic</span> */}
               </a>
             </Link>
           </h3>
@@ -126,12 +128,13 @@ function Header() {
                       </a>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
+                      <a href="/tracking" className={styles["tag-a-menu"]}>
                         Order Tracking
                       </a>
                     </li>
                     <div className={styles.arrow}></div>
                   </ul>
+                  {/* <Shop/> */}
                 </div>
               </li>
 
