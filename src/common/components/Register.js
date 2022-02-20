@@ -13,8 +13,8 @@ export default function Register() {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-      roles: event.target.roles.value
-      // checkebox: event.target.checkebox.value,
+      roles: event.target.seller.value,
+      roles: event.target.user.value,
     };
     registerAuth(body)
       .then((response) => {
@@ -40,53 +40,43 @@ export default function Register() {
             type="email"
             name="email"
             placeholder="User name or email address *"
-            // value={email}
-            // onChange={handleChange}
             className={"form-control"}
             required
           />
-          {/* {submitted && !email && (
-            <div className="invalid-feedback">email is required</div>
-          )} */}
         </div>
         <div className={`${styles.formAuth} form-group`}>
           <input
             type="password"
             name="password"
             placeholder="password*"
-            // value={password}
-            // onChange={handleChange}
             className={"form-control"}
             required
           />
-          {/* {submitted && !password && (
-            <div className="invalid-feedback">Password is required</div>
-          )} */}
         </div>
 
-        <div className={styles.RegisChecker}>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox1"
-              value="1"
-              name="roles"
-            />
-            <label className="form-check-label">I'm Customer</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox2"
-              value="2"
-              name="roles"
-            />
-            <label className="form-check-label">I'm Seller</label>
-          </div>
+      <div className={styles.RegisChecker}>
+      <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="inlineCheckbox1"
+            value="1"
+            name="seller"
+          />
+          <label className="form-check-label">I'm Seller</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="2"
+            name="user"
+          />
+          <label className="form-check-label">I'm Customer</label>
         </div>
 
+      </div>
         <button type="submit" className="btn btn-dark">
           Register
         </button>
