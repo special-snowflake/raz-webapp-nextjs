@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { connect } from "react-redux";
+import { useRouter } from "next/router";
+import { connect, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 import styles from "src/common/styles/Checkout.module.css";
@@ -8,8 +9,11 @@ import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
 
 import { addTransaction } from "src/modules/utils/transaction";
+import { emptyCart } from "src/store/actions/cart";
 
 function Checkout(props) {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [selects, setSelect] = useState();
 
   const checkoutHandler = (e) => {
@@ -25,12 +29,13 @@ function Checkout(props) {
     };
     addTransaction(body, props.auth.userData.token)
       .then((res) => {
+        dispatch(emptyCart());
         toast.success("Checkout success!");
+        router.push("/");
       })
       .catch((err) => {
         toast.error("Checkout error.");
       });
-    // console.log(body);
   };
 
   return (

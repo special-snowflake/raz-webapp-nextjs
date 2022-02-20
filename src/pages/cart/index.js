@@ -26,7 +26,7 @@ function Cart(props) {
     const shippingMethod = e.target.flexRadioDefault.value;
     if (!props.auth.userData.token) {
       toast.error("You need to login first before checkout.");
-      router.push("/");
+      router.push("/auth");
     } else {
       dispatch(updateCart({ shippingMethod, totalPrice }));
       toast.info("Finish your payment.");
