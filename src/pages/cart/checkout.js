@@ -20,7 +20,7 @@ function Checkout(props) {
       status: "paid",
       productList: props.cart.products.map((product) => {
         const { id, quantity } = product;
-        return (product = { id, quantity });
+        return (product = { idProduct: id, quantity });
       }),
     };
     addTransaction(body, props.auth.userData.token)
@@ -28,7 +28,7 @@ function Checkout(props) {
         toast.success("Checkout success!");
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Checkout error.");
       });
     // console.log(body);
   };

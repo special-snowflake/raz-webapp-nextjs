@@ -1,15 +1,12 @@
-// import styles from "src/common/styles/Notification.module.css";
 import Header from "src/common/components/header";
 import PageTitle from "src/common/components/PageTitle";
 import Footer from "src/common/components/footer";
 import styles from "src/common/styles/Tracking.module.css";
 import Image from "next/image";
 import map from "src/assets/map.png";
-import devider from "src/assets/Line-dot.svg";
-// import { useState } from "react";
+import devider from "src/assets/line-dot.svg";
 
-export default function TrackingDetail(props) {
-  // const tracking = [ map, setMap] = useState(false)
+export default function TrackingDetail() {
   return (
     <>
       <Header />

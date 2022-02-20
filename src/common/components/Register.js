@@ -13,8 +13,7 @@ export default function Register() {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-      roles: event.target.seller.value,
-      roles: event.target.user.value,
+      roles: event.target.roles.value,
     };
     registerAuth(body)
       .then((response) => {
@@ -53,30 +52,26 @@ export default function Register() {
             required
           />
         </div>
-
-      <div className={styles.RegisChecker}>
-      <div className="form-check form-check-inline">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="inlineCheckbox1"
-            value="1"
-            name="seller"
-          />
-          <label className="form-check-label">I'm Seller</label>
+        <div className={styles.RegisChecker}>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              value="2"
+              name="roles"
+            />
+            <label className="form-check-label">I'm Customer</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              value="1"
+              name="roles"
+            />
+            <label className="form-check-label">I'm Seller</label>
+          </div>
         </div>
-        <div className="form-check form-check-inline">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="inlineCheckbox2"
-            value="2"
-            name="user"
-          />
-          <label className="form-check-label">I'm Customer</label>
-        </div>
-
-      </div>
         <button type="submit" className="btn btn-dark">
           Register
         </button>
