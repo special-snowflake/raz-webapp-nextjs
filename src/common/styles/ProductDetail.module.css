@@ -1,5 +1,6 @@
 .productMainWrapper {
     padding: var( --padding);
+    margin-top: 6vh;
     height: 100%;
 }
 
@@ -12,7 +13,7 @@
 .mainImg {
     width: 100%;
     height: max(50vh, 20%);
-    margin-top: 45px;
+    margin-top: 5vh;
 }
 
 .imgProductContainer {
