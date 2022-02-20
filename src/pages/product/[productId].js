@@ -1,26 +1,30 @@
-import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+
+import Image from "next/image";
 import styles from "src/common/styles/ProductDetail.module.css";
 import sofa from "src/assets/sofa.png";
 import userone from "src/assets/userone.png";
 import usertwo from "src/assets/usertwo.png";
 import userthree from "src/assets/userthree.png";
-import { useRouter } from "next/router";
 import ProductSlider from "src/common/components/ProductSlider";
 import { geProductId } from "src/modules/utils/product";
-import Footer from 'src/common/components/footer';
-import Header from 'src/common/components/header';
-import PageTitle from 'src/common/components/PageTitle';
+import Footer from "src/common/components/footer";
+import Header from "src/common/components/header";
+import PageTitle from "src/common/components/PageTitle";
+import { addProduct } from "src/store/actions/cart";
 
-
-export default function DetailProduct(props) {
+function DetailProduct(props) {
   const router = useRouter();
-  const [counter, setCounter] = useState(0);
+  const dispatch = useDispatch();
+  const [counter, setCounter] = useState(1);
   const [product, setProduct] = useState({});
   const menu = [
     "description",
     "review",
-    "addotional informatin",
+    "additional informatin",
     "about brand",
     "Shipping & delivery",
   ];
@@ -33,10 +37,8 @@ export default function DetailProduct(props) {
     if (Object.keys(router.query).includes("productId")) {
       geProductId(productId)
         .then((res) => {
-          setProductsMenu(
-            {...res.data.data}
-            );
-            console.log(res.data.data)
+          setProductsMenu({ ...res.data.data });
+          console.log(res.data.data);
           // {...}
         })
         .catch((err) => console.log(err));
@@ -51,9 +53,26 @@ export default function DetailProduct(props) {
     const newCounter = counter - 1 < 0 ? 0 : counter - 1;
     setCounter(newCounter);
   };
+
+  const addToCartHandler = () => {
+    const { id, name, images, price } = productsMenu;
+    const parsedPrice = parseFloat(price);
+    dispatch(
+      addProduct({
+        id,
+        name,
+        images,
+        price: parsedPrice,
+        quantity: counter,
+        total: parsedPrice * counter,
+      })
+    );
+    toast.success("Added to cart");
+  };
+
   return (
     <>
-    <Header />
+      <Header />
       <PageTitle
         title="My Account"
         subTitle="Register and log in with your account to be able to shop at will"
@@ -84,8 +103,8 @@ export default function DetailProduct(props) {
           <div>
             <p className={styles.productPrice}>{productsMenu.price}</p>
             <p className={styles.productStock}>
-              <i className="bi bi-check-circle"></i>19 Sold / {productsMenu.stock} In
-              Stock
+              <i className="bi bi-check-circle"></i>19 Sold /{" "}
+              {productsMenu.stock} In Stock
             </p>
           </div>
           <div className={styles.productDescription}>
@@ -102,7 +121,10 @@ export default function DetailProduct(props) {
               +
             </div>
           </div>
-          <button className={`${styles.productDescButton} btn btn-dark`}>
+          <button
+            onClick={addToCartHandler}
+            className={`${styles.productDescButton} btn btn-dark`}
+          >
             Add to Chart
           </button>
           <button className={`${styles.productDescButton} btn btn-dark`}>
@@ -170,7 +192,7 @@ export default function DetailProduct(props) {
           </section>
         </section>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }
@@ -289,7 +311,7 @@ const Review = () => {
                 </div>
                 <div>
                   <p className={styles.commentQuote}>
-                  {`“Theme is very flexible and easy to use. Perfect for us.
+                    {`“Theme is very flexible and easy to use. Perfect for us.
                   Customer support has been excellent and answered every
                   question we've thrown at them with 12 hours.”`}
                   </p>
@@ -325,7 +347,7 @@ const Review = () => {
               </div>
               <div>
                 <p className={styles.commentQuote}>
-                {`“Theme is very flexible and easy to use. Perfect for us.
+                  {`“Theme is very flexible and easy to use. Perfect for us.
                   Customer support has been excellent and answered every
                   question we've thrown at them with 12 hours.”`}
                 </p>
@@ -384,3 +406,12 @@ const Review = () => {
     </>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    cart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps)(DetailProduct);
