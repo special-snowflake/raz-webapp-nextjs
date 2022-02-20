@@ -1,58 +1,36 @@
 import React, { useState } from "react";
 import styles from "../../common/styles/Auth.module.css";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { registerAuth } from "src/modules/utils/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
-  const router = useRouter()
+  const router = useRouter();
 
   const registerHandler = (event) => {
     event.preventDefault();
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-      roles: event.target.roles.value,
+      roles: event.target.roles.value
       // checkebox: event.target.checkebox.value,
     };
     registerAuth(body)
       .then((response) => {
         const registerResponse = response.data.result;
         console.log(registerResponse);
-        toast.info("Account Created Successfully, Please Login", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.info("Account Created Successfully, Please Login");
         // setTimeout(() => {
         //   router.push("/");
         // }, 3000);
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Register aborted!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.error("Register aborted!");
       });
   };
 
-  const notify = () => {
-    toast.info("Account Created Successfully, Please Login", {
-      position: "top",
-    });
-  };
- 
   return (
     <section className={styles.authWrapperSection}>
       <ToastContainer />
@@ -87,28 +65,28 @@ export default function Register() {
           )} */}
         </div>
 
-      <div className={styles.RegisChecker}>
-      <div className="form-check form-check-inline">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="inlineCheckbox1"
-            value="1"
-            name="roles"
-          />
-          <label className="form-check-label">I'm Customer</label>
+        <div className={styles.RegisChecker}>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox1"
+              value="1"
+              name="roles"
+            />
+            <label className="form-check-label">I'm Customer</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox2"
+              value="2"
+              name="roles"
+            />
+            <label className="form-check-label">I'm Seller</label>
+          </div>
         </div>
-        <div className="form-check form-check-inline">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="inlineCheckbox2"
-            value="2"
-            name="roles"
-          />
-          <label className="form-check-label">I'm Seller</label>
-        </div>
-      </div>
 
         <button type="submit" className="btn btn-dark">
           Register
@@ -118,14 +96,14 @@ export default function Register() {
   );
 }
 
- //   const [inputs, setInputs] = useState({
-  //     email: "",
-  //     password: "",
-  //   });
-  //   const [submitted, setSubmitted] = useState(false);
-  //   const { email, password } = inputs;
+//   const [inputs, setInputs] = useState({
+//     email: "",
+//     password: "",
+//   });
+//   const [submitted, setSubmitted] = useState(false);
+//   const { email, password } = inputs;
 
-  //   function handleChange(e) {
-  //     const { name, value } = e.target;
-  //     setInputs((inputs) => ({ ...inputs, [name]: value }));
-  //   }
+//   function handleChange(e) {
+//     const { name, value } = e.target;
+//     setInputs((inputs) => ({ ...inputs, [name]: value }));
+//   }

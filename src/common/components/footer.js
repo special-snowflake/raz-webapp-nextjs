@@ -5,11 +5,12 @@ function Footer() {
     <footer className={styles["wrapper-footer"]}>
       <div className="row">
         <div className="col-lg-5 ">
-          <h1 className={styles["title-brand"]}>RAZ</h1>
+          <h1 className={styles["title-brand"]}>RAZ GARLIC</h1>
           <p className={styles["desc-brand"]}>
-            Donec nunc nunc, gravida vitae diam vel,
-            <br /> varius interdum erat. Quisque a nunc vel <br /> diam auctor
-            commodo.
+            Shopping is easier and more economical, get cash back up to 100% at
+            Raz Garlic.
+            <br /> Shop to your heart's content without having to worry about
+            shipping costs, Check Raz garlic now.
           </p>
           <div className={styles["wrapper-icon"]}>
             <i className={`bi bi-facebook ${styles["icon"]}`}></i>
