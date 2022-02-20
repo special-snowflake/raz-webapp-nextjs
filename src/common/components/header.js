@@ -17,6 +17,7 @@ function Header() {
   const [hoverIconSearch, setHovericonSearch] = useState(false);
   const [hoverIconLove, setHovericonLove] = useState(false);
   const [hoverIconCart, setHovericonCart] = useState(false);
+  const [onSearch, setOnSearch] = useState(false);
 
   const toggleAuthSwitch = () => {
     toggleAuth ? setToggleAuth(false) : setToggleAuth(true);
@@ -26,6 +27,11 @@ function Header() {
     dispatch(logoutAction(user.token));
   };
 
+  const toggleSearch = () => {
+    onSearch ? setOnSearch(false) : setOnSearch(true);
+  };
+
+  console.log(onSearch);
   return (
     <header className={styles.header}>
       <div className={styles["container"]}>
@@ -79,9 +85,8 @@ function Header() {
                           top: "0",
                           paddingLeft: "0.3rem",
                           cursor: "pointer",
-                          transform: "translateX(10px)",
-                        }}
-                      >
+                          transform: "translateX(10px)"
+                        }}>
                         <ul className={styles["wrapper-ul"]}>
                           <li className={styles["dropdown-link"]}>
                             <a href="#" className={styles["tag-a-menu"]}>
@@ -157,58 +162,69 @@ function Header() {
               </li>
             </ul>
           </div>
-          <div className={styles["wrapper-icon"]}>
-            <i
-              className={
-                hoverIconSearch
-                  ? `bi bi-search-heart ${styles.icon2}`
-                  : `bi bi-search ${styles.icon2}`
-              }
-              onMouseEnter={() => {
-                setHovericonSearch(true);
-              }}
-              onMouseLeave={() => {
-                setHovericonSearch(false);
-              }}
-            ></i>
+          <div className={` ${styles["container-icon"]}`}>
+            <div className={styles["wrapper-icon"]}>
+              <i
+                className={
+                  hoverIconSearch || onSearch
+                    ? `bi bi-search-heart ${styles.icon2}`
+                    : `bi bi-search ${styles.icon2}`
+                }
+                onMouseEnter={() => {
+                  setHovericonSearch(true);
+                }}
+                onMouseLeave={() => {
+                  setHovericonSearch(false);
+                }}
+                onClick={toggleSearch}></i>
+            </div>
+            <div className={styles["wrapper-icon"]}>
+              <div className={styles["wrapper-notif"]}>
+                <p className={styles["notif"]}>10</p>
+              </div>
+              <Link href="/favorite" passHref>
+                <i
+                  className={
+                    hoverIconLove
+                      ? `bi bi-heart-fill ${styles.icon2}`
+                      : `bi bi-heart ${styles.icon2}`
+                  }
+                  onMouseEnter={() => {
+                    setHovericonLove(true);
+                  }}
+                  onMouseLeave={() => {
+                    setHovericonLove(false);
+                  }}></i>
+              </Link>
+            </div>
 
-            <Link href="/favorite" passHref>
-              <i
-                className={
-                  hoverIconLove
-                    ? `bi bi-heart-fill ${styles.icon2}`
-                    : `bi bi-heart ${styles.icon2}`
-                }
-                onMouseEnter={() => {
-                  setHovericonLove(true);
-                }}
-                onMouseLeave={() => {
-                  setHovericonLove(false);
-                }}
-              ></i>
-            </Link>
-            <Link href="/cart" passHref>
-              <i
-                className={
-                  hoverIconCart
-                    ? `bi bi-cart-fill ${styles.icon2}`
-                    : `bi bi-cart ${styles.icon2}`
-                }
-                onMouseEnter={() => {
-                  setHovericonCart(true);
-                }}
-                onMouseLeave={() => {
-                  setHovericonCart(false);
-                }}
-              ></i>
-            </Link>
-            <div
-              className={styles["wrapper-btn-menu"]}
-              onClick={toggleAuthSwitch}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
+            <div className={styles["wrapper-icon"]}>
+              <div className={styles["wrapper-notif"]}>
+                <p className={styles["notif"]}>10</p>
+              </div>
+              <Link href="/cart" passHref>
+                <i
+                  className={
+                    hoverIconCart
+                      ? `bi bi-cart-fill ${styles.icon2}`
+                      : `bi bi-cart ${styles.icon2}`
+                  }
+                  onMouseEnter={() => {
+                    setHovericonCart(true);
+                  }}
+                  onMouseLeave={() => {
+                    setHovericonCart(false);
+                  }}></i>
+              </Link>
+            </div>
+            <div className={styles["wrapper-icon"]}>
+              <div
+                className={styles["wrapper-btn-menu"]}
+                onClick={toggleAuthSwitch}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
         </div>
@@ -226,8 +242,7 @@ function Header() {
         <ul
           className={
             !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
-          }
-        >
+          }>
           <li>
             <Link href="/auth">
               <a className={styles["tag-a-menu"]}>Login</a>
@@ -246,6 +261,16 @@ function Header() {
           </li>
         </ul>
       )}
+
+      <form className={onSearch ? styles["wrapper-input-search"] : null}>
+        <input
+          type="text"
+          className={
+            !onSearch ? styles["input-search"] : styles["input-search-show"]
+          }
+          placeholder="Type here to search..."
+        />
+      </form>
     </header>
   );
 }
@@ -253,8 +278,7 @@ function Header() {
 function MenuLogin({ show, logout }) {
   return (
     <ul
-      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}
-    >
+      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
       <li>
         <Link href="/seller" passHref>
           <a className={styles["tag-a-menu"]}>Profile</a>
