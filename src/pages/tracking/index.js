@@ -21,7 +21,7 @@ function Tracking(props) {
 
       <section className="row p-0 m-0">
         <div className="col col-md-5 col-lg-5 p-0 m-0">
-        <Image src={map} width={600} height={600}/>
+        <Image src={map} width={600} height={600} alt="img"/>
         </div>
         <div className=" col col-md-4 col-lg-4 mx-auto">
           <div>
@@ -55,7 +55,7 @@ function Tracking(props) {
                   </div>
                 </form>
               </div>
-              <Link href="/tracking/detail">
+              <Link href="/tracking/detail" passHref>
                 <button
                   type="submit"
                   className={`${styles.trackButton} btn btn-dark`}

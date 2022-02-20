@@ -28,7 +28,7 @@ function Blog(props) {
           </div>
           <div className={`${css.rightContent} col-8 col-md-8`}>
             <div className={css.header}>
-              <Image src={blogImg} />
+              <Image src={blogImg}  alt="img"/>
             </div>
             <div className={`${css.timePost} d-flex align-items-center`}>
               <p>
@@ -79,7 +79,7 @@ function Blog(props) {
             </div>
             <div className="row my-5">
               <div className="col-5">
-                <Image src={blogImg} />
+                <Image src={blogImg} alt="img"/>
               </div>
               <div className="col-7">
                 <p className={css.contentTitle}>
@@ -162,7 +162,7 @@ function Blog(props) {
             <div className="row d-flex justify-content-between">
               <div className="col d-flex">
               <div className={`${css.recentNews} d-flex align-items-center`}>
-            <Image src={nfPic} width={75} height={75} />
+            <Image src={nfPic} width={75} height={75} alt="img" />
             <div>
               <p className={css.recentNewsTitle}>How To Put Movies On Iphone</p>
               <p className={css.recentNewsTime}>24 Apr 2019, 45 mins ago</p>
@@ -171,7 +171,7 @@ function Blog(props) {
               </div>
               <div className="col d-flex ">
               <div className={`${css.recentNews} d-flex align-items-center`}>
-            <Image src={nfPic} width={75} height={75} />
+            <Image src={nfPic} width={75} height={75} alt="img" />
             <div>
               <p className={css.recentNewsTitle}>How To Put Movies On Iphone</p>
               <p className={css.recentNewsTime}>24 Apr 2019, 45 mins ago</p>
@@ -252,9 +252,10 @@ const Review = () => {
                 </div>
                 <div>
                   <p className={styles.commentQuote}>
-                    {`“Theme is very flexible and easy to use. Perfect for us.
+                  {`“Theme is very flexible and easy to use. Perfect for us.
                   Customer support has been excellent and answered every
-                  question we've thrown at them with 12 hours.”`}
+                  question we've thrown at them with 12 hours."`}
+                  
                   </p>
                   <div className="d-flex align-items-center">
                     <p className={styles.commentTime}>

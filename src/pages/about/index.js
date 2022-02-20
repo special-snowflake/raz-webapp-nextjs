@@ -119,17 +119,17 @@ function About() {
         <h2>Meet Our Team</h2>
         <div className="row">
           <div className="col">
-            <Image src={amanda} />
+            <Image src={amanda} alt="user" />
             <p className={styles.teamName}>Amanda ainsley</p>
             <p className={styles.teamPosition}>CEO</p>
           </div>
           <div className="col">
-            <Image src={norman} />
+            <Image src={norman} alt="user"/>
             <p className={styles.teamName}>Norman Kamaru</p>
             <p className={styles.teamPosition}>Design</p>
           </div>
           <div className="col">
-            <Image src={connor} />
+            <Image src={connor} alt="user" />
             <p className={styles.teamName}>Connor McGregor</p>
             <p className={styles.teamPosition}>Product manager</p>
           </div>
@@ -138,9 +138,13 @@ function About() {
 
       <section className={styles.reviewSection}>
         <p className={styles.aboutUsReview}>
-          {`“Gave 5 stars for excellent customer service. I had a couple of questions which they replied quickly to answer. If I could give multiple reasons for my rating it would also be for the design quality and customization to go along with the great service. The theme is excellent, keep up the great work."`}
-        </p>
-        <Image src={connor} className={styles.reviewSectionImage} width="40" height="40" />
+        {`“Gave 5 stars for excellent customer service. I had a couple of
+          questions which they replied quickly to answer. If I could give
+          multiple reasons for my rating it would also be for the design quality
+          and customization to go along with the great service. The theme is
+          excellent, keep up the great work."`}
+         </p>
+        <Image src={connor} className={styles.reviewSectionImage} width="40" height="40"  alt="user"/>
         <p className={styles.reviewUser}>Trevor Reivera, California</p>
         {/* carousel */}
       </section>
