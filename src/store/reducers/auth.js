@@ -4,15 +4,15 @@ import { ActionType } from "redux-promise-middleware";
 const initialState = {
   userData: {
     token: null,
-    id: null
+    id: null,
   },
   isPending: false,
   isFulfilled: false,
   isRejected: false,
-  err: null
+  err: null,
 };
 const authReducer = (prevState = initialState, action) => {
-  const { authLogin } = ACTION_STRING;
+  const { authLogin, authLogout } = ACTION_STRING;
   const { Pending, Fulfilled, Rejected } = ActionType;
 
   switch (action.type) {
@@ -21,7 +21,7 @@ const authReducer = (prevState = initialState, action) => {
         ...prevState,
         isPending: true,
         isFulfilled: false,
-        isRejected: false
+        isRejected: false,
       };
 
     case authLogin.concat("_", Fulfilled):
@@ -29,15 +29,14 @@ const authReducer = (prevState = initialState, action) => {
       const userData = {
         // ...prevState.userData,
         token: data.data.token,
-        pin: data.data.pin,
-        id: data.data.id
+        id: data.data.id,
         // user: data.result,
       };
       return {
         ...prevState,
         isPending: false,
         isFulfilled: true,
-        userData
+        userData,
       };
 
     // case authLogin + rejected:
@@ -47,7 +46,12 @@ const authReducer = (prevState = initialState, action) => {
         ...prevState,
         isPending: false,
         isRejected: true,
-        err: null
+        err: null,
+      };
+
+    case authLogout.concat("_", Fulfilled):
+      return {
+        ...initialState,
       };
 
     default:
