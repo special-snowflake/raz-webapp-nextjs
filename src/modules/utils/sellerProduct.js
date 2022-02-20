@@ -1,9 +1,9 @@
 import axios from 'axios';
-const url = process.env.NEXT_PUBLIC_API_URL + '/products/seller';
+const url = process.env.NEXT_PUBLIC_API_URL + '/products';
 
-export const addProduct = (body, token) => {
-    const urlAdd = url + '/';
-    return axios.post(urlAdd, body, {
+export const getSellerProduct = (query, token) => {
+    const urlProduct = url + '/seller' + query;
+    return axios.post(urlProduct, {
       headers: {
         'x-access-token': token,
       },
