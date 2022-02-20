@@ -10,3 +10,12 @@ export const getUserTransaction = (query, token) => {
     },
   });
 };
+
+// transaction
+export const addTransaction = (body, token) => {
+  return axios.post(url, body, {
+    headers: {
+        'x-access-token': token,
+    },
+  });
+};
