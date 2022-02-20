@@ -4,8 +4,15 @@ import PageTitle from "src/common/components/PageTitle";
 import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
 import MenuBar from "src/common/components/MenuBar";
+import  {getSellerProduct} from "src/modules/utils/sellerProduct"
+import { useSelector } from "react-redux";
+import React,{ useState} from "react";
 
-function Product() {
+function Product(props) {
+  const token = useSelector(state => state.auth.userData.token);
+  console.log(token)
+  const [producs, setProducts] = useState([]);
+  
   return (
     <>
      <Header />
