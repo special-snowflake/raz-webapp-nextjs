@@ -13,7 +13,12 @@ export default function Register() {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
+<<<<<<< HEAD
+      roles: event.target.user.value,
+      roles: event.target.seller.value,
+=======
       roles: event.target.roles.value
+>>>>>>> b6098b98c209862fe75888dd5f05148f793cb875
       // checkebox: event.target.checkebox.value,
     };
     registerAuth(body)
@@ -33,7 +38,6 @@ export default function Register() {
 
   return (
     <section className={styles.authWrapperSection}>
-      <ToastContainer />
       <p className={styles.title}>Create Account</p>
       <form onSubmit={registerHandler}>
         <div className={`${styles.formAuth} form-group`}>
@@ -65,6 +69,28 @@ export default function Register() {
           )} */}
         </div>
 
+<<<<<<< HEAD
+      <div className={styles.RegisChecker}>
+      <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="inlineCheckbox1"
+            value="1"
+            name="user"
+          />
+          <label className="form-check-label">I'm Customer</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="2"
+            name="seller"
+          />
+          <label className="form-check-label">I'm Seller</label>
+=======
         <div className={styles.RegisChecker}>
           <div className="form-check form-check-inline">
             <input
@@ -86,6 +112,7 @@ export default function Register() {
             />
             <label className="form-check-label">I'm Seller</label>
           </div>
+>>>>>>> b6098b98c209862fe75888dd5f05148f793cb875
         </div>
 
         <button type="submit" className="btn btn-dark">
