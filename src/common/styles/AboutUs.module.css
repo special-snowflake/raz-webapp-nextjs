@@ -1,0 +1,103 @@
+.productDescriptionSection {
+    font-weight: normal;
+    font-size: max(0.6rem, 1vw);
+    color: #4D4D4D;
+    margin: 3vw auto;
+    width: 50%;
+}
+
+.productDescriptionSection p {
+    margin: 2vw auto;
+}
+
+.productDescriptionSection li {
+    margin: 2vw auto;
+}
+
+.quality {
+    width: 95%;
+    text-align: center;
+    margin: 2vw auto;
+}
+
+.qualityTitle {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+    text-align: center;
+    color: #1A1A1A;
+}
+
+.qualityText {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 28px;
+    /* or 200% */
+    text-align: center;
+    color: #1A1A1A;
+}
+
+.qualityWrapper {
+    margin: 5em auto;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+}
+
+.teamSection {
+    /* text-align: center; */
+    margin: 5em auto;
+    width: 80%;
+}
+
+.teamSection h2 {
+    text-align: center;
+    margin: 5rem;
+}
+
+.teamName {
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 28px;
+    /* identical to box height */
+    color: #1A1A1A;
+}
+
+.teamPosition {
+    font-family: Arimo;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 18px;
+    color: #919191;
+}
+
+.aboutUsReview {
+    font-style: normal;
+    font-weight: normal;
+    font-size: max(1.5vw, 1rem);
+    line-height: 55px;
+    /* or 196% */
+    text-align: center;
+    color: #4D4D4D;
+}
+
+.reviewSection {
+    width: 80%;
+    margin: 15vh auto;
+    text-align: center;
+}
+
+.reviewSectionImage {
+    border-radius: 20px;
+    margin: 30px auto;
+}
+
+.reviewUser {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 28px;
+    /* identical to box height */
+    color: #1A1A1A;
+}

@@ -11,10 +11,8 @@ import usertwo from "src/assets/usertwo.png";
 import userthree from "src/assets/userthree.png";
 import ProductSlider from "src/common/components/ProductSlider";
 import { geProductId } from "src/modules/utils/product";
-import Footer from "src/common/components/footer";
-import Header from "src/common/components/header";
-import PageTitle from "src/common/components/PageTitle";
-import { addProduct } from "src/store/actions/cart";
+import Footer from 'src/common/components/footer';
+import Header from 'src/common/components/header';
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -72,11 +70,7 @@ function DetailProduct(props) {
 
   return (
     <>
-      <Header />
-      <PageTitle
-        title="My Account"
-        subTitle="Register and log in with your account to be able to shop at will"
-      />
+    <Header />
       <section className={styles.productMainWrapper}>
         <div>
           <nav aria-label="breadcrumb">
@@ -266,8 +260,8 @@ const Review = () => {
                 <Image
                   src={userone}
                   alt="user"
-                  width={150}
-                  height={150}
+                  width={75}
+                  height={75}
                   // layout="fill"
                   // objectFit="scale-down"
                   // objectPosition="static"
@@ -293,17 +287,17 @@ const Review = () => {
           {/* reply commenet card */}
           <div className="d-flex align-items-center">
             <div className="w-25">
-              <i className="bi bi-align-end"></i>
             </div>
 
             <div>
               <div className="d-flex align-items-center">
+              <i className="bi bi-align-end"></i>
                 <div className={styles.userReviewImage}>
                   <Image
                     src={usertwo}
                     alt="user"
-                    width={150}
-                    height={150}
+                    width={75}
+                    height={75}
                     // layout="fill"
                     // objectFit="scale-down"
                     // objectPosition="static"
@@ -338,8 +332,8 @@ const Review = () => {
                 <Image
                   src={userthree}
                   alt="user"
-                  width={150}
-                  height={150}
+                  width={75}
+                  height={75}
                   // layout="fill"
                   // objectFit="scale-down"
                   // objectPosition="static"

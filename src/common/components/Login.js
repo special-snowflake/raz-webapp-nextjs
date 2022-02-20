@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import styles from "../../common/styles/Auth.module.css";
+import styles from "src/common/styles/Auth.module.css";
 import { loginAction } from "src/store/actions/auth";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
@@ -18,46 +18,45 @@ function Login(props) {
     };
     props.loginDispatch(body);
   };
-  useEffect(() => {
-    if (props.auth.isFulfilled == true) {
-      console.log("LOGIN MASUK");
-      // setTimeout(() => {
-      //   router.push("/");
-      // }, 3000);
-      return toast.info("Login success", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      });
+  // useEffect(() => {
+  //   // if (props.auth.isFulfilled == true) {
+  //   //   console.log("LOGIN MASUK");
+  //   //   // setTimeout(() => {
+  //   //   //   router.push("/");
+  //   //   // }, 3000);
+  //   //   return toast.info("Login success", {
+  //   //     position: "top-right",
+  //   //     autoClose: 2000,
+  //   //     hideProgressBar: false,
+  //   //     closeOnClick: true,
+  //   //     pauseOnHover: true,
+  //   //     draggable: true,
+  //   //     progress: undefined
+  //   //   });
 
-      // console.log("/")
-    }
-    if (props.auth.isRejected) {
-      toast.error("Wrong email/password!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      });
-    }
-  }, []);
-  // const notify = () => {
-  //   toast.info("Login success", {
-  //     position: "top",
-  //   });
-  // };
+  //   //   // console.log("/")
+  //   // }
+  //   // if (props.auth.isRejected) {
+  //   //   toast.error("Wrong email/password!", {
+  //   //     position: "top-right",
+  //   //     autoClose: 2000,
+  //   //     hideProgressBar: false,
+  //   //     closeOnClick: true,
+  //   //     pauseOnHover: true,
+  //   //     draggable: true,
+  //   //     progress: undefined
+  //   //   });
+  //   // }
+  // }, [props.auth.isFulfilled, toast]);
+  // // const notify = () => {
+  // //   toast.info("Login success", {
+  // //     position: "top",
+  // //   });
+  // // };
 
   return (
     <section className={styles.authWrapperSection}>
       <p className={styles.title}>Login</p>
-      <ToastContainer />
       <form onSubmit={submitHandler}>
         <div className={`${styles.formAuth} form-group`}>
           <input
@@ -119,7 +118,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loginDispatch: (body) => {
-      dispatch(loginAction(body));
+      dispatch(loginAction(body))
+        .then((res) => {
+          toast.info("Login success");
+        })
+        .catch((err) => {
+          toast.error("Wrong email/password!");
+        });
       console.log("login body :" + body);
     }
   };

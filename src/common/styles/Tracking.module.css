@@ -1,0 +1,85 @@
+/* tracking */
+
+.trackingTitle {
+    font-size: max(10px, 0.8rem);
+    line-height: 24px;
+    text-align: center;
+    color: #1A1A1A;
+}
+
+.authWrapperSection {
+    margin-top: 7vh;
+    /* margin-bottom: 5vh; */
+    /* padding: 2vw; */
+    width: 100%;
+}
+
+.trackButton {
+    /* display: flex; */
+    border: none;
+    margin: 2vh 35%;
+    border-radius: 0;
+    width: max(35%, 80px);
+    height: 50px;
+    text-align: center;
+}
+
+.formAuth {
+    padding: 1vh 0;
+}
+
+.formAuth input {
+    padding: 2vh;
+    border-radius: 0;
+}
+
+.formAuth input::placeholder {
+    font-size: max(0.5rem, 0.8vw);
+}
+
+.authWrapperSection label {
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    /* padding: 6px; */
+    font-size: max(1vw, 0.6rem);
+}
+
+.hr {
+    width: 2px;
+    background: #151515;
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
+}
+
+.checkOnMap {
+    border: none;
+    /* margin: 2vh 35%; */
+    border-radius: 0;
+    width: 15vw;
+    height: 50px;
+    text-align: center;
+}
+
+.faqIcon i {
+    font-size: max(1vw, 1rem);
+    border-radius: 3rem;
+    border: 1px solid black;
+    width: 1rem;
+    text-align: center;
+    padding: 20px;
+    margin: auto 20px;
+    height: 1rem;
+}
+
+.imgdevider {
+    margin: 0 40px;
+    z-index: 3;
+}
+
+.authWrapperSection p {
+    padding: 0;
+}
