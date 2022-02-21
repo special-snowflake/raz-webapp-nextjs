@@ -23,8 +23,8 @@ function CardRelated({ data }) {
             <div className={`keen-slider__slide   ${styles.card}`} key={index}>
               <Image src={one} alt={one} width="800" layout="responsive" />
               <div className={styles["wrapper-text"]}>
-                <p>nama Product</p>
-                <p>Harga Product</p>
+                <p>{item.name}</p>
+                <p>{item.price}</p>
               </div>
             </div>
           );

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-
+import Link from "next/link";
 import Image from "next/image";
 import styles from "src/common/styles/ProductDetail.module.css";
 import sofa from "src/assets/sofa.png";
@@ -16,7 +16,6 @@ import Footer from "src/common/components/footer";
 import Header from "src/common/components/header";
 import CardRelated from "src/common/components/RelatedProduct";
 import { addProduct } from "src/store/actions/cart";
-import relatedProduct from "src/common/components/RelatedProduct";
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -96,10 +95,14 @@ function DetailProduct(props) {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="/">Home</a>
+                <Link href="/" passHref>
+                  <a className={styles["title-page-crumb"]}>Home</a>
+                </Link>
               </li>
               <li className="breadcrumb-item">
-                <a href="/product">Product</a>
+                <Link href="/product" passHref>
+                  <a className={styles["title-page-crumb"]}>Product</a>
+                </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
                 {productsMenu.name}
