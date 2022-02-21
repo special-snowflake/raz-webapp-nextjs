@@ -4,13 +4,14 @@
 
 .table {
   width: 100%;
+  margin-bottom: 3rem;
 }
 
 .table p {
   margin: 0;
 }
 
-.table a {
+.table p {
   cursor: pointer;
 }
 
@@ -44,11 +45,7 @@ td.product p:hover {
 }
 
 td.price {
-    font-weight: 700;
-}
-
-.product-name {
-  /* flex-grow: 1; */
+  font-weight: 700;
 }
 
 .img-wrapper {
@@ -60,4 +57,45 @@ td.price {
 .other-item {
   font-size: 0.8rem;
   color: var(--gray);
+}
+
+.table tbody {
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  grid-gap: 0.5rem;
+}
+
+.pagination-button {
+  padding: 1rem;
+  border: var(--border-gray);
+  background-color: white;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+.pagination-button.active:hover {
+  opacity: 0.7;
+}
+
+.pagination-button.disabled {
+  padding: 1rem;
+  border: var(--border-gray);
+  background-color: var(--gray);
+  color: var(--dark);
+}
+
+.pagination-button.active,
+.pagination-button:hover {
+  border: 1px solid var(--dark);
+  background-color: var(--dark);
+  color: white;
+}
+
+.loading-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
