@@ -17,6 +17,7 @@ import {toast} from 'react-toastify';
 import addImage from 'src/assets/addMoreImage.png';
 import {addProduct} from 'src/modules/utils/product';
 import {useRouter} from 'next/router';
+import Routing from 'src/common/components/Routing';
 
 function AddProduct() {
   const inputFileRef = React.createRef();
@@ -232,6 +233,7 @@ function AddProduct() {
   };
   return (
     <>
+      <Routing type='private' user='seller' />
       <Header />
       <PageTitle
         title='Selling Product'
