@@ -81,12 +81,11 @@ function MenuBar() {
                 <i className="bi bi-caret-down-fill"></i>
               </button>
               <div className={styles["dropdown-content"]}>
-                <Link href="/" passHref>All</Link>
-                <Link href="/" passHref>Get Paid</Link>
-                <Link href="/" passHref>Processed</Link>
-                <Link href="/" passHref>Sent</Link>
-                <Link href="/" passHref>Completed</Link>
-                <Link href="/" passHref>Order Cancel</Link>
+                <Link href="/seller/order" passHref>All</Link>
+                <Link href="/seller/order?status=paid" passHref>Paid</Link>
+                <Link href="/seller/order?status=processed" passHref>Processed</Link>
+                <Link href="/seller/order?status=sent" passHref>Sent</Link>
+                <Link href="/seller/order?status=completed" passHref>Completed</Link>
               </div>
             </div>
           </a>
