@@ -1,32 +1,37 @@
-// import styles from "src/common/styles/Notification.module.css";
-import Header from 'src/common/components/header';
-import PageTitle from 'src/common/components/PageTitle';
-import Footer from 'src/common/components/footer';
-import styles from 'src/common/styles/Tracking.module.css';
-import Image from 'next/image';
-import map from 'src/assets/map.png';
-import Link from 'next/link';
-import Routing from 'src/common/components/Routing';
-// import devider from "src/assets/Line-dot.svg";
-// import { useState } from "react";
+import Header from "src/common/components/header";
+import PageTitle from "src/common/components/PageTitle";
+import Footer from "src/common/components/footer";
+import styles from "src/common/styles/Tracking.module.css";
+import Image from "next/image";
+import map from "src/assets/map.png";
+import Link from "next/link";
+import Routing from "src/common/components/Routing";
+import { useRouter } from "next/router";
 
 function Tracking(props) {
-  // const tracking = [ map, setMap] = useState(false)
+  const router = useRouter();
+
+  const trackHandler = (e) => {
+    e.preventDefault();
+    const id = e.target.id.value;
+    router.push(`/tracking/${id}`);
+  };
+
   return (
     <>
       <Header />
 
-      <Routing type='private' user='all' />
+      <Routing type="private" user="all" />
       <PageTitle
-        title='Order Tracking'
-        subTitle='Track where your order arrived'
+        title="Order Tracking"
+        subTitle="Track where your order arrived"
       />
 
-      <section className='row p-0 m-0'>
-        <div className='col col-md-5 col-lg-5 p-0 m-0'>
-          <Image src={map} width={600} height={600} alt='img' />
+      <section className="row p-0 m-0">
+        <div className="col col-md-5 col-lg-5 p-0 m-0">
+          <Image src={map} width={600} height={600} alt="img" />
         </div>
-        <div className=' col col-md-4 col-lg-4 mx-auto'>
+        <div className=" col col-md-4 col-lg-4 mx-auto">
           <div>
             <div className={`${styles.authWrapperSection} mx-auto`}>
               <p className={styles.trackingTitle}>
@@ -35,18 +40,18 @@ function Tracking(props) {
                 receipt and in the confirmation email you should have received.`}
               </p>
               <div>
-                <form>
+                <form onSubmit={trackHandler}>
                   <div className={`${styles.formAuth} form-group`}>
                     <label>Order ID</label>
                     <input
-                      type='email'
-                      name='email'
-                      placeholder='Order ID'
-                      className={'form-control'}
+                      type="number"
+                      name="id"
+                      placeholder="Order ID"
+                      className={"form-control"}
                       required
                     />
                   </div>
-                  <div className={`${styles.formAuth} form-group`}>
+                  {/* <div className={`${styles.formAuth} form-group`}>
                     <label>Billing Email</label>
                     <input
                       type='password'
@@ -55,16 +60,15 @@ function Tracking(props) {
                       className={'form-control'}
                       required
                     />
-                  </div>
+                  </div> */}
+                  <button
+                    type="submit"
+                    className={`${styles.trackButton} btn btn-dark`}
+                  >
+                    Track Now
+                  </button>
                 </form>
               </div>
-              <Link href='/tracking/detail' passHref>
-                <button
-                  type='submit'
-                  className={`${styles.trackButton} btn btn-dark`}>
-                  Track Now
-                </button>
-              </Link>
             </div>
             {/* <OrderTracking />  */}
             {/* <div>{props ? <OrderTracking /> : <TrackingDetail />}</div> */}
