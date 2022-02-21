@@ -19,14 +19,15 @@ export default function Register() {
       .then((response) => {
         const registerResponse = response.data.result;
         console.log(registerResponse);
-        toast.info("Account Created Successfully, Please Login");
+        toast.info("Account Created Successfully, Please Login"  + response.data.msg);
         // setTimeout(() => {
         //   router.push("/");
         // }, 3000);
       })
       .catch((error) => {
-        console.log(error);
-        toast.error("Register aborted!");
+        // console.log(error + err.response.data.msg);
+        console.log('Error', error.message);
+        toast.error(error.response.data.msg);
       });
   };
 

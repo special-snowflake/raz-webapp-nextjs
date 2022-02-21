@@ -10,3 +10,12 @@ export const getSellerProduct = (query, token) => {
     });
   };
   
+
+export const deleteProduct = (id, token) => {
+  const urlDelete = url + '/' + id;
+  return axios.delete(urlDelete, {
+    headers: {
+      'x-access-token': token,
+    }
+  })
+}

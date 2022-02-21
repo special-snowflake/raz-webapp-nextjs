@@ -18,41 +18,15 @@ function Login(props) {
     };
     props.loginDispatch(body);
   };
-  // useEffect(() => {
-  //   // if (props.auth.isFulfilled == true) {
-  //   //   console.log("LOGIN MASUK");
-  //   //   // setTimeout(() => {
-  //   //   //   router.push("/");
-  //   //   // }, 3000);
-  //   //   return toast.info("Login success", {
-  //   //     position: "top-right",
-  //   //     autoClose: 2000,
-  //   //     hideProgressBar: false,
-  //   //     closeOnClick: true,
-  //   //     pauseOnHover: true,
-  //   //     draggable: true,
-  //   //     progress: undefined
-  //   //   });
-
-  //   //   // console.log("/")
-  //   // }
-  //   // if (props.auth.isRejected) {
-  //   //   toast.error("Wrong email/password!", {
-  //   //     position: "top-right",
-  //   //     autoClose: 2000,
-  //   //     hideProgressBar: false,
-  //   //     closeOnClick: true,
-  //   //     pauseOnHover: true,
-  //   //     draggable: true,
-  //   //     progress: undefined
-  //   //   });
-  //   // }
-  // }, [props.auth.isFulfilled, toast]);
-  // // const notify = () => {
-  // //   toast.info("Login success", {
-  // //     position: "top",
-  // //   });
-  // // };
+  useEffect(() => {
+    if (props.auth.isFulfilled) {
+      return toast.success("success");
+      router.push("/");
+    }
+    if (props.auth.isRejected) {
+      toast.error("Wrong email/password!");
+    }
+  }, [props]);
 
   return (
     <section className={styles.authWrapperSection}>
@@ -118,29 +92,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loginDispatch: (body) => {
-      dispatch(loginAction(body))
-        .then((res) => {
-          toast.info("Login success");
-        })
-        .catch((err) => {
-          toast.error("Wrong email/password!");
-        });
+      dispatch(loginAction(body));
       console.log("login body :" + body);
-    }
+    },
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
-// /////handleer
-//   const [inputs, setInputs] = useState({
-//     email: "",
-//     password: "",
-//   });
-//   const [submitted, setSubmitted] = useState(false);
-//   const { email, password } = inputs;
-
-//   function handleChange(e) {
-//     const { name, value } = e.target;
-//     setInputs((inputs) => ({ ...inputs, [name]: value }));
-//   }

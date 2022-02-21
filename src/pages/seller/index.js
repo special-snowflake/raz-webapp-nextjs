@@ -3,6 +3,10 @@ import Header from 'src/common/components/header';
 import Footer from 'src/common/components/footer';
 import MenuBar from 'src/common/components/MenuBar';
 import ProfileSeller from 'src/common/components/ProfileSeller';
+import React,{useState, useEffect} from 'react';
+import styles from 'src/common/styles/ProfileSeller.module.css'
+import photoDefault from "public/userDefault.webp";
+import Image from "next/image";
 
 function Profile() {
   const inputFileRef = React.createRef();
