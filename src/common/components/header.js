@@ -4,22 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { logoutAction } from "src/store/actions/auth";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-// import Shop from "src/common/components/Shop";
-
+import Logout from "./Logout";
 function Header() {
   const user = useSelector((state) => state.auth.userData);
   const cartProducts = useSelector((state) => state.cart.products);
-
   const dispatch = useDispatch();
   const router = useRouter();
-  // const { token } = user;
 
+  const [showLogout, setShowLogout] = useState(false);
   const [toggleAuth, setToggleAuth] = useState(false);
   const [hoverIconSearch, setHovericonSearch] = useState(false);
   const [hoverIconLove, setHovericonLove] = useState(false);
   const [hoverIconCart, setHovericonCart] = useState(false);
   const [onSearch, setOnSearch] = useState(false);
+
+  const callbackLogout = (isShow) => {
+    setShowLogout(isShow);
+  };
 
   const toggleAuthSwitch = () => {
     toggleAuth ? setToggleAuth(false) : setToggleAuth(true);
@@ -32,9 +33,13 @@ function Header() {
   const toggleSearch = () => {
     onSearch ? setOnSearch(false) : setOnSearch(true);
   };
-
+  const handleClickedLogout = () => {
+    setShowLogout(true);
+  };
+  console.log(onSearch);
   return (
     <header className={styles.header}>
+      <Logout isShow={showLogout} callbackShow={callbackLogout} />
       <div className={styles["container"]}>
         <input type="checkbox" id="check" className={styles.check} />
         <div className={styles["logo-container"]}>
@@ -146,9 +151,9 @@ function Header() {
                       </Link>
                     </li>
                     <li className={styles["dropdown-link"]}>
-                      <a href="/tracking" className={styles["tag-a-menu"]}>
-                        Order Tracking
-                      </a>
+                      <Link href="/tracking" passHref>
+                        <a className={styles["tag-a-menu"]}>Order Tracking</a>
+                      </Link>
                     </li>
                     <div className={styles.arrow}></div>
                   </ul>
@@ -236,9 +241,12 @@ function Header() {
           </div>
         </div>
       </div>
-
       {user.token ? (
-        <MenuLogin show={toggleAuth} logout={logoutHandler} />
+        <MenuLogin
+          show={toggleAuth}
+          logout={logoutHandler}
+          handleClickedLogout={handleClickedLogout}
+        />
       ) : (
         <ul
           className={
@@ -262,7 +270,6 @@ function Header() {
           </li>
         </ul>
       )}
-
       <form className={onSearch ? styles["wrapper-input-search"] : null}>
         <input
           type="text"
@@ -276,12 +283,12 @@ function Header() {
   );
 }
 
-function MenuLogin({ show, logout }) {
+function MenuLogin({ show, handleClickedLogout }) {
   return (
     <ul
       className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
       <li>
-        <Link href="/seller" passHref>
+        <Link href="/profile" passHref>
           <a className={styles["tag-a-menu"]}>Profile</a>
         </Link>
       </li>
@@ -296,12 +303,15 @@ function MenuLogin({ show, logout }) {
         </Link>
       </li>
       <li>
-        <p onClick={logout} className={styles["tag-a-menu"]}>
+        <p
+          onClick={() => {
+            handleClickedLogout();
+          }}
+          className={styles["tag-a-menu"]}>
           Logout
         </p>
       </li>
     </ul>
   );
 }
-
 export default Header;

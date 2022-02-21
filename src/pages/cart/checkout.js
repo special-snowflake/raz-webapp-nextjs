@@ -18,9 +18,11 @@ function Checkout(props) {
 
   const checkoutHandler = (e) => {
     e.preventDefault();
+    console.log("payment", e.target.paymentMethod.value);
     const body = {
       totalPrice: props.cart.totalPrice,
       shippingMethod: props.cart.shippingMethod,
+      paymentMethod: e.target.paymentMethod.value,
       status: "paid",
       productList: props.cart.products.map((product) => {
         const { id, quantity } = product;
@@ -53,6 +55,7 @@ function Checkout(props) {
               type="text"
               className="form-control"
               placeholder="Your Name*"
+              required
             />
           </div>
           <div className="form-group">
@@ -60,6 +63,7 @@ function Checkout(props) {
               type="text"
               className="form-control"
               placeholder="Address*"
+              required
             />
           </div>
 
@@ -71,14 +75,13 @@ function Checkout(props) {
                 onChange={(e) => setSelect(e.target.value)}
               >
                 <option>+62</option>
-                <option>+61</option>
-                <option>+08</option>
               </select>
             </div>
             <input
               type="number"
               className="form-control mx-0 my-0 w-50"
               placeholder="Phone Number*"
+              required
             />
           </div>
 
@@ -86,8 +89,15 @@ function Checkout(props) {
             className={`${styles.visaOptions} form-group d-flex justify-content-around`}
           >
             <p className={styles.payIcon}>visa</p>
-            <select value={selects} onChange={(e) => setSelect(e.target.value)}>
-              <option>Pay with Visa</option>
+            <select
+              name="paymentMethod"
+              value={selects}
+              onChange={(e) => setSelect(e.target.value)}
+              required
+            >
+              <option value="visa">Pay with Visa</option>
+              <option value="transfer">Transfer</option>
+              <option value="ewallet">E-wallet</option>
             </select>
           </div>
           <button

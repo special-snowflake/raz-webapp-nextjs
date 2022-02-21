@@ -1,25 +1,20 @@
 import styles from "src/common/styles/CardSellerProduct.module.css";
 import Image from "next/image";
 import pic from "src/assets/b_OKITO-PLY-DINING-Chair-3.png";
-import { useRouter } from "next/router";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import DeleteModal from "src/common/components/DeleteProduct";
 
 export default function CardProduct({ name, id, price, stock }) {
- 
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    setShow(true);
-  })
-
-  const router = useRouter();
-  const productId = router.query.productId;
   const handleClick = (e) => {
-    console.log(e.target.value);
+    const id = e.target.value;
+    return e.target.value, id, console.log(id);
   };
-  console.log(id);
+  console.log("delete id " + id);
   return (
     <>
+      <DeleteModal onClose={() => setShow(false)} show={show} id={id} />
       <div className={styles.rowContent}>
         <div className={`${styles.card} row`} key={id}>
           <div className={`${styles.productpicture} col-6 col-md-6`}>
@@ -47,31 +42,13 @@ export default function CardProduct({ name, id, price, stock }) {
               className="btn btn-danger"
               key={id}
               value={id}
-              onClick={handleClick}
+              onClick={() => {
+                setShow(true), handleClick;
+              }}
             >
               Delete{id}
             </button>
-            <button onClick={() => setShow(true)}>test modal</button>
           </div>
-        </div>
-      </div>
-      <DeleteModal onClose={() => setShow(false)} show={show} />
-    </>
-  );
-}
-
-function DeleteModal() {
-  return (
-    <>
-      <div className="card" style="width: 18rem;">
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <button className="btn btn-secondary">cancel</button>
-          <button className="btn btn-primary">Delete</button>
         </div>
       </div>
     </>
