@@ -1,0 +1,52 @@
+.title {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 41px;
+  color: #1a1a1a;
+}
+
+.wrapper-post {
+  width: 350px;
+  /* height: 300px; */
+  /* border: 1px solid black; */
+}
+
+.wrapper-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text > p {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 11px;
+  color: #3e3e3e;
+}
+
+.card {
+  /* width: max-content; */
+  /* border: 1px solid black; */
+  height: max-content;
+}
+
+.dot {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.dot > div {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #d8d8d8;
+  margin-right: 20px;
+}
+
+.active {
+  background-color: #1a1a1a !important;
+}
