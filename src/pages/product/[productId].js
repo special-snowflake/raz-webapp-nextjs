@@ -67,7 +67,7 @@ function DetailProduct(props) {
         total: parsedPrice * counter,
       })
     );
-    toast.success("Added to cart");
+    toast.success("Added to cart", { position: "bottom-left" });
   };
 
   return (
