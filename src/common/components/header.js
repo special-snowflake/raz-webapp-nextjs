@@ -33,7 +33,6 @@ function Header() {
     onSearch ? setOnSearch(false) : setOnSearch(true);
   };
 
-  console.log(onSearch);
   return (
     <header className={styles.header}>
       <div className={styles["container"]}>
@@ -87,9 +86,8 @@ function Header() {
                           top: "0",
                           paddingLeft: "0.3rem",
                           cursor: "pointer",
-                          transform: "translateX(10px)",
-                        }}
-                      >
+                          transform: "translateX(10px)"
+                        }}>
                         <ul className={styles["wrapper-ul"]}>
                           <li className={styles["dropdown-link"]}>
                             <a href="#" className={styles["tag-a-menu"]}>
@@ -179,8 +177,7 @@ function Header() {
                 onMouseLeave={() => {
                   setHovericonSearch(false);
                 }}
-                onClick={toggleSearch}
-              ></i>
+                onClick={toggleSearch}></i>
             </div>
             <div className={styles["wrapper-icon"]}>
               <div className={styles["wrapper-notif"]}>
@@ -198,8 +195,7 @@ function Header() {
                   }}
                   onMouseLeave={() => {
                     setHovericonLove(false);
-                  }}
-                ></i>
+                  }}></i>
               </Link>
             </div>
 
@@ -219,15 +215,13 @@ function Header() {
                   }}
                   onMouseLeave={() => {
                     setHovericonCart(false);
-                  }}
-                ></i>
+                  }}></i>
               </Link>
             </div>
             <div className={styles["wrapper-icon"]}>
               <div
                 className={styles["wrapper-btn-menu"]}
-                onClick={toggleAuthSwitch}
-              >
+                onClick={toggleAuthSwitch}>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -249,8 +243,7 @@ function Header() {
         <ul
           className={
             !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
-          }
-        >
+          }>
           <li>
             <Link href="/auth">
               <a className={styles["tag-a-menu"]}>Login</a>
@@ -286,8 +279,7 @@ function Header() {
 function MenuLogin({ show, logout }) {
   return (
     <ul
-      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}
-    >
+      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
       <li>
         <Link href="/seller" passHref>
           <a className={styles["tag-a-menu"]}>Profile</a>

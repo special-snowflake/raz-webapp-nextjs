@@ -11,38 +11,56 @@ import usertwo from "src/assets/usertwo.png";
 import userthree from "src/assets/userthree.png";
 import ProductSlider from "src/common/components/ProductSlider";
 import { geProductId } from "src/modules/utils/product";
+import { getRelatedProduct } from "src/modules/utils/product";
 import Footer from "src/common/components/footer";
 import Header from "src/common/components/header";
-
+import CardRelated from "src/common/components/RelatedProduct";
 import { addProduct } from "src/store/actions/cart";
+import relatedProduct from "src/common/components/RelatedProduct";
 
 function DetailProduct(props) {
   const router = useRouter();
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(1);
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
+  const [isNullData, setIsNullData] = useState(false);
+  const [relatedProduct, setRelatedProduct] = useState([]);
+  const [productsMenu, setProductsMenu] = useState("");
   const menu = [
     "description",
     "review",
     "additional informatin",
     "about brand",
-    "Shipping & delivery",
+    "Shipping & delivery"
   ];
-  const [productsMenu, setProductsMenu] = useState("");
 
   const productId = router.query.productId;
+
+  const getRelated = () => {
+    if (Object.keys(router.query).includes("productId"))
+      return getRelatedProduct(productId)
+        .then((res) => {
+          setRelatedProduct(res.data.data);
+        })
+        .catch((err) => {
+          setIsNullData(true);
+          console.log(err);
+        });
+  };
+
   useEffect(() => {
-    console.log(router);
+    // console.log(router);
     // const token = props.token;
     if (Object.keys(router.query).includes("productId")) {
       geProductId(productId)
         .then((res) => {
           setProductsMenu({ ...res.data.data });
-          console.log(res.data.data);
+          // console.log(res.data.data);
           // {...}
         })
         .catch((err) => console.log(err));
     }
+    getRelated();
   }, [router.query]);
 
   const addCounter = () => {
@@ -64,7 +82,7 @@ function DetailProduct(props) {
         images,
         price: parsedPrice,
         quantity: counter,
-        total: parsedPrice * counter,
+        total: parsedPrice * counter
       })
     );
     toast.success("Added to cart", { position: "bottom-left" });
@@ -78,13 +96,13 @@ function DetailProduct(props) {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="#">Home</a>
+                <a href="/">Home</a>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">Product</a>
+                <a href="/product">Product</a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                [product]
+                {productsMenu.name}
               </li>
             </ol>
           </nav>
@@ -119,16 +137,14 @@ function DetailProduct(props) {
           </div>
           <button
             onClick={addToCartHandler}
-            className={`${styles.productDescButton} btn btn-dark`}
-          >
+            className={`${styles.productDescButton} btn btn-dark`}>
             Add to Chart
           </button>
           <button className={`${styles.productDescButton} btn btn-dark`}>
             <i className="bi bi-heart"></i>
           </button>
           <button
-            className={`${styles.productDescButton} btn btn-outline-dark`}
-          >
+            className={`${styles.productDescButton} btn btn-outline-dark`}>
             Add to Wihslist
           </button>
         </div>
@@ -163,8 +179,7 @@ function DetailProduct(props) {
         {/* desctription components */}
         <section>
           <div
-            className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}
-          >
+            className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}>
             {menu.map((productMenu, idx) => (
               <p key={idx} onClick={() => setProductsMenu(productMenu)}>
                 {productMenu.toLocaleUpperCase()}
@@ -188,6 +203,9 @@ function DetailProduct(props) {
           </section>
         </section>
       </section>
+
+      <CardRelated data={relatedProduct} />
+
       <Footer />
     </>
   );
@@ -210,8 +228,7 @@ const Description = () => {
           />
         </div>
         <div
-          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}
-        >
+          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}>
           <div className={styles.productDescriptionSectionP}>
             <p>
               Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at
@@ -253,8 +270,7 @@ const Review = () => {
         {/* <h1>THIS IS SECTION REVIEW </h1> */}
         {/* multiple comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
-        >
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
           {/* parent comment */}
           <div>
             <div className="d-flex align-items-center">
@@ -325,8 +341,7 @@ const Review = () => {
         </div>
         {/* single comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
-        >
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
           <div>
             <div className="d-flex align-items-center">
               <div className={styles.userReviewImage}>
@@ -390,8 +405,7 @@ const Review = () => {
             <textarea
               className="form-control"
               rows="3"
-              placeholder="Your Comment"
-            ></textarea>
+              placeholder="Your Comment"></textarea>
           </div>
           <button className={`${styles.productDescButton} btn btn-dark`}>
             Send
@@ -405,7 +419,7 @@ const Review = () => {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    cart: state.cart,
+    cart: state.cart
   };
 };
 

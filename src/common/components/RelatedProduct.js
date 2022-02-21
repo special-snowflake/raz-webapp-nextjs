@@ -1,75 +1,63 @@
 import styles from "src/common/styles/CardRelated.module.css";
 import Image from "next/image";
-import post1 from "src/assets/post1.png";
-import post2 from "src/assets/post2.png";
-import post3 from "src/assets/post3.png";
+import one from "src/assets/b_OKITO-PLY-DINING-Chair-2.png";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 
-function CardRelated() {
+function CardRelated({ data }) {
+  const [sliderRef] = useKeenSlider({
+    slides: {
+      perView: 3,
+      spacing: 15
+    }
+  });
+  console.log("DATA", data);
   return (
     <div className="row d-flex justify-content-center mb-5">
-      <div className="col-lg-10">
+      <div className="col-10 mb-5">
         <p className={styles.title}>Related Product</p>
-
-        <div className="row d-flex justify-content-around">
-          <div className={`col-lg-auto ${styles["card"]}`}>
-            <div className={styles["wrapper-post"]}>
-              <Image src={post1} alt={post1} />
+      </div>
+      <div className={`${styles["wrapper-card"]} keen-slider`} ref={sliderRef}>
+        {data.map((item, index) => {
+          return (
+            <div className={`keen-slider__slide   ${styles.card}`} key={index}>
+              <Image src={one} alt={one} width="800" layout="responsive" />
               <div className={styles["wrapper-text"]}>
-                <div className={styles["text"]}>
-                  <p>
-                    <i className="bi bi-clock"></i> How to open interior shop
-                  </p>
-                </div>
-                <div className={styles["text"]}>
-                  <p>
-                    <i className="bi bi-tag"></i> Kids, Interior, Photos
-                  </p>
-                </div>
+                <p>nama Product</p>
+                <p>Harga Product</p>
               </div>
             </div>
-          </div>
+          );
+        })}
 
-          <div className={`col-lg-auto ${styles["card"]}`}>
-            <div className={styles["wrapper-post"]}>
-              <Image src={post2} alt={post1} />
-              <div className={styles["wrapper-text"]}>
-                <div className={styles["text"]}>
-                  <p>
-                    <i className="bi bi-clock"></i> How to open interior shop
-                  </p>
-                </div>
-                <div className={styles["text"]}>
-                  <p>
-                    <i className="bi bi-tag"></i> Kids, Interior, Photos
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={`col-lg-auto ${styles["card"]}`}>
-            <div className={styles["wrapper-post"]}>
-              <Image src={post3} alt={post1} />
-              <div className={styles["wrapper-text"]}>
-                <div className={styles["text"]}>
-                  <p>
-                    <i className="bi bi-clock"></i> How to open interior shop
-                  </p>
-                </div>
-                <div className={styles["text"]}>
-                  <p>
-                    <i className="bi bi-tag"></i> Kids, Interior, Photos
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* <div className={`keen-slider__slide   ${styles.card}`}>
+          <Image src={one} alt={one} width="800" layout="responsive" />
+          <div className={styles["wrapper-text"]}>
+            <p>nama Product</p>
+            <p>Harga Product</p>
           </div>
         </div>
-      </div>
-
-      <div className={`col-lg-12  ${styles["dot"]}`}>
-        <div className={styles.active}></div>
-        <div></div>
+        <div className={`keen-slider__slide   ${styles.card}`}>
+          <Image src={one} alt={one} width="800" layout="responsive" />
+          <div className={styles["wrapper-text"]}>
+            <p>nama Product</p>
+            <p>Harga Product</p>
+          </div>
+        </div>
+        <div className={`keen-slider__slide   ${styles.card}`}>
+          <Image src={one} alt={one} width="800" layout="responsive" />
+          <div className={styles["wrapper-text"]}>
+            <p>nama Product</p>
+            <p>Harga Product</p>
+          </div>
+        </div>
+        <div className={`keen-slider__slide   ${styles.card}`}>
+          <Image src={one} alt={one} width="800" layout="responsive" />
+          <div className={styles["wrapper-text"]}>
+            <p>nama Product</p>
+            <p>Harga Product</p>
+          </div>
+        </div> */}
       </div>
     </div>
   );
