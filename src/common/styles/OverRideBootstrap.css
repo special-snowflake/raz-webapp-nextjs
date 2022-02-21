@@ -3,6 +3,9 @@
 .modal-footer {
   border: none !important;
 }
+.modal-body{
+  margin-bottom: 20px;
+}
 .modal-dialog {
   margin: 25vh auto !important;
   border-radius: 5px !important;

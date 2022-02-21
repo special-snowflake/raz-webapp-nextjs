@@ -1,12 +1,24 @@
 import {useEffect, useState} from 'react';
 import {Modal} from 'react-bootstrap';
+import {connect, useDispatch, useSelector} from 'react-redux';
+
+import {logoutAction} from 'src/store/actions/auth';
+
 import modalsCss from 'src/common/styles/Modals.module.css';
+import {useRouter} from 'next/router';
+
+import {toast} from 'react-toastify';
 
 function Logout(props) {
   const [isShow, setIsShow] = useState(props.isShow);
-  console.log(props);
+  const user = useSelector((state) => state.auth.userData);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const hanndleLogout = () => {
-    console.log('logout');
+    dispatch(logoutAction(user.token));
+    toast.success('Logout Success');
+    router.replace('/');
   };
   useEffect(() => {
     setIsShow(props.isShow);
@@ -37,6 +49,7 @@ function Logout(props) {
             onClick={hanndleLogout}>
             Logout
           </button>
+          
           <button
             onClick={() => {
               setIsShow(false);
@@ -51,4 +64,9 @@ function Logout(props) {
   );
 }
 
-export default Logout;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
+export default connect(mapStateToProps)(Logout);

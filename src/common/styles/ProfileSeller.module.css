@@ -161,15 +161,49 @@
   -webkit-box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
 }
+.btn-reset-password:hover {
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.75);
+}
+
+.btn-reset-password {
+  margin: 40px 0;
+  background: #e7e6e6;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--dark);
+  width: 200px;
+  height: 50px;
+  border: none;
+}
 
 .inputField {
+  width: calc(200px + 5vw);
   border: none;
   border-bottom: 2px solid black;
   outline: none;
   padding: 5px 10px;
-  margin-right: 10px;  
+  margin-right: 10px;
 }
-
+.inputTextArea {
+  width: calc(200px + 10vw);
+  height: auto;
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+  padding: 5px 10px;
+  margin-right: 10px;
+  resize: none;
+}
+.inputLabel {
+  margin-right: 15px;
+}
 .btnSave,
 .btnCancel {
   padding: 5px 10px;
@@ -188,7 +222,33 @@
 .btnCancel {
   color: rgba(255, 0, 0, 0.7);
 }
-.btnCancel:hover{
+.btnCancel:hover {
   color: rgba(255, 0, 0, 1);
-  
+}
+
+.passwordWrapper {
+  position: relative;
+  width: 300px;
+  max-height: 130px;
+  margin-inline: auto;
+  margin-bottom: 20px;
+}
+.passwordWrapper input {
+  position: absolute;
+  width: 100%;
+  max-height: 130px;
+  padding: 5px 35px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--dark);
+}
+.passwordWrapper i {
+  position: absolute;
+  inset: 10px 10px;
+  z-index: 1;
+}
+.passwordEye {
+  position: absolute;
+  cursor: pointer;
+  inset: 10px 10px 10px auto !important;
 }
