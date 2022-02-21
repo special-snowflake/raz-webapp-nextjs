@@ -1,0 +1,63 @@
+.table-wrapper {
+  padding: var(--padding-big);
+}
+
+.table {
+  width: 100%;
+}
+
+.table p {
+  margin: 0;
+}
+
+.table a {
+  cursor: pointer;
+}
+
+.table tbody tr:hover {
+  background-color: var(--dark05);
+}
+
+.table th {
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  border-bottom: var(--border-gray);
+}
+
+td.product {
+  text-align: initial;
+  display: flex;
+  grid-gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+td.product div:hover,
+td.product p:hover {
+  opacity: 0.7;
+}
+
+td.price {
+    font-weight: 700;
+}
+
+.product-name {
+  /* flex-grow: 1; */
+}
+
+.img-wrapper {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+}
+
+.other-item {
+  font-size: 0.8rem;
+  color: var(--gray);
+}

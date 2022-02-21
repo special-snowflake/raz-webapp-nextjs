@@ -4,32 +4,37 @@ import PageTitle from "src/common/components/PageTitle";
 import Header from "src/common/components/header";
 import Footer from "src/common/components/footer";
 import MenuBar from "src/common/components/MenuBar";
-import  {getSellerProduct} from "src/modules/utils/sellerProduct"
+import { getSellerProduct } from "src/modules/utils/sellerProduct";
 import { useSelector } from "react-redux";
-import React,{ useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 function Product(props) {
-  const token = useSelector(state => state.auth.userData.token);
-  console.log(token)
-  const [producs, setProducts] = useState([]);
+  const token = useSelector((state) => state.auth.userData.token);
+  console.log(token);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrnetPage] = useState(10);
+
   useEffect(() => {
+    setLoading(true);
     const query = "?filter=all&limit=5&page=1";
     getSellerProduct(query, token)
-    .then((res) => {
-      setProducts({...res.data.data.result});
-      console.log(res.data.data.result);
-    })
-    .catch((err) => console.log(err));
-  }, [])
+      .then((res) => {
+        setProducts(res.data.data);
+        console.log(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
-     <Header />
+      <Header />
       <PageTitle
         title="Selling Product"
         subTitle="See your notifications for the latest updates"
       />
-    <MenuBar />
-     <div className={styles.productWrapper}>
+      <MenuBar />
+      <div className={styles.productWrapper}>
         <div className={`${styles.row} row`}>
           <div className="col-6 col-md-6">
             <p>Product</p>
@@ -42,9 +47,22 @@ function Product(props) {
           </div>
         </div>
       </div>
-      <CardProduct />
+      {/* <CardProduct /> */}
+      <p>{products.data}</p>
+      <div>
+        {Array.isArray(products) &&
+          products.length > 0 &&
+          products.map((product, id) => (
+            <CardProduct
+              key={id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              stock={product.stock}
+            />
+          ))}
+      </div>
       <Footer />
-
     </>
   );
 }
