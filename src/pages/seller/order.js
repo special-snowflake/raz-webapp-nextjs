@@ -14,6 +14,7 @@ import {
   updateTransaction,
 } from "src/modules/utils/transaction";
 import { toast } from "react-toastify";
+import Routing from "src/common/components/Routing";
 
 function Order(props) {
   const [orderData, setOrderData] = useState([]);
@@ -34,6 +35,7 @@ function Order(props) {
 
   return (
     <main>
+      <Routing type='private' user='seller' />
       <Header />
       <PageTitle
         title="Selling Product"
