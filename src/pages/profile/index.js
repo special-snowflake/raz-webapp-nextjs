@@ -18,6 +18,7 @@ import {useSelector} from 'react-redux';
 import {toast} from 'react-toastify';
 import {Modal} from 'react-bootstrap';
 import {changePassword} from 'src/modules/utils/auth';
+import Routing from 'src/common/components/Routing';
 
 function Profile(props) {
   const inputFileRef = React.createRef();
@@ -153,6 +154,7 @@ function Profile(props) {
   return (
     <>
       <Header />
+      <Routing type='private' user='all' />
       <PageTitle
         title='Profile'
         subTitle='See your notifications for the latest updates'

@@ -1,10 +1,11 @@
-import { ACTION_STRING } from "src/store/actions/actionString";
-import { ActionType } from "redux-promise-middleware";
+import {ACTION_STRING} from 'src/store/actions/actionString';
+import {ActionType} from 'redux-promise-middleware';
 
 const initialState = {
   userData: {
     token: null,
     id: null,
+    roles: null,
   },
   isPending: false,
   isFulfilled: false,
@@ -12,11 +13,11 @@ const initialState = {
   err: null,
 };
 const authReducer = (prevState = initialState, action) => {
-  const { authLogin, authLogout } = ACTION_STRING;
-  const { Pending, Fulfilled, Rejected } = ActionType;
+  const {authLogin, authLogout} = ACTION_STRING;
+  const {Pending, Fulfilled, Rejected} = ActionType;
 
   switch (action.type) {
-    case authLogin.concat("_", Pending):
+    case authLogin.concat('_', Pending):
       return {
         ...prevState,
         isPending: true,
@@ -24,12 +25,13 @@ const authReducer = (prevState = initialState, action) => {
         isRejected: false,
       };
 
-    case authLogin.concat("_", Fulfilled):
+    case authLogin.concat('_', Fulfilled):
       const data = action.payload.data;
       const userData = {
         // ...prevState.userData,
         token: data.data.token,
         id: data.data.id,
+        roles: data.data.roles,
         // user: data.result,
       };
       return {
@@ -40,7 +42,7 @@ const authReducer = (prevState = initialState, action) => {
       };
 
     // case authLogin + rejected:
-    case authLogin.concat("_", Rejected):
+    case authLogin.concat('_', Rejected):
       const err = action.payload;
       return {
         ...prevState,
@@ -49,7 +51,7 @@ const authReducer = (prevState = initialState, action) => {
         err: null,
       };
 
-    case authLogout.concat("_", Fulfilled):
+    case authLogout.concat('_', Fulfilled):
       return {
         ...initialState,
       };

@@ -11,6 +11,7 @@ import Footer from "src/common/components/footer";
 
 import { updateCart, emptyCart } from "src/store/actions/cart";
 import { useRouter } from "next/router";
+import Routing from "src/common/components/Routing";
 
 function Cart(props) {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function Cart(props) {
   return (
     <>
       <Header />
+      <Routing type='private' user='customer' />
       <PageTitle
         title="Your Cart"
         subTitle="Buy everything in your cart now!"
