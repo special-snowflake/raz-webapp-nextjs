@@ -20,8 +20,8 @@ function Login(props) {
   };
   useEffect(() => {
     if (props.auth.isFulfilled) {
-      return toast.success("success");
       router.push("/");
+      return toast.success("success");
     }
     if (props.auth.isRejected) {
       toast.error("Wrong email/password!");

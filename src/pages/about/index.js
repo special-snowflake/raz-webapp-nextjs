@@ -120,18 +120,23 @@ function About() {
         <div className="row">
           <div className="col">
             <Image src={amanda} alt="user" />
-            <p className={styles.teamName}>Amanda ainsley</p>
-            <p className={styles.teamPosition}>CEO</p>
+            <p className={styles.teamName}>Oki d.</p>
+            <p className={styles.teamPosition}>Front End Dev</p>
           </div>
           <div className="col">
             <Image src={norman} alt="user"/>
-            <p className={styles.teamName}>Norman Kamaru</p>
-            <p className={styles.teamPosition}>Design</p>
+            <p className={styles.teamName}>Fauzan</p>
+            <p className={styles.teamPosition}>Full Stack Dev</p>
           </div>
           <div className="col">
             <Image src={connor} alt="user" />
-            <p className={styles.teamName}>Connor McGregor</p>
-            <p className={styles.teamPosition}>Product manager</p>
+            <p className={styles.teamName}>Achmad Anshori</p>
+            <p className={styles.teamPosition}>Full Stack Dev</p>
+          </div>
+          <div className="col">
+            <Image src={connor} alt="user" />
+            <p className={styles.teamName}>Fajar Pratama</p>
+            <p className={styles.teamPosition}>Front End Dev</p>
           </div>
         </div>
       </section>

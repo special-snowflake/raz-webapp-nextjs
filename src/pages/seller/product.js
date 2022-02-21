@@ -7,7 +7,6 @@ import MenuBar from "src/common/components/MenuBar";
 import { getSellerProduct } from "src/modules/utils/sellerProduct";
 import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import MyProductCard from "src/common/components/MyProduct";
 
 function Product(props) {
   const token = useSelector((state) => state.auth.userData.token);
@@ -54,7 +53,13 @@ function Product(props) {
         {Array.isArray(products) &&
           products.length > 0 &&
           products.map((product, id) => (
-            <CardProduct key={id} id={product.id} name={product.name} price={product.price} stock={product.stock}/>
+            <CardProduct
+              key={id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              stock={product.stock}
+            />
           ))}
       </div>
       <Footer />
