@@ -8,6 +8,8 @@ import {getSellerProduct} from 'src/modules/utils/sellerProduct';
 import {useSelector} from 'react-redux';
 import React, {useState, useEffect} from 'react';
 import Routing from 'src/common/components/Routing';
+import LoadingBox from 'src/common/components/LoadingBox';
+import {useRouter} from 'next/router';
 
 function Product(props) {
   const token = useSelector((state) => state.auth.userData.token);
@@ -15,7 +17,7 @@ function Product(props) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrnetPage] = useState(10);
-
+  const router = useRouter();
   useEffect(() => {
     setLoading(true);
     const query = '?filter=all&limit=5&page=1';
@@ -26,7 +28,9 @@ function Product(props) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [router.query]);
+
+  useEffect(() => {}, []);
   return (
     <>
       <Header />
@@ -52,8 +56,7 @@ function Product(props) {
       {/* <CardProduct /> */}
       <p>{products.data}</p>
       <div>
-        {Array.isArray(products) &&
-          products.length > 0 &&
+        {Array.isArray(products) && products.length > 0 ? (
           products.map((product, id) => (
             <CardProduct
               key={id}
@@ -62,7 +65,12 @@ function Product(props) {
               price={product.price}
               stock={product.stock}
             />
-          ))}
+          ))
+        ) : (
+          <div className='w-100 mx-auto'>
+            <LoadingBox />
+          </div>
+        )}
       </div>
       <Footer />
     </>
