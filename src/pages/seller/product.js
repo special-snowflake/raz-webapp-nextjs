@@ -7,6 +7,8 @@ import MenuBar from "src/common/components/MenuBar";
 import { getSellerProduct } from "src/modules/utils/sellerProduct";
 import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
+import LoadingCircle from "src/common/components/LoadingBox";
+
 
 function Product(props) {
   const token = useSelector((state) => state.auth.userData.token);
@@ -16,8 +18,12 @@ function Product(props) {
   const [currentPage, setCurrnetPage] = useState(10);
 
   useEffect(() => {
-    setLoading(true);
-    const query = "?filter=all&limit=5&page=1";
+    // setLoading(true);
+
+    const status = router.query.status ? `status=${router.query.status}&` : "";
+    const page = router.query.page ? `page=${router.query.page}` : "page=1";
+    const query = status + page;
+    // const query = "?filter=all&limit=5&page=1";
     getSellerProduct(query, token)
       .then((res) => {
         setProducts(res.data.data);

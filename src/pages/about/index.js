@@ -4,8 +4,10 @@ import Footer from "src/common/components/footer";
 import styles from "src/common/styles/AboutUs.module.css";
 import Image from "next/image";
 import sofa from "src/assets/b_rialto-riva.png";
-import amanda from "src/assets/amanda.png";
-import norman from "src/assets/norman.png";
+import arik from "src/assets/arik_11zon.png";
+import fauzan from "src/assets/fauzan_11zon.png";
+import oki from "src/assets/oki_11zon.png";
+import fajar from "src/assets/fajar_11zon.png";
 import connor from "src/assets/connor.png";
 
 function About() {
@@ -119,22 +121,22 @@ function About() {
         <h2>Meet Our Team</h2>
         <div className="row">
           <div className="col">
-            <Image src={amanda} alt="user" />
-            <p className={styles.teamName}>Oki d.</p>
-            <p className={styles.teamPosition}>Front End Dev</p>
+            <Image src={oki} alt="user" width={300} height={380} layout="responsive"/>
+            <p className={styles.teamName}>Oki dwijaya a</p>
+            <p className={styles.teamPosition}>Front End Dev / Project Leader</p>
           </div>
           <div className="col">
-            <Image src={norman} alt="user"/>
-            <p className={styles.teamName}>Fauzan</p>
+            <Image src={fauzan} alt="user" width={300} height={380} layout="responsive"/>
+            <p className={styles.teamName}>Ahmad Fauzan</p>
             <p className={styles.teamPosition}>Full Stack Dev</p>
           </div>
           <div className="col">
-            <Image src={connor} alt="user" />
+            <Image src={arik} alt="user" width={300} height={380} layout="responsive"/>
             <p className={styles.teamName}>Achmad Anshori</p>
             <p className={styles.teamPosition}>Full Stack Dev</p>
           </div>
           <div className="col">
-            <Image src={connor} alt="user" />
+            <Image src={fajar} alt="user" width={300} height={380} layout="responsive"/>
             <p className={styles.teamName}>Fajar Pratama</p>
             <p className={styles.teamPosition}>Front End Dev</p>
           </div>

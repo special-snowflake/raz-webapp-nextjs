@@ -1,0 +1,150 @@
+.chatWrapper {
+    width: 80%;
+    height: 80vh;
+    border-radius: 0;
+    border: 0.5px solid rgb(133, 133, 133);
+    margin: 10vh auto;
+    padding: 0;
+}
+
+.chatWrapper aside {
+    /* width: 80%; */
+    height: 80vh;
+    border-radius: 0;
+    border-right: 0.5px solid rgb(133, 133, 133);
+    /* margin: 10vh auto; */
+}
+
+.userWrapper {
+    display: flex;
+    width: 100%;
+    padding: 1vw;
+    align-items: center;
+    background-color: var(--dark);
+    text-align: center;
+}
+
+.friendWrapper {
+    display: flex;
+    width: 100%;
+    padding: 1vw;
+    align-items: center;
+    background-color: white;
+    color: var(--dark);
+    text-align: center;
+}
+
+.userActiveWrapper {
+    width: 70px;
+    height: 60px;
+    border-radius: 48%;
+    /* position: relative; */
+}
+
+.iconActive {
+    z-index: 999;
+    position: absolute;
+    /* right: 0px; */
+    top: 59.8vh;
+    left: 28.5vh;
+}
+
+.iconActive1 {
+    z-index: 999;
+    position: absolute;
+    /* right: 0px; */
+    top: 74vh;
+    left: 28.9vh;
+}
+
+.iconActive2 {
+    z-index: 999;
+    position: absolute;
+    /* right: 0px; */
+    top: 88.9vh;
+    left: 28.5vh;
+}
+
+.userImg {
+    border-radius: 48px;
+    /* position: relative; */
+}
+
+.userName {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    /* identical to box height */
+    color: #FFFFFF;
+}
+
+.status {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    color: #B4B4B4;
+}
+
+.friendName {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    /* identical to box height */
+    color: var(--dark);
+}
+
+.friendstatus {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--dark);
+}
+
+.isIcon {
+    color: rgb(11, 192, 11);
+}
+
+.noIcon {
+    color: rgb(77, 77, 77);
+}
+
+.inputText {
+    position: absolute;
+    bottom: -32.3vh;
+    height: 4vh;
+    display: flex;
+    justify-content: space-between;
+    /* border-top: 0.5px solid rgb(133, 133, 133); */
+}
+
+.inputText button {
+    /* align-items: flex-en; */
+    margin: 0;
+    border-radius: 0;
+    width: 10vw;
+    height: 6vh;
+    position: absolute;
+    left: 42.8vw;
+    top: -2vh;
+    float: right;
+    justify-content: space-around
+}
+
+.inputText input {
+    width: 40vw;
+    border: 0;
+    height: 4vh;
+}
+
+.inputText input:active,
+.inputText input:focus {
+    padding-left: 2vw;
+    border: 0;
+    color: rgb(17, 17, 17);
+}
+
+.inputText input:focus,
+.inputText textarea:focus,
+.inputText select:focus {
+    outline: none;
+}
