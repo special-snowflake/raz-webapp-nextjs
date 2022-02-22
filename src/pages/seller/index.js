@@ -3,10 +3,11 @@ import Header from 'src/common/components/header';
 import Footer from 'src/common/components/footer';
 import MenuBar from 'src/common/components/MenuBar';
 import ProfileSeller from 'src/common/components/ProfileSeller';
-import React,{useState, useEffect} from 'react';
-import styles from 'src/common/styles/ProfileSeller.module.css'
-import photoDefault from "public/userDefault.webp";
-import Image from "next/image";
+import React, {useState, useEffect} from 'react';
+import styles from 'src/common/styles/ProfileSeller.module.css';
+import photoDefault from 'public/userDefault.webp';
+import Image from 'next/image';
+import Routing from 'src/common/components/Routing';
 
 function Profile() {
   const inputFileRef = React.createRef();
@@ -32,6 +33,7 @@ function Profile() {
   return (
     <>
       <Header />
+      <Routing type='private' user='seller' />
       <PageTitle
         title='Profile'
         subTitle='See your notifications for the latest updates'

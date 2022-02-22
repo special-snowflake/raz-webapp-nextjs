@@ -4,10 +4,9 @@ import styles from "src/common/styles/Home.module.css";
 import defaultProduct from "public/defaultProduct.jpg";
 
 function CardHome({ id, name, price, image }) {
-  console.log("IMAGE", image);
   const host = process.env.NEXT_PUBLIC_API_URL;
   const imageCard = host + image;
-  console.log("IMAGE-CARD", imageCard);
+
   return (
     <>
       <Link href={`/product/${id}`} passHref>

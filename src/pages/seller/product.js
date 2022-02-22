@@ -20,10 +20,7 @@ function Product(props) {
   useEffect(() => {
     // setLoading(true);
 
-    const status = router.query.status ? `status=${router.query.status}&` : "";
-    const page = router.query.page ? `page=${router.query.page}` : "page=1";
-    const query = status + page;
-    // const query = "?filter=all&limit=5&page=1";
+    const query = "?filter=all&limit=5&page=1";
     getSellerProduct(query, token)
       .then((res) => {
         setProducts(res.data.data);
@@ -35,17 +32,18 @@ function Product(props) {
   return (
     <>
       <Header />
+      <Routing type='private' user='seller' />
       <PageTitle
-        title="Selling Product"
-        subTitle="See your notifications for the latest updates"
+        title='Selling Product'
+        subTitle='See your notifications for the latest updates'
       />
       <MenuBar />
       <div className={styles.productWrapper}>
         <div className={`${styles.row} row`}>
-          <div className="col-6 col-md-6">
+          <div className='col-6 col-md-6'>
             <p>Product</p>
           </div>
-          <div className="col-3 col-md-3">
+          <div className='col-3 col-md-3'>
             <p>Stock Status</p>
           </div>
           <div className={`${styles.price} col-3 col-md-3`}>
