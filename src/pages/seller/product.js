@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import CardProduct from "src/common/components/CardProductSeller.js";
 import styles from "src/common/styles/CardSellerProduct.module.css";
 import PageTitle from "src/common/components/PageTitle";
@@ -10,18 +9,6 @@ import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import LoadingCircle from "src/common/components/LoadingBox";
 
-=======
-import CardProduct from 'src/common/components/CardProductSeller.js';
-import styles from 'src/common/styles/CardSellerProduct.module.css';
-import PageTitle from 'src/common/components/PageTitle';
-import Header from 'src/common/components/header';
-import Footer from 'src/common/components/footer';
-import MenuBar from 'src/common/components/MenuBar';
-import {getSellerProduct} from 'src/modules/utils/sellerProduct';
-import {useSelector} from 'react-redux';
-import React, {useState, useEffect} from 'react';
-import Routing from 'src/common/components/Routing';
->>>>>>> 7048f43e26384a1f8ac524f19a99655e79d9408c
 
 function Product(props) {
   const token = useSelector((state) => state.auth.userData.token);
@@ -31,14 +18,9 @@ function Product(props) {
   const [currentPage, setCurrnetPage] = useState(10);
 
   useEffect(() => {
-<<<<<<< HEAD
     // setLoading(true);
 
     const query = "?filter=all&limit=5&page=1";
-=======
-    setLoading(true);
-    const query = '?filter=all&limit=5&page=1';
->>>>>>> 7048f43e26384a1f8ac524f19a99655e79d9408c
     getSellerProduct(query, token)
       .then((res) => {
         setProducts(res.data.data);
