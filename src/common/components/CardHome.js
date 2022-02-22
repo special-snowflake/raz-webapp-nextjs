@@ -26,7 +26,7 @@ function CardHome({ id, name, price, image }) {
           </div>
           <div className={styles["product-detail"]}>
             <p className={styles["product-name"]}>{name}</p>
-            <p className={styles["product-price"]}>{price}</p>
+            <p className={styles["product-price"]}>{`$${price}`}</p>
           </div>
         </div>
       </Link>

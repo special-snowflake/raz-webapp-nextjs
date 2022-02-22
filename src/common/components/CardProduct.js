@@ -42,7 +42,7 @@ function Card(props) {
           </div>
           <div className={styles["product-detail"]}>
             <p className={styles["product-name"]}>{props.name}</p>
-            <p className={styles["product-price"]}>{props.price}</p>
+            <p className={styles["product-price"]}>{`$${props.price}`}</p>
           </div>
         </div>
       </Link>

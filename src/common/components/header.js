@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { logoutAction } from "src/store/actions/auth";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Logout from "./Logout";
 function Header() {
   const user = useSelector((state) => state.auth.userData);
@@ -36,7 +36,19 @@ function Header() {
   const handleClickedLogout = () => {
     setShowLogout(true);
   };
-  console.log(onSearch);
+
+  const searchProducts = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    console.log(search);
+    Router.push({
+      pathname: "/product",
+      query: {
+        search
+      }
+    });
+  };
+
   return (
     <header className={styles.header}>
       <Logout isShow={showLogout} callbackShow={callbackLogout} />
@@ -185,8 +197,8 @@ function Header() {
                 onClick={toggleSearch}></i>
             </div>
             <div className={styles["wrapper-icon"]}>
-              <div className={styles["wrapper-notif"]}>
-                <p className={styles["notif"]}>10</p>
+              <div className={styles["wrapper-notif-show"]}>
+                <p className={styles["notif"]}>1</p>
               </div>
               <Link href="/favorite" passHref>
                 <i
@@ -205,7 +217,12 @@ function Header() {
             </div>
 
             <div className={styles["wrapper-icon"]}>
-              <div className={styles["wrapper-notif"]}>
+              <div
+                className={
+                  cartProducts.length > 0
+                    ? styles["wrapper-notif-show"]
+                    : styles["wrapper-notif"]
+                }>
                 <p className={styles["notif"]}>{cartProducts.length}</p>
               </div>
               <Link href="/cart" passHref>
@@ -245,6 +262,7 @@ function Header() {
         <MenuLogin
           show={toggleAuth}
           logout={logoutHandler}
+          user={user}
           handleClickedLogout={handleClickedLogout}
         />
       ) : (
@@ -270,9 +288,12 @@ function Header() {
           </li>
         </ul>
       )}
-      <form className={onSearch ? styles["wrapper-input-search"] : null}>
+      <form
+        className={onSearch ? styles["wrapper-input-search"] : null}
+        onSubmit={searchProducts}>
         <input
           type="text"
+          name="search"
           className={
             !onSearch ? styles["input-search"] : styles["input-search-show"]
           }
@@ -283,18 +304,29 @@ function Header() {
   );
 }
 
-function MenuLogin({ show, handleClickedLogout }) {
+function MenuLogin({ show, handleClickedLogout, user }) {
   return (
     <ul
       className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
       <li>
-        <Link href="/profile" passHref>
-          <a className={styles["tag-a-menu"]}>Profile</a>
-        </Link>
+        {user.roles === "1" ? (
+          <Link href="/seller" passHref>
+            <a className={styles["tag-a-menu"]}>Profile</a>
+          </Link>
+        ) : (
+          <Link href="/profile" passHref>
+            <a className={styles["tag-a-menu"]}>Profile</a>
+          </Link>
+        )}
       </li>
       <li>
         <Link href="/chat" passHref>
           <a className={styles["tag-a-menu"]}>Chat</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/history" passHref>
+          <a className={styles["tag-a-menu"]}>History</a>
         </Link>
       </li>
       <li>

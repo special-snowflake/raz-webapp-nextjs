@@ -24,7 +24,7 @@ function CardRelated({ data }) {
               <Image src={one} alt={one} width="800" layout="responsive" />
               <div className={styles["wrapper-text"]}>
                 <p>{item.name}</p>
-                <p>{item.price}</p>
+                <p>{`$${item.price}`}</p>
               </div>
             </div>
           );

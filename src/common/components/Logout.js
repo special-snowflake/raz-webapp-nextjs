@@ -17,6 +17,8 @@ function Logout(props) {
 
   const hanndleLogout = () => {
     dispatch(logoutAction(user.token));
+    setIsShow(false);
+    props.callbackShow(false);
     toast.success('Logout Success');
     router.replace('/');
   };
@@ -49,7 +51,7 @@ function Logout(props) {
             onClick={hanndleLogout}>
             Logout
           </button>
-          
+
           <button
             onClick={() => {
               setIsShow(false);
