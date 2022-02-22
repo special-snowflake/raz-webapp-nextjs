@@ -163,8 +163,8 @@ function Header() {
                       </Link>
                     </li>
                     <li className={styles['dropdown-link']}>
-                      <Link href='/tracking' className={styles['tag-a-menu']}>
-                        Order Tracking
+                      <Link href='/tracking' passHref>
+                        <a className={styles['tag-a-menu']}>Order Tracking</a>
                       </Link>
                     </li>
                     <div className={styles.arrow}></div>

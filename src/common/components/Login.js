@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "src/common/styles/Auth.module.css";
 import { loginAction } from "src/store/actions/auth";
@@ -9,14 +9,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login(props) {
   const router = useRouter();
+  const [rememberMe, setRememberMe] = useState(false);
 
   const submitHandler = (event) => {
     event.preventDefault();
     const body = {
       email: event.target.email.value,
-      password: event.target.password.value
+      password: event.target.password.value,
+      rememberMe,
     };
     props.loginDispatch(body);
+    // console.log(body);
   };
   useEffect(() => {
     if (props.auth.isFulfilled) {
@@ -37,28 +40,18 @@ function Login(props) {
             type="email"
             name="email"
             placeholder="User name or email address *"
-            // value={email}
-            // onChange={handleChange}
             className={"form-control"}
             required
           />
-          {/* {submitted && !email && (
-            <div className="invalid-feedback">email is required</div>
-          )} */}
         </div>
         <div className={`${styles.formAuth} form-group`}>
           <input
             type="password"
             name="password"
             placeholder="password*"
-            // value={password}
-            // onChange={handleChange}
             className={"form-control"}
             required
           />
-          {/* {submitted && !password && (
-            <div className="invalid-feedback">Password is required</div>
-          )} */}
         </div>
         <button type="submit" className="btn btn-dark">
           Login
@@ -68,9 +61,15 @@ function Login(props) {
             <input
               className="form-check-input"
               type="checkbox"
-              // value=""
               id="flexCheckChecked"
-              // checked
+              name="rememberMe"
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setRememberMe(true);
+                } else {
+                  setRememberMe(false);
+                }
+              }}
             />
             <label className="form-check-label">Remember me</label>
           </div>
@@ -85,7 +84,7 @@ function Login(props) {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
   };
 };
 

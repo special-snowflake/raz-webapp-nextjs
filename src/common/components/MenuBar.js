@@ -39,9 +39,9 @@ function MenuBar() {
                 <i className="bi bi-caret-down-fill"></i>
               </button>
               <div className={styles["dropdown-content"]}>
-                <Link href="/" passHref>All</Link>
-                <Link href="/" passHref>Archive</Link>
-                <Link href="/" passHref>Sold Out</Link>
+                <Link href="/seller/product?filter=all" passHref>All</Link>
+                <Link href="/seller/product?filter=archieve" passHref>Archive</Link>
+                <Link href="/seller/product?filter=soldout" passHref>Sold Out</Link>
               </div>
             </div>
           </a>
