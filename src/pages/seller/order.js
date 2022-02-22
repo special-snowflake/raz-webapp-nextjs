@@ -160,7 +160,7 @@ function Order(props) {
                             );
                           });
                       }}
-                      disabled={item.status === 'sent'}>
+                      disabled={item.status === 'sent' || item.status === 'completed'}>
                       <option selected disabled>
                         Set status
                       </option>
