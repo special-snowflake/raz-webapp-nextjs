@@ -20,7 +20,8 @@ function Product(props) {
   const router = useRouter();
   useEffect(() => {
     setLoading(true);
-    const query = '?filter=all&limit=5&page=1';
+    const filter = router.query.filter || all;
+    const query = `?filter=${filter}&limit=5&page=1`;
     getSellerProduct(query, token)
       .then((res) => {
         setProducts(res.data.data);
@@ -28,7 +29,7 @@ function Product(props) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [router.query]);
+  }, [router]);
 
   useEffect(() => {}, []);
   return (
