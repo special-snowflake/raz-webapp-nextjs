@@ -118,7 +118,7 @@ function DetailProduct(props) {
           <p className={styles.productTitle}>{productsMenu.name}</p>
           <p className={styles.productRate}>Rate Example (2 reviews)</p>
           <div>
-            <p className={styles.productPrice}>{productsMenu.price}</p>
+            <p className={styles.productPrice}>{`$${productsMenu.price}`}</p>
             <p className={styles.productStock}>
               <i className="bi bi-check-circle"></i>19 Sold /{" "}
               {productsMenu.stock} In Stock

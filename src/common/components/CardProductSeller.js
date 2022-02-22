@@ -36,7 +36,7 @@ export default function CardProduct({ name, id, price, stock }) {
             {/* className={styles.productStock} */}
           </div>
           <div className={`${styles.price} col-4 col-md-3`}>
-            <p>{price !== null ? price : " - "}</p>
+            <p>{price !== null ? `$${price}` : " - "}</p>
             <button
               type="button"
               className="btn btn-danger"
