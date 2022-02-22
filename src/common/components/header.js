@@ -151,9 +151,9 @@ function Header() {
                       </Link>
                     </li>
                     <li className={styles['dropdown-link']}>
-                      <a href='/tracking' className={styles['tag-a-menu']}>
+                      <Link href='/tracking' className={styles['tag-a-menu']}>
                         Order Tracking
-                      </a>
+                      </Link>
                     </li>
                     <div className={styles.arrow}></div>
                   </ul>
@@ -245,6 +245,7 @@ function Header() {
         <MenuLogin
           show={toggleAuth}
           logout={logoutHandler}
+          user={user}
           handleClickedLogout={handleClickedLogout}
         />
       ) : (
@@ -283,14 +284,20 @@ function Header() {
   );
 }
 
-function MenuLogin({show, handleClickedLogout}) {
+function MenuLogin({show, handleClickedLogout, user}) {
   return (
     <ul
       className={!show ? styles['wrapper-menu'] : styles['wrapper-menu-show']}>
       <li>
-        <Link href='/profile' passHref>
-          <a className={styles['tag-a-menu']}>Profile</a>
-        </Link>
+        {user.roles === '1' ? (
+          <Link href='/seller' passHref>
+            <a className={styles['tag-a-menu']}>Profile</a>
+          </Link>
+        ) : (
+          <Link href='/profile' passHref>
+            <a className={styles['tag-a-menu']}>Profile</a>
+          </Link>
+        )}
       </li>
       <li>
         <Link href='/chat' passHref>
