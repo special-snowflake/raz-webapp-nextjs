@@ -93,33 +93,8 @@ function Header() {
                     </li>
                     <li className={styles["dropdown-link"]}>
                       <a href="#" className={styles["tag-a-menu"]}>
-                        Comming Soon <i className="bi bi-caret-down-fill"></i>
+                        Comming Soon
                       </a>
-                      <div
-                        className={styles["dropdown"]}
-                        style={{
-                          position: "absolute",
-                          left: "95%",
-                          top: "0",
-                          paddingLeft: "0.3rem",
-                          cursor: "pointer",
-                          transform: "translateX(10px)"
-                        }}>
-                        <ul className={styles["wrapper-ul"]}>
-                          <li className={styles["dropdown-link"]}>
-                            <a href="#" className={styles["tag-a-menu"]}>
-                              Comming Soon 001
-                            </a>
-                          </li>
-                          <li className={styles["dropdown-link"]}>
-                            <a href="#" className={styles["tag-a-menu"]}>
-                              Comming Soon 002
-                            </a>
-                          </li>
-
-                          <div className={styles.arrow}></div>
-                        </ul>
-                      </div>
                     </li>
                     <li className={styles["dropdown-link"]}>
                       <Link href="/404">
