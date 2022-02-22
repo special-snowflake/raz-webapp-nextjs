@@ -395,6 +395,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  display: none;
+}
+.wrapper-notif-show {
+  background-color: #1a1a1a;
+  position: absolute;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .notif {
