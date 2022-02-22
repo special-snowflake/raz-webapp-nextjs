@@ -197,8 +197,8 @@ function Header() {
                 onClick={toggleSearch}></i>
             </div>
             <div className={styles["wrapper-icon"]}>
-              <div className={styles["wrapper-notif"]}>
-                <p className={styles["notif"]}>0</p>
+              <div className={styles["wrapper-notif-show"]}>
+                <p className={styles["notif"]}>1</p>
               </div>
               <Link href="/favorite" passHref>
                 <i
@@ -322,6 +322,11 @@ function MenuLogin({ show, handleClickedLogout, user }) {
       <li>
         <Link href="/chat" passHref>
           <a className={styles["tag-a-menu"]}>Chat</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/history" passHref>
+          <a className={styles["tag-a-menu"]}>History</a>
         </Link>
       </li>
       <li>
