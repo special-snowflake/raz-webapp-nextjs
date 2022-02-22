@@ -19,17 +19,18 @@ function Product(props) {
   const [currentPage, setCurrnetPage] = useState(10);
   const router = useRouter();
   useEffect(() => {
-    setLoading(true);
-    const filter = router.query.filter || all;
+    const filter = router.query.filter || 'all';
+    console.log('filter', filter);
     const query = `?filter=${filter}&limit=5&page=1`;
+    setLoading(true);
     getSellerProduct(query, token)
       .then((res) => {
         setProducts(res.data.data);
         console.log(res.data.data);
         setLoading(false);
       })
-      .catch((err) => console.log(err));
-  }, [router]);
+      .catch((err) => console.log(err.response));
+  }, [router, router.query, token]);
 
   useEffect(() => {}, []);
   return (
@@ -57,7 +58,7 @@ function Product(props) {
       {/* <CardProduct /> */}
       <p>{products.data}</p>
       <div>
-        {Array.isArray(products) && products.length > 0 ? (
+        {products.length > 0 && !loading ? (
           products.map((product, id) => (
             <CardProduct
               key={id}
@@ -65,10 +66,13 @@ function Product(props) {
               name={product.name}
               price={product.price}
               stock={product.stock}
+              filter={router.query.filter || 'all'}
             />
           ))
+        ) : products.length === 0 || !loading ? (
+          <div className={styles.rowContent}>Nothing to show</div>
         ) : (
-          <div className='w-100 mx-auto'>
+          <div className={styles.rowContent}>
             <LoadingBox />
           </div>
         )}

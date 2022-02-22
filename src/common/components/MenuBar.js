@@ -41,7 +41,7 @@ function MenuBar() {
               <div className={styles["dropdown-content"]}>
                 <Link href="/seller/product?filter=all" passHref>All</Link>
                 <Link href="/seller/product?filter=archieve" passHref>Archive</Link>
-                <Link href="/seller/product?filter=soldout" passHref>Sold Out</Link>
+                <Link href="/seller/product?filter=sold out" passHref>Sold Out</Link>
               </div>
             </div>
           </a>
