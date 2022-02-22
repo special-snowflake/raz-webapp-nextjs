@@ -19,6 +19,7 @@ import {toast} from 'react-toastify';
 import {Modal} from 'react-bootstrap';
 import {changePassword} from 'src/modules/utils/auth';
 import Routing from 'src/common/components/Routing';
+import MenuBar from 'src/common/components/MenuBar';
 
 function Profile(props) {
   const inputFileRef = React.createRef();
@@ -159,6 +160,7 @@ function Profile(props) {
         title='Profile'
         subTitle='See your notifications for the latest updates'
       />
+      {userDetail && userDetail.roles === '1' ? <MenuBar /> : ''}
       <div className={styles.main}>
         {userDetail !== null ? (
           <>
