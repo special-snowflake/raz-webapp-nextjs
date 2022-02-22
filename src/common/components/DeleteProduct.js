@@ -45,7 +45,7 @@ export default function DeleteModal(props) {
             <button className="btn btn-secondary m-2" onClick={forceRefresh}>
               cancel
             </button>
-            <button className="btn btn-primary m-2" onClick={deleteHandler}>
+            <button className="btn btn-dark m-2" onClick={deleteHandler}>
               Delete
             </button>
           </div>
