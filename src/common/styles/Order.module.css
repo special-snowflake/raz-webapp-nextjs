@@ -99,3 +99,47 @@ td.price {
   display: flex;
   justify-content: center;
 }
+
+
+button.sort {
+  background-color: transparent;
+  font-weight: inherit;
+  border: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--dark);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 1rem;
+}
+
+.dropdown-content a {
+  float: none;
+  color: var(--gray);
+  padding: 0.5rem 0;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-weight: 400;
+}
+.dropdown-content span {
+  cursor: pointer;
+  float: none;
+  color: var(--gray);
+  padding: 0.5rem 0;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-weight: 400;
+}
+.dropdown-content span:hover {
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
