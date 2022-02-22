@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Link from 'next/link';
 import {logoutAction} from 'src/store/actions/auth';
-import {useRouter} from 'next/router';
+import Router, {useRouter} from 'next/router';
 import Logout from './Logout';
 function Header() {
   const user = useSelector((state) => state.auth.userData);
@@ -36,7 +36,19 @@ function Header() {
   const handleClickedLogout = () => {
     setShowLogout(true);
   };
-  console.log(onSearch);
+
+  const searchProducts = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    console.log(search);
+    Router.push({
+      pathname: '/product',
+      query: {
+        search,
+      },
+    });
+  };
+
   return (
     <header className={styles.header}>
       <Logout isShow={showLogout} callbackShow={callbackLogout} />
@@ -271,9 +283,12 @@ function Header() {
           </li>
         </ul>
       )}
-      <form className={onSearch ? styles['wrapper-input-search'] : null}>
+      <form
+        className={onSearch ? styles['wrapper-input-search'] : null}
+        onSubmit={searchProducts}>
         <input
           type='text'
+          name='search'
           className={
             !onSearch ? styles['input-search'] : styles['input-search-show']
           }
