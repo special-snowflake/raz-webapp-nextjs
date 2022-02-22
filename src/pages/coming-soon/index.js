@@ -1,15 +1,14 @@
-import styles from "src/common/styles/Notification.module.css";
+import styles from "src/common/styles/Coming.module.css";
 import Header from "src/common/components/header";
-import PageTitle from "src/common/components/PageTitle";
-import Footer from "src/common/components/footer";
 
-function ComingSoon(props) {
+function ComingSoon() {
   return (
     <>
       <Header />
 
-      <main className={styles["main"]}></main>
-      <Footer />
+      <main className={styles["main"]}>
+        <h1>HALAMAN COMING SOON</h1>
+      </main>
     </>
   );
 }
