@@ -73,7 +73,7 @@ function Login(props) {
             />
             <label className="form-check-label">Remember me</label>
           </div>
-          <Link href={"/"} passHref>
+          <Link href={"/auth/forgot-password"} passHref>
             <p className={styles.forgotPassword}>Foget your password</p>
           </Link>
         </div>
