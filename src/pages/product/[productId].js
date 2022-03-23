@@ -28,9 +28,9 @@ function DetailProduct(props) {
   const menu = [
     "description",
     "review",
-    "additional informatin",
+    "additional information",
     "about brand",
-    "Shipping & delivery"
+    "Shipping & delivery",
   ];
 
   const productId = router.query.productId;
@@ -81,7 +81,7 @@ function DetailProduct(props) {
         images,
         price: parsedPrice,
         quantity: counter,
-        total: parsedPrice * counter
+        total: parsedPrice * counter,
       })
     );
     toast.success("Added to cart", { position: "bottom-left" });
@@ -140,14 +140,16 @@ function DetailProduct(props) {
           </div>
           <button
             onClick={addToCartHandler}
-            className={`${styles.productDescButton} btn btn-dark`}>
-            Add to Chart
+            className={`${styles.productDescButton} btn btn-dark`}
+          >
+            Add to Cart
           </button>
           <button className={`${styles.productDescButton} btn btn-dark`}>
             <i className="bi bi-heart"></i>
           </button>
           <button
-            className={`${styles.productDescButton} btn btn-outline-dark`}>
+            className={`${styles.productDescButton} btn btn-outline-dark`}
+          >
             Add to Wihslist
           </button>
         </div>
@@ -182,7 +184,8 @@ function DetailProduct(props) {
         {/* desctription components */}
         <section>
           <div
-            className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}>
+            className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}
+          >
             {menu.map((productMenu, idx) => (
               <p key={idx} onClick={() => setProductsMenu(productMenu)}>
                 {productMenu.toLocaleUpperCase()}
@@ -231,7 +234,8 @@ const Description = () => {
           />
         </div>
         <div
-          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}>
+          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}
+        >
           <div className={styles.productDescriptionSectionP}>
             <p>
               Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at
@@ -273,7 +277,8 @@ const Review = () => {
         {/* <h1>THIS IS SECTION REVIEW </h1> */}
         {/* multiple comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
+        >
           {/* parent comment */}
           <div>
             <div className="d-flex align-items-center">
@@ -344,7 +349,8 @@ const Review = () => {
         </div>
         {/* single comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
+        >
           <div>
             <div className="d-flex align-items-center">
               <div className={styles.userReviewImage}>
@@ -408,7 +414,8 @@ const Review = () => {
             <textarea
               className="form-control"
               rows="3"
-              placeholder="Your Comment"></textarea>
+              placeholder="Your Comment"
+            ></textarea>
           </div>
           <button className={`${styles.productDescButton} btn btn-dark`}>
             Send
@@ -422,7 +429,7 @@ const Review = () => {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    cart: state.cart
+    cart: state.cart,
   };
 };
 

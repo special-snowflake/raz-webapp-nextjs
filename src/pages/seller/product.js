@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import LoadingCircle from "src/common/components/LoadingBox";
 
-
 function Product(props) {
   const token = useSelector((state) => state.auth.userData.token);
   console.log(token);
@@ -32,18 +31,18 @@ function Product(props) {
   return (
     <>
       <Header />
-      <Routing type='private' user='seller' />
+      {/* <Routing type='private' user='seller' /> */}
       <PageTitle
-        title='Selling Product'
-        subTitle='See your notifications for the latest updates'
+        title="Selling Product"
+        subTitle="See your notifications for the latest updates"
       />
       <MenuBar />
       <div className={styles.productWrapper}>
         <div className={`${styles.row} row`}>
-          <div className='col-6 col-md-6'>
+          <div className="col-6 col-md-6">
             <p>Product</p>
           </div>
-          <div className='col-3 col-md-3'>
+          <div className="col-3 col-md-3">
             <p>Stock Status</p>
           </div>
           <div className={`${styles.price} col-3 col-md-3`}>

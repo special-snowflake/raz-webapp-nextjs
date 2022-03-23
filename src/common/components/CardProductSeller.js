@@ -46,7 +46,7 @@ export default function CardProduct({ name, id, price, stock }) {
                 setShow(true), handleClick;
               }}
             >
-              Delete{id}
+              Delete
             </button>
           </div>
         </div>
