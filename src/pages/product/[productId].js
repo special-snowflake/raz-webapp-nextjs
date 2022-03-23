@@ -16,6 +16,7 @@ import Footer from "src/common/components/footer";
 import Header from "src/common/components/header";
 import CardRelated from "src/common/components/RelatedProduct";
 import { addProduct } from "src/store/actions/cart";
+import { addToFavorite } from "src/modules/utils/favorite";
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -28,7 +29,7 @@ function DetailProduct(props) {
   const menu = [
     "description",
     "review",
-    "additional information",
+    "additional informatin",
     "about brand",
     "Shipping & delivery",
   ];
@@ -45,6 +46,18 @@ function DetailProduct(props) {
           setIsNullData(true);
           console.log(err);
         });
+  };
+
+  // console.log(props.auth.userData.token);
+  const addToFavoriteHandler = () => {
+    addToFavorite(props.auth.userData.token, { idProduct: productsMenu.id })
+      .then((res) => {
+        toast.success("Success add item to favorite");
+      })
+      .catch((err) => {
+        console.log({ ...err });
+        toast.error("Fail add item to favorite.");
+      });
   };
 
   useEffect(() => {
@@ -142,9 +155,12 @@ function DetailProduct(props) {
             onClick={addToCartHandler}
             className={`${styles.productDescButton} btn btn-dark`}
           >
-            Add to Cart
+            Add to Chart
           </button>
-          <button className={`${styles.productDescButton} btn btn-dark`}>
+          <button
+            onClick={addToFavoriteHandler}
+            className={`${styles.productDescButton} btn btn-dark`}
+          >
             <i className="bi bi-heart"></i>
           </button>
           <button

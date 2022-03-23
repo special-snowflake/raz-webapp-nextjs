@@ -4,7 +4,7 @@ import pic from "src/assets/b_OKITO-PLY-DINING-Chair-3.png";
 import React, { useState, useEffect } from "react";
 import DeleteModal from "src/common/components/DeleteProduct";
 
-export default function CardProduct({ name, id, price, stock }) {
+export default function CardProduct({ name, id, price, stock, filter }) {
   const [show, setShow] = useState(false);
 
   const handleClick = (e) => {
@@ -37,17 +37,21 @@ export default function CardProduct({ name, id, price, stock }) {
           </div>
           <div className={`${styles.price} col-4 col-md-3`}>
             <p>{price !== null ? `$${price}` : " - "}</p>
-            <button
-              type="button"
-              className="btn btn-danger"
-              key={id}
-              value={id}
-              onClick={() => {
-                setShow(true), handleClick;
-              }}
-            >
-              Delete
-            </button>
+            {filter && filter !== "archieve" ? (
+              <button
+                type="button"
+                className="btn btn-danger"
+                key={id}
+                value={id}
+                onClick={() => {
+                  setShow(true), handleClick;
+                }}
+              >
+                Delete
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

@@ -7,7 +7,9 @@ import MenuBar from "src/common/components/MenuBar";
 import { getSellerProduct } from "src/modules/utils/sellerProduct";
 import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import LoadingCircle from "src/common/components/LoadingBox";
+import Routing from "src/common/components/Routing";
+import LoadingBox from "src/common/components/LoadingBox";
+import { useRouter } from "next/router";
 
 function Product(props) {
   const token = useSelector((state) => state.auth.userData.token);
@@ -15,19 +17,22 @@ function Product(props) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrnetPage] = useState(10);
-
+  const router = useRouter();
   useEffect(() => {
-    // setLoading(true);
-
-    const query = "?filter=all&limit=5&page=1";
+    const filter = router.query.filter || "all";
+    console.log("filter", filter);
+    const query = `?filter=${filter}&limit=5&page=1`;
+    setLoading(true);
     getSellerProduct(query, token)
       .then((res) => {
         setProducts(res.data.data);
         console.log(res.data.data);
         setLoading(false);
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err.response));
+  }, [router, router.query, token]);
+
+  useEffect(() => {}, []);
   return (
     <>
       <Header />
@@ -53,8 +58,7 @@ function Product(props) {
       {/* <CardProduct /> */}
       <p>{products.data}</p>
       <div>
-        {Array.isArray(products) &&
-          products.length > 0 &&
+        {products.length > 0 && !loading ? (
           products.map((product, id) => (
             <CardProduct
               key={id}
@@ -62,8 +66,16 @@ function Product(props) {
               name={product.name}
               price={product.price}
               stock={product.stock}
+              filter={router.query.filter || "all"}
             />
-          ))}
+          ))
+        ) : products.length === 0 || !loading ? (
+          <div className={styles.rowContent}>Nothing to show</div>
+        ) : (
+          <div className={styles.rowContent}>
+            <LoadingBox />
+          </div>
+        )}
       </div>
       <Footer />
     </>
