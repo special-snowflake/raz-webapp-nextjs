@@ -5,8 +5,8 @@ module.exports = {
       'http://localhost:8000',
       'localhost:8000',
       'localhost',
-      'https://raz-garlic.herokuapp.com',
-      'raz-garlic.herokuapp.com',
+      'https://raz-furniture-backend.herokuapp.com',
+      'raz-furniture-backend.herokuapp.com',
     ],
   },
 };

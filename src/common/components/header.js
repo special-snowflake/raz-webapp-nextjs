@@ -1,10 +1,14 @@
-import styles from "src/common/styles/Header.module.css";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Link from "next/link";
-import { logoutAction } from "src/store/actions/auth";
-import Router, { useRouter } from "next/router";
-import Logout from "./Logout";
+import styles from 'src/common/styles/Header.module.css';
+import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import Link from 'next/link';
+import {logoutAction} from 'src/store/actions/auth';
+import Router, {useRouter} from 'next/router';
+import Logout from './Logout';
+import {useEffect} from 'react';
+
+import {getUserFavorite} from 'src/modules/utils/favorite';
+
 function Header() {
   const user = useSelector((state) => state.auth.userData);
   const cartProducts = useSelector((state) => state.cart.products);
@@ -17,6 +21,7 @@ function Header() {
   const [hoverIconLove, setHovericonLove] = useState(false);
   const [hoverIconCart, setHovericonCart] = useState(false);
   const [onSearch, setOnSearch] = useState(false);
+  const [favoriteCounter, setFavoriteCounter] = useState(0);
 
   const callbackLogout = (isShow) => {
     setShowLogout(isShow);
@@ -42,19 +47,28 @@ function Header() {
     const search = e.target.search.value;
     console.log(search);
     Router.push({
-      pathname: "/product",
+      pathname: '/product',
       query: {
-        search
-      }
+        search,
+      },
     });
   };
+
+  useEffect(() => {
+    user.token &&
+      getUserFavorite(user.token, 1)
+        .then((res) => {
+          setFavoriteCounter(res.data.meta.totalData);
+        })
+        .catch((err) => console.log({...err}));
+  }, []);
 
   return (
     <header className={styles.header}>
       <Logout isShow={showLogout} callbackShow={callbackLogout} />
-      <div className={styles["container"]}>
+      <div className={styles['container']}>
         <input type="checkbox" id="check" className={styles.check} />
-        <div className={styles["logo-container"]}>
+        <div className={styles['logo-container']}>
           <h3>
             <Link href="/" passHref>
               <a className={styles.logo}>
@@ -65,45 +79,45 @@ function Header() {
           </h3>
         </div>
 
-        <div className={styles["nav-btn"]}>
-          <div className={styles["nav-links"]}>
-            <ul className={styles["wrapper-ul"]}>
-              <li className={styles["nav-link"]}>
-                <Link href="/" className={styles["tag-a"]}>
-                  <a className={styles["tag-a"]}>HOME</a>
+        <div className={styles['nav-btn']}>
+          <div className={styles['nav-links']}>
+            <ul className={styles['wrapper-ul']}>
+              <li className={styles['nav-link']}>
+                <Link href="/" className={styles['tag-a']}>
+                  <a className={styles['tag-a']}>HOME</a>
                 </Link>
               </li>
 
-              <li className={styles["nav-link"]}>
-                <a href="#" className={styles["tag-a"]}>
-                  PAGES{" "}
+              <li className={styles['nav-link']}>
+                <a href="#" className={styles['tag-a']}>
+                  PAGES{' '}
                   <i className={`bi bi-caret-down-fill ${styles.icon}`}></i>
                 </a>
                 <div className={styles.dropdown}>
-                  <ul className={styles["wrapper-ul"]}>
-                    <li className={styles["dropdown-link"]}>
+                  <ul className={styles['wrapper-ul']}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/about" passHref>
-                        <a className={styles["tag-a-menu"]}>About Us</a>
+                        <a className={styles['tag-a-menu']}>About Us</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/contact" passHref>
-                        <a className={styles["tag-a-menu"]}>Contact Us</a>
+                        <a className={styles['tag-a-menu']}>Contact Us</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
-                      <a href="#" className={styles["tag-a-menu"]}>
+                    <li className={styles['dropdown-link']}>
+                      <a href="#" className={styles['tag-a-menu']}>
                         Comming Soon
                       </a>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/404">
-                        <a className={styles["tag-a-menu"]}>404 Page</a>
+                        <a className={styles['tag-a-menu']}>404 Page</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/faq">
-                        <a className={styles["tag-a-menu"]}>FAQ Page</a>
+                        <a className={styles['tag-a-menu']}>FAQ Page</a>
                       </Link>
                     </li>
                     <div className={styles.arrow}></div>
@@ -111,35 +125,35 @@ function Header() {
                 </div>
               </li>
 
-              <li className={styles["nav-link"]}>
-                <a href="#" className={styles["tag-a"]}>
+              <li className={styles['nav-link']}>
+                <a href="#" className={styles['tag-a']}>
                   SHOP <i className="bi bi-caret-down-fill"></i>
                 </a>
                 <div className={styles.dropdown}>
-                  <ul className={styles["wrapper-ul"]}>
-                    <li className={styles["dropdown-link"]}>
+                  <ul className={styles['wrapper-ul']}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/cart" passHref>
-                        <a className={styles["tag-a-menu"]}>Order Page</a>
+                        <a className={styles['tag-a-menu']}>Order Page</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/cart" passHref>
-                        <a className={styles["tag-a-menu"]}>Shooping Cart</a>
+                        <a className={styles['tag-a-menu']}>Shooping Cart</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/cart/checkout" passHref>
-                        <a className={styles["tag-a-menu"]}>Check Out</a>
+                        <a className={styles['tag-a-menu']}>Check Out</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/profile" passHref>
-                        <a className={styles["tag-a-menu"]}>My Account</a>
+                        <a className={styles['tag-a-menu']}>My Account</a>
                       </Link>
                     </li>
-                    <li className={styles["dropdown-link"]}>
+                    <li className={styles['dropdown-link']}>
                       <Link href="/tracking" passHref>
-                        <a className={styles["tag-a-menu"]}>Order Tracking</a>
+                        <a className={styles['tag-a-menu']}>Order Tracking</a>
                       </Link>
                     </li>
                     <div className={styles.arrow}></div>
@@ -148,15 +162,15 @@ function Header() {
                 </div>
               </li>
 
-              <li className={styles["nav-link"]}>
+              <li className={styles['nav-link']}>
                 <Link href="/blog" passHref>
-                  <a className={styles["tag-a"]}>BLOG</a>
+                  <a className={styles['tag-a']}>BLOG</a>
                 </Link>
               </li>
             </ul>
           </div>
-          <div className={` ${styles["container-icon"]}`}>
-            <div className={styles["wrapper-icon"]}>
+          <div className={` ${styles['container-icon']}`}>
+            <div className={styles['wrapper-icon']}>
               <i
                 className={
                   hoverIconSearch || onSearch
@@ -169,11 +183,12 @@ function Header() {
                 onMouseLeave={() => {
                   setHovericonSearch(false);
                 }}
-                onClick={toggleSearch}></i>
+                onClick={toggleSearch}
+              ></i>
             </div>
-            <div className={styles["wrapper-icon"]}>
-              <div className={styles["wrapper-notif-show"]}>
-                <p className={styles["notif"]}>1</p>
+            <div className={styles['wrapper-icon']}>
+              <div className={styles['wrapper-notif-show']}>
+                <p className={styles['notif']}>{favoriteCounter}</p>
               </div>
               <Link href="/favorite" passHref>
                 <i
@@ -187,18 +202,20 @@ function Header() {
                   }}
                   onMouseLeave={() => {
                     setHovericonLove(false);
-                  }}></i>
+                  }}
+                ></i>
               </Link>
             </div>
 
-            <div className={styles["wrapper-icon"]}>
+            <div className={styles['wrapper-icon']}>
               <div
                 className={
                   cartProducts.length > 0
-                    ? styles["wrapper-notif-show"]
-                    : styles["wrapper-notif"]
-                }>
-                <p className={styles["notif"]}>{cartProducts.length}</p>
+                    ? styles['wrapper-notif-show']
+                    : styles['wrapper-notif']
+                }
+              >
+                <p className={styles['notif']}>{cartProducts.length}</p>
               </div>
               <Link href="/cart" passHref>
                 <i
@@ -212,13 +229,15 @@ function Header() {
                   }}
                   onMouseLeave={() => {
                     setHovericonCart(false);
-                  }}></i>
+                  }}
+                ></i>
               </Link>
             </div>
-            <div className={styles["wrapper-icon"]}>
+            <div className={styles['wrapper-icon']}>
               <div
-                className={styles["wrapper-btn-menu"]}
-                onClick={toggleAuthSwitch}>
+                className={styles['wrapper-btn-menu']}
+                onClick={toggleAuthSwitch}
+              >
                 <span></span>
                 <span></span>
                 <span></span>
@@ -227,8 +246,8 @@ function Header() {
           </div>
         </div>
 
-        <div className={styles["hamburger-menu-container"]}>
-          <div className={styles["hamburger-menu"]}>
+        <div className={styles['hamburger-menu-container']}>
+          <div className={styles['hamburger-menu']}>
             <div className={styles.div}></div>
           </div>
         </div>
@@ -243,34 +262,36 @@ function Header() {
       ) : (
         <ul
           className={
-            !toggleAuth ? styles["wrapper-menu"] : styles["wrapper-menu-show"]
-          }>
+            !toggleAuth ? styles['wrapper-menu'] : styles['wrapper-menu-show']
+          }
+        >
           <li>
             <Link href="/auth">
-              <a className={styles["tag-a-menu"]}>Login</a>
-            </Link>{" "}
+              <a className={styles['tag-a-menu']}>Login</a>
+            </Link>{' '}
           </li>
           <li>
             <Link href="/chat">
-              <a className={styles["tag-a-menu"]}>Chat</a>
-            </Link>{" "}
+              <a className={styles['tag-a-menu']}>Chat</a>
+            </Link>{' '}
           </li>
 
           <li>
             <Link href="/notification">
-              <a className={styles["tag-a-menu"]}>Notification</a>
-            </Link>{" "}
+              <a className={styles['tag-a-menu']}>Notification</a>
+            </Link>{' '}
           </li>
         </ul>
       )}
       <form
-        className={onSearch ? styles["wrapper-input-search"] : null}
-        onSubmit={searchProducts}>
+        className={onSearch ? styles['wrapper-input-search'] : null}
+        onSubmit={searchProducts}
+      >
         <input
           type="text"
           name="search"
           className={
-            !onSearch ? styles["input-search"] : styles["input-search-show"]
+            !onSearch ? styles['input-search'] : styles['input-search-show']
           }
           placeholder="Type here to search..."
         />
@@ -279,34 +300,35 @@ function Header() {
   );
 }
 
-function MenuLogin({ show, handleClickedLogout, user }) {
+function MenuLogin({show, handleClickedLogout, user}) {
   return (
     <ul
-      className={!show ? styles["wrapper-menu"] : styles["wrapper-menu-show"]}>
+      className={!show ? styles['wrapper-menu'] : styles['wrapper-menu-show']}
+    >
       <li>
-        {user.roles === "1" ? (
+        {user.roles === '1' ? (
           <Link href="/seller" passHref>
-            <a className={styles["tag-a-menu"]}>Profile</a>
+            <a className={styles['tag-a-menu']}>Profile</a>
           </Link>
         ) : (
           <Link href="/profile" passHref>
-            <a className={styles["tag-a-menu"]}>Profile</a>
+            <a className={styles['tag-a-menu']}>Profile</a>
           </Link>
         )}
       </li>
       <li>
         <Link href="/chat" passHref>
-          <a className={styles["tag-a-menu"]}>Chat</a>
+          <a className={styles['tag-a-menu']}>Chat</a>
         </Link>
       </li>
       <li>
         <Link href="/history" passHref>
-          <a className={styles["tag-a-menu"]}>History</a>
+          <a className={styles['tag-a-menu']}>History</a>
         </Link>
       </li>
       <li>
         <Link href="/notification" passHref>
-          <a className={styles["tag-a-menu"]}>Notification</a>
+          <a className={styles['tag-a-menu']}>Notification</a>
         </Link>
       </li>
       <li>
@@ -314,7 +336,8 @@ function MenuLogin({ show, handleClickedLogout, user }) {
           onClick={() => {
             handleClickedLogout();
           }}
-          className={styles["tag-a-menu"]}>
+          className={styles['tag-a-menu']}
+        >
           Logout
         </p>
       </li>
