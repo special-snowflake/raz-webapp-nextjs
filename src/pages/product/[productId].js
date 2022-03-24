@@ -17,6 +17,7 @@ import Header from "src/common/components/header";
 import CardRelated from "src/common/components/RelatedProduct";
 import { addProduct } from "src/store/actions/cart";
 import { addToFavorite } from "src/modules/utils/favorite";
+import Relatedcardproduct from "src/common/components/RelatedCardProduct";
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -155,7 +156,7 @@ function DetailProduct(props) {
             onClick={addToCartHandler}
             className={`${styles.productDescButton} btn btn-dark`}
           >
-            Add to Chart
+            Add to Cart
           </button>
           <button
             onClick={addToFavoriteHandler}
@@ -227,6 +228,7 @@ function DetailProduct(props) {
       </section>
 
       <CardRelated data={relatedProduct} />
+      <Relatedcardproduct data={relatedProduct} />
 
       <Footer />
     </>
