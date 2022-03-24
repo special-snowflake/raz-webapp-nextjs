@@ -1,22 +1,23 @@
-import {useRouter} from 'next/router';
-import {useState, useEffect} from 'react';
-import {connect, useDispatch} from 'react-redux';
-import {toast} from 'react-toastify';
-import Link from 'next/link';
-import Image from 'next/image';
-import styles from 'src/common/styles/ProductDetail.module.css';
-import sofa from 'src/assets/sofa.png';
-import userone from 'src/assets/userone.png';
-import usertwo from 'src/assets/usertwo.png';
-import userthree from 'src/assets/userthree.png';
-import ProductSlider from 'src/common/components/ProductSlider';
-import {geProductId} from 'src/modules/utils/product';
-import {getRelatedProduct} from 'src/modules/utils/product';
-import Footer from 'src/common/components/footer';
-import Header from 'src/common/components/header';
-import CardRelated from 'src/common/components/RelatedProduct';
-import {addProduct} from 'src/store/actions/cart';
-import {addToFavorite} from 'src/modules/utils/favorite';
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "src/common/styles/ProductDetail.module.css";
+import sofa from "src/assets/sofa.png";
+import userone from "src/assets/userone.png";
+import usertwo from "src/assets/usertwo.png";
+import userthree from "src/assets/userthree.png";
+import ProductSlider from "src/common/components/ProductSlider";
+import { geProductId } from "src/modules/utils/product";
+import { getRelatedProduct } from "src/modules/utils/product";
+import Footer from "src/common/components/footer";
+import Header from "src/common/components/header";
+import CardRelated from "src/common/components/RelatedProduct";
+import { addProduct } from "src/store/actions/cart";
+import { addToFavorite } from "src/modules/utils/favorite";
+import Relatedcardproduct from "src/common/components/RelatedCardProduct";
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -25,19 +26,19 @@ function DetailProduct(props) {
   // const [product, setProduct] = useState({});
   const [isNullData, setIsNullData] = useState(false);
   const [relatedProduct, setRelatedProduct] = useState([]);
-  const [productsMenu, setProductsMenu] = useState('');
+  const [productsMenu, setProductsMenu] = useState("");
   const menu = [
-    'description',
-    'review',
-    'additional informatin',
-    'about brand',
-    'Shipping & delivery',
+    "description",
+    "review",
+    "additional informatin",
+    "about brand",
+    "Shipping & delivery",
   ];
 
   const productId = router.query.productId;
 
   const getRelated = () => {
-    if (Object.keys(router.query).includes('productId'))
+    if (Object.keys(router.query).includes("productId"))
       return getRelatedProduct(productId)
         .then((res) => {
           setRelatedProduct(res.data.data);
@@ -50,23 +51,23 @@ function DetailProduct(props) {
 
   // console.log(props.auth.userData.token);
   const addToFavoriteHandler = () => {
-    addToFavorite(props.auth.userData.token, {idProduct: productsMenu.id})
+    addToFavorite(props.auth.userData.token, { idProduct: productsMenu.id })
       .then((res) => {
-        toast.success('Success add item to favorite');
+        toast.success("Success add item to favorite");
       })
       .catch((err) => {
-        console.log({...err});
-        toast.error('Fail add item to favorite.');
+        console.log({ ...err });
+        toast.error("Fail add item to favorite.");
       });
   };
 
   useEffect(() => {
     // console.log(router);
     // const token = props.token;
-    if (Object.keys(router.query).includes('productId')) {
+    if (Object.keys(router.query).includes("productId")) {
       geProductId(productId)
         .then((res) => {
-          setProductsMenu({...res.data.data});
+          setProductsMenu({ ...res.data.data });
           // console.log(res.data.data);
           // {...}
         })
@@ -85,7 +86,7 @@ function DetailProduct(props) {
   };
 
   const addToCartHandler = () => {
-    const {id, name, images, price} = productsMenu;
+    const { id, name, images, price } = productsMenu;
     const parsedPrice = parseFloat(price);
     dispatch(
       addProduct({
@@ -97,7 +98,7 @@ function DetailProduct(props) {
         total: parsedPrice * counter,
       })
     );
-    toast.success('Added to cart', {position: 'bottom-left'});
+    toast.success("Added to cart", { position: "bottom-left" });
   };
 
   return (
@@ -109,12 +110,12 @@ function DetailProduct(props) {
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link href="/" passHref>
-                  <a className={styles['title-page-crumb']}>Home</a>
+                  <a className={styles["title-page-crumb"]}>Home</a>
                 </Link>
               </li>
               <li className="breadcrumb-item">
                 <Link href="/product" passHref>
-                  <a className={styles['title-page-crumb']}>Product</a>
+                  <a className={styles["title-page-crumb"]}>Product</a>
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
@@ -133,7 +134,7 @@ function DetailProduct(props) {
           <div>
             <p className={styles.productPrice}>{`$${productsMenu.price}`}</p>
             <p className={styles.productStock}>
-              <i className="bi bi-check-circle"></i>19 Sold /{' '}
+              <i className="bi bi-check-circle"></i>19 Sold /{" "}
               {productsMenu.stock} In Stock
             </p>
           </div>
@@ -155,7 +156,7 @@ function DetailProduct(props) {
             onClick={addToCartHandler}
             className={`${styles.productDescButton} btn btn-dark`}
           >
-            Add to Chart
+            Add to Cart
           </button>
           <button
             onClick={addToFavoriteHandler}
@@ -219,14 +220,15 @@ function DetailProduct(props) {
           <section>
             {/* <h1>THIS IS SECTION DESCRIPTION</h1> */}
             <div>
-              {productsMenu === 'description' && <Description />}
-              {productsMenu === 'review' && <Review />}
+              {productsMenu === "description" && <Description />}
+              {productsMenu === "review" && <Review />}
             </div>
           </section>
         </section>
       </section>
 
       <CardRelated data={relatedProduct} />
+      <Relatedcardproduct data={relatedProduct} />
 
       <Footer />
     </>

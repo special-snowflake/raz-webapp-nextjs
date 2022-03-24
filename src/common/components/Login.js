@@ -6,43 +6,75 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { validateLogin } from "src/modules/helper/validation";
 
 function Login(props) {
   const router = useRouter();
   const [rememberMe, setRememberMe] = useState(false);
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setError(validateLogin(values));
+    const validateBody = validateLogin(values);
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
       rememberMe
     };
+    if (Object.keys(validateBody).length === 0) {
+      setIsSubmit(true);
+      dispatch(loginAction(body));
+    }
     props.loginDispatch(body);
     // console.log(body);
   };
   useEffect(() => {
-    if (props.auth.isFulfilled) {
+    if (Object.keys(error).length === 0 && isSubmit) {
+      console.log("isSubmit", isSubmit);
+    }
+
+    if (props.auth.isFulfilled === true) {
       router.push("/");
       return toast.success("success");
     }
-    if (props.auth.isRejected) {
+    if (props.auth.isRejected === true) {
       toast.error("Wrong email/password!");
     }
+    // if (error.response === 401) {
+    //   Promise.reject(error.response || error.message);
+    //   console.error("Error Message:", error.message);
+    // }
   }, [props]);
 
   return (
     <section className={styles.authWrapperSection}>
       <p className={styles.title}>Login</p>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} noValidate>
         <div className={`${styles.formAuth} form-group`}>
           <input
             type="email"
             name="email"
             placeholder="User name or email address *"
             className={"form-control"}
-            required
+            value={values.email}
+            onChange={handleChange}
           />
+          {error.email && (
+            <div className="text-danger error">{error.email}</div>
+          )}
         </div>
         <div className={`${styles.formAuth} form-group`}>
           <input
@@ -50,8 +82,12 @@ function Login(props) {
             name="password"
             placeholder="password*"
             className={"form-control"}
-            required
+            value={values.password}
+            onChange={handleChange}
           />
+          {error.password && (
+            <div className="text-danger error">{error.password}</div>
+          )}
         </div>
         <button type="submit" className="btn btn-dark">
           Login

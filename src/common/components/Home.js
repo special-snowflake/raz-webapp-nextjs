@@ -20,7 +20,7 @@ function Home() {
   const [isActive, setIsActive] = useState({
     newActive: true,
     trendActive: false,
-    saleActive: false
+    saleActive: false,
   });
 
   const getNewProduct = () => {
@@ -124,7 +124,7 @@ function Home() {
       ...isActive,
       newActive: false,
       trendActive: false,
-      saleActive: false
+      saleActive: false,
     });
   };
 
@@ -133,7 +133,7 @@ function Home() {
       ...isActive,
       trendActive: true,
       newActive: false,
-      saleActive: false
+      saleActive: false,
     });
   };
 
@@ -142,7 +142,7 @@ function Home() {
       ...isActive,
       saleActive: true,
       newActive: false,
-      trendActive: false
+      trendActive: false,
     });
   };
 
@@ -165,7 +165,7 @@ function Home() {
           <div className={styles.explorer}>
             <span></span>
             <Link href="/product" passHref>
-              <a>EXPLORER MORE</a>
+              <a>EXPLORE MORE</a>
             </Link>
           </div>
         </div>
