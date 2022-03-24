@@ -16,7 +16,7 @@ function Login(props) {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-      rememberMe,
+      rememberMe
     };
     props.loginDispatch(body);
     // console.log(body);
@@ -71,7 +71,11 @@ function Login(props) {
                 }
               }}
             />
-            <label className="form-check-label">Remember me</label>
+            <label
+              className="form-check-label remember"
+              htmlFor="flexCheckChecked">
+              Remember me
+            </label>
           </div>
           <Link href={"/auth/forgot-password"} passHref>
             <p className={styles.forgotPassword}>Foget your password</p>
@@ -84,7 +88,7 @@ function Login(props) {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
+    auth: state.auth
   };
 };
 
@@ -93,7 +97,7 @@ const mapDispatchToProps = (dispatch) => {
     loginDispatch: (body) => {
       dispatch(loginAction(body));
       console.log("login body :" + body);
-    },
+    }
   };
 };
 
