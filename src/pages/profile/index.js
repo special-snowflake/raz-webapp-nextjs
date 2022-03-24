@@ -471,8 +471,10 @@ function Profile(props) {
             </button>
           </>
         ) : (
-          <div className='mx-auto w-100'>
-            <LoadingBox />
+          <div className={`mx-auto ${styles['wrapper']} `}>
+            <div className='w-100 mx-auto'>
+              <LoadingBox />
+            </div>
           </div>
         )}
       </div>
