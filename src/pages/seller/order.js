@@ -1,21 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import Link from 'next/link';
-import {connect} from 'react-redux';
-import {useRouter} from 'next/router';
-import {toast} from 'react-toastify';
-import styles from 'src/common/styles/Order.module.css';
-import MenuBar from 'src/common/components/MenuBar';
-import PageTitle from 'src/common/components/PageTitle';
-import Header from 'src/common/components/header';
-import Footer from 'src/common/components/footer';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { connect } from "react-redux";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import styles from "src/common/styles/Order.module.css";
+import MenuBar from "src/common/components/MenuBar";
+import PageTitle from "src/common/components/PageTitle";
+import Header from "src/common/components/header";
+import Footer from "src/common/components/footer";
+import Image from "next/image";
 
 import {
   getAllTransaction,
   updateTransaction,
-} from 'src/modules/utils/transaction';
-import Routing from 'src/common/components/Routing';
-import LoadingCircle from 'src/common/components/LoadingBox';
+} from "src/modules/utils/transaction";
+import Routing from "src/common/components/Routing";
+import LoadingCircle from "src/common/components/LoadingBox";
 
 function Order(props) {
   const router = useRouter();
@@ -25,9 +25,9 @@ function Order(props) {
 
   useEffect(() => {
     // const status = `${router.query.status}&` || "";
-    const status = router.query.status ? `status=${router.query.status}&` : '';
+    const status = router.query.status ? `status=${router.query.status}&` : "";
     // const page = `page=${router.query.page}` || "page=1";
-    const page = router.query.page ? `page=${router.query.page}` : 'page=1';
+    const page = router.query.page ? `page=${router.query.page}` : "page=1";
     const query = status + page;
     const token = props.token;
     console.log(query);
@@ -45,7 +45,8 @@ function Order(props) {
       return (
         <>
           <button
-            className={`${styles['pagination-button']} ${styles['disabled']}`}>
+            className={`${styles["pagination-button"]} ${styles["disabled"]}`}
+          >
             1
           </button>
         </>
@@ -54,7 +55,8 @@ function Order(props) {
     if (meta.totalPage === 1) {
       return (
         <button
-          className={`${styles['pagination-button']} ${styles['active']}`}>
+          className={`${styles["pagination-button"]} ${styles["active"]}`}
+        >
           1
         </button>
       );
@@ -66,10 +68,11 @@ function Order(props) {
         elements.push(
           <React.Fragment key={`pagination-${i}`}>
             <button
-              className={`${styles['pagination-button']} ${styles['active']}`}>
+              className={`${styles["pagination-button"]} ${styles["active"]}`}
+            >
               {i}
             </button>
-          </React.Fragment>,
+          </React.Fragment>
         );
       } else {
         elements.push(
@@ -78,17 +81,18 @@ function Order(props) {
               onClick={() => {
                 if (router.query.status) {
                   router.push(
-                    `/seller/order?status=${router.query.status}&page=${i}`,
+                    `/seller/order?status=${router.query.status}&page=${i}`
                   );
                 }
                 if (!router.query.status) {
                   router.push(`/seller/order?page=${i}`);
                 }
               }}
-              className={`${styles['pagination-button']}`}>
+              className={`${styles["pagination-button"]}`}
+            >
               {i}
             </button>
-          </React.Fragment>,
+          </React.Fragment>
         );
       }
     }
@@ -97,15 +101,15 @@ function Order(props) {
 
   return (
     <main>
-      <Routing type='private' user='seller' />
+      <Routing type="private" user="seller" />
       <Header />
       <PageTitle
-        title='My Order'
-        subTitle='See your latest order from customer'
+        title="My Order"
+        subTitle="See your latest order from customer"
       />
       <MenuBar />
-      <section className={styles['table-wrapper']}>
-        <table className={styles['table']}>
+      <section className={styles["table-wrapper"]}>
+        <table className={styles["table"]}>
           <thead>
             <tr>
               <th>PRODUCTS</th>
@@ -119,19 +123,19 @@ function Order(props) {
               orderData.map((item) => (
                 <tr key={item.id}>
                   <Link href={`/transaction/${item.id}`} passHref>
-                    <td className={styles['product']}>
-                      <div className={styles['img-wrapper']}>
+                    <td className={styles["product"]}>
+                      <div className={styles["img-wrapper"]}>
                         <Image
-                          src={'/couch.jpg'}
-                          layout='fill'
-                          objectFit='cover'
-                          alt='item.name'
+                          src={"/couch.jpg"}
+                          layout="fill"
+                          objectFit="cover"
+                          alt="item.name"
                         />
                       </div>
-                      <div className={styles['product-name']}>
+                      <div className={styles["product-name"]}>
                         <p>{item.name}</p>
                         {item.count > 1 && (
-                          <p className={styles['other-item']}>
+                          <p className={styles["other-item"]}>
                             +{item.count - 1} other(s) item
                           </p>
                         )}
@@ -141,8 +145,8 @@ function Order(props) {
                   <td>
                     {item.status[0].toUpperCase() + item.status.substring(1)}
                   </td>
-                  <td className={styles['price']}>{`$${item.totalPrice}`}</td>
-                  <td className={styles['action']}>
+                  <td className={styles["price"]}>{`$${item.totalPrice}`}</td>
+                  <td className={styles["action"]}>
                     <select
                       onChange={(e) => {
                         updateTransaction(props.token, item.id, {
@@ -150,28 +154,32 @@ function Order(props) {
                         })
                           .then((res) => {
                             toast.success(
-                              `Success update status for item id= ${item.id}`,
+                              `Success update status for item id= ${item.id}`
                             );
                             setReload(!reload);
                           })
                           .catch((err) => {
                             toast.error(
-                              `Error update status for item id= ${item.id}`,
+                              `Error update status for item id= ${item.id}`
                             );
                           });
                       }}
-                      disabled={item.status === 'sent' || item.status === 'completed'}>
+                      disabled={
+                        item.status === "sent" || item.status === "completed"
+                      }
+                    >
                       <option selected disabled>
                         Set status
                       </option>
                       <option
                         hidden={
-                          item.status === 'processed' || item.status === 'sent'
+                          item.status === "processed" || item.status === "sent"
                         }
-                        value='processed'>
+                        value="processed"
+                      >
                         Processed
                       </option>
-                      <option hidden={item.status === 'sent'} value='sent'>
+                      <option hidden={item.status === "sent"} value="sent">
                         Sent
                       </option>
                     </select>
@@ -179,22 +187,24 @@ function Order(props) {
                 </tr>
               ))
             ) : (
-              <></>
+              <>
+                <p>You haven't order transaction</p>
+              </>
             )}
           </tbody>
         </table>
         {!orderData ? (
-          <div className={styles['loading-wrapper']}>
+          <div className={styles["loading-wrapper"]}>
             <LoadingCircle />
           </div>
         ) : (
           orderData.length === 0 && (
-            <div className={styles['loading-wrapper']}>
+            <div className={styles["loading-wrapper"]}>
               No Data to be displayed.
             </div>
           )
         )}
-        <div className={styles['pagination']}>
+        <div className={styles["pagination"]}>
           {meta !== null && showPagination()}
         </div>
       </section>
