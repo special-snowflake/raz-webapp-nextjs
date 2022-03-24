@@ -9,7 +9,7 @@ Backend: https://raz-garlic.herokuapp.com
 
 ## Screenshots
 
-![App Screenshot](https://github.com/okidwijaya/coffee-good-meals/tree/main/src/assets/webcap.jpeg)
+![App Screenshot](https://github.com/okidwijaya/coffee-good-meals/src/assets/webcap.jpeg)
 
 
 ## Related Project
