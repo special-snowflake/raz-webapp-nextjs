@@ -2,8 +2,10 @@ import Header from "src/common/components/header";
 import PageTitle from "src/common/components/PageTitle";
 import Footer from "src/common/components/footer";
 import styles from "src/common/styles/Faq.module.css";
+import { useRouter } from "next/router";
 
 function Faq() {
+  const router = useRouter();
   return (
     <>
       <Header />
@@ -150,7 +152,11 @@ function Faq() {
       </section>
       <div className={styles.FaqFooter}>
         <p className={styles.contactUs}>You Still Need Help?</p>
-        <button className={`${styles.contactUsBtn} btn btn-dark`}>
+        <button
+          className={`${styles.contactUsBtn} btn btn-dark`}
+          onClick={() => {
+            router.push("/contact");
+          }}>
           Contact Us
         </button>
       </div>

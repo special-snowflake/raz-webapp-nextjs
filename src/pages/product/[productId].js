@@ -16,6 +16,9 @@ import Footer from "src/common/components/footer";
 import Header from "src/common/components/header";
 import CardRelated from "src/common/components/RelatedProduct";
 import { addProduct } from "src/store/actions/cart";
+import { addToFavorite } from "src/modules/utils/favorite";
+import Relatedcardproduct from "src/common/components/RelatedCardProduct";
+import LoadingBox from "src/common/components/LoadingBox";
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -25,17 +28,20 @@ function DetailProduct(props) {
   const [isNullData, setIsNullData] = useState(false);
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [productsMenu, setProductsMenu] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const menu = [
     "description",
     "review",
     "additional informatin",
     "about brand",
-    "Shipping & delivery"
+    "Shipping & delivery",
   ];
 
   const productId = router.query.productId;
 
   const getRelated = () => {
+    setLoading(true);
     if (Object.keys(router.query).includes("productId"))
       return getRelatedProduct(productId)
         .then((res) => {
@@ -47,7 +53,20 @@ function DetailProduct(props) {
         });
   };
 
+  // console.log(props.auth.userData.token);
+  const addToFavoriteHandler = () => {
+    addToFavorite(props.auth.userData.token, { idProduct: productsMenu.id })
+      .then((res) => {
+        toast.success("Success add item to favorite");
+      })
+      .catch((err) => {
+        console.log({ ...err });
+        toast.error("Fail add item to favorite.");
+      });
+  };
+
   useEffect(() => {
+    setLoading(true);
     // console.log(router);
     // const token = props.token;
     if (Object.keys(router.query).includes("productId")) {
@@ -81,7 +100,7 @@ function DetailProduct(props) {
         images,
         price: parsedPrice,
         quantity: counter,
-        total: parsedPrice * counter
+        total: parsedPrice * counter,
       })
     );
     toast.success("Added to cart", { position: "bottom-left" });
@@ -90,125 +109,149 @@ function DetailProduct(props) {
   return (
     <>
       <Header />
-      <section className={styles.productMainWrapper}>
-        <div>
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link href="/" passHref>
-                  <a className={styles["title-page-crumb"]}>Home</a>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/product" passHref>
-                  <a className={styles["title-page-crumb"]}>Product</a>
-                </Link>
-              </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                {productsMenu.name}
-              </li>
-            </ol>
-          </nav>
+      {!loading ? (
+        <div className="d-flex justify-content-center">
+          <LoadingBox />
         </div>
-        {/* end of breadcrumb */}
-        <div className={styles.imgProductContainer}>
-          <ProductSlider />
-        </div>
-        <div className={styles.productDescriptionWrapper}>
-          <p className={styles.productTitle}>{productsMenu.name}</p>
-          <p className={styles.productRate}>Rate Example (2 reviews)</p>
-          <div>
-            <p className={styles.productPrice}>{`$${productsMenu.price}`}</p>
-            <p className={styles.productStock}>
-              <i className="bi bi-check-circle"></i>19 Sold /{" "}
-              {productsMenu.stock} In Stock
-            </p>
-          </div>
-          <div className={styles.productDescription}>
-            <p>{productsMenu.description}</p>
-          </div>
-        </div>
-        <div className="d-flex align-items-center">
-          <div className={`${styles.counter} d-flex align-items-center`}>
-            <div className="btn btn btn-light" onClick={subCounter}>
-              -
+      ) : (
+        <>
+          <section className={styles.productMainWrapper}>
+            <div>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
+                    <Link href="/" passHref>
+                      <a className={styles["title-page-crumb"]}>Home</a>
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item">
+                    <Link href="/product" passHref>
+                      <a className={styles["title-page-crumb"]}>Product</a>
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item active" aria-current="page">
+                    {productsMenu.name}
+                  </li>
+                </ol>
+              </nav>
             </div>
-            <div>{counter}</div>
-            <div className="btn btn btn-light" onClick={addCounter}>
-              +
+            {/* end of breadcrumb */}
+
+            <div className={styles.imgProductContainer}>
+              <ProductSlider />
             </div>
-          </div>
-          <button
-            onClick={addToCartHandler}
-            className={`${styles.productDescButton} btn btn-dark`}>
-            Add to Chart
-          </button>
-          <button className={`${styles.productDescButton} btn btn-dark`}>
-            <i className="bi bi-heart"></i>
-          </button>
-          <button
-            className={`${styles.productDescButton} btn btn-outline-dark`}>
-            Add to Wihslist
-          </button>
-        </div>
-        <div className={styles.additional}>
-          <p>SKU: N/A</p>
-          <p>Categories: {productsMenu.category}</p>
-          <p>Tag: Furniture, Chair, Scandinavian, Modern</p>
-          <p>Product ID: 274</p>
-        </div>
-        <div className={`${styles.shippingOptions} d-flex align-items-center`}>
-          <p>
-            <i className="bi bi-truck-flatbed"></i>Delivery and return
-          </p>
-          <p>
-            <i className="bi bi-rulers"></i>Size Guide
-          </p>
-          <p>
-            <i className="bi bi-geo-alt"></i>Store availability
-          </p>
-        </div>
-        <div className={`${styles.socialMediaIcon} d-flex align-items-center`}>
-          <div>
-            <i className="bi bi-facebook"></i>
-          </div>
-          <div>
-            <i className="bi bi-twitter"></i>
-          </div>
-          <div>
-            <i className="bi bi-youtube"></i>
-          </div>
-        </div>
-        {/* desctription components */}
-        <section>
-          <div
-            className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}>
-            {menu.map((productMenu, idx) => (
-              <p key={idx} onClick={() => setProductsMenu(productMenu)}>
-                {productMenu.toLocaleUpperCase()}
+            <div className={styles.productDescriptionWrapper}>
+              <p className={styles.productTitle}>{productsMenu.name}</p>
+              <p className={styles.productRate}>Rate Example (2 reviews)</p>
+              <div>
+                <p className={styles.productPrice}>
+                  {productsMenu.price !== null
+                    ? `$ ${productsMenu.price}`
+                    : "loading"}
+                </p>
+                <p className={styles.productStock}>
+                  <i className="bi bi-check-circle"></i>19 Sold /{" "}
+                  {productsMenu.stock} In Stock
+                </p>
+              </div>
+              <div className={styles.productDescription}>
+                <p>{productsMenu.description}</p>
+              </div>
+            </div>
+            <div className="d-flex align-items-center">
+              <div className={`${styles.counter} d-flex align-items-center`}>
+                <div className="btn btn btn-light" onClick={subCounter}>
+                  -
+                </div>
+                <div>{counter}</div>
+                <div className="btn btn btn-light" onClick={addCounter}>
+                  +
+                </div>
+              </div>
+              <button
+                onClick={addToCartHandler}
+                className={`${styles.productDescButton} btn btn-dark`}
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={addToFavoriteHandler}
+                className={`${styles.productDescButton} btn btn-dark`}
+              >
+                <i className="bi bi-heart"></i>
+              </button>
+              <button
+                className={`${styles.productDescButton} btn btn-outline-dark`}
+              >
+                Add to Wihslist
+              </button>
+            </div>
+            <div className={styles.additional}>
+              <p>SKU: N/A</p>
+              <p>Categories: {productsMenu.category}</p>
+              <p>Tag: Furniture, Chair, Scandinavian, Modern</p>
+              <p>Product ID: 274</p>
+            </div>
+            <div
+              className={`${styles.shippingOptions} d-flex align-items-center`}
+            >
+              <p>
+                <i className="bi bi-truck-flatbed"></i>Delivery and return
               </p>
-            ))}
-            {/* <p>Description</p>
+              <p>
+                <i className="bi bi-rulers"></i>Size Guide
+              </p>
+              <p>
+                <i className="bi bi-geo-alt"></i>Store availability
+              </p>
+            </div>
+            <div
+              className={`${styles.socialMediaIcon} d-flex align-items-center`}
+            >
+              <div>
+                <i className="bi bi-facebook"></i>
+              </div>
+              <div>
+                <i className="bi bi-twitter"></i>
+              </div>
+              <div>
+                <i className="bi bi-youtube"></i>
+              </div>
+            </div>
+
+            {/* desctription components */}
+            <section>
+              <div
+                className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}
+              >
+                {menu.map((productMenu, idx) => (
+                  <p key={idx} onClick={() => setProductsMenu(productMenu)}>
+                    {productMenu.toLocaleUpperCase()}
+                  </p>
+                ))}
+                {/* <p>Description</p>
             <p>Review</p>
             <p>Additional information</p>
             <p>About Brand</p>
             <p>Shipping & Delivery</p> */}
-          </div>
-          {/* desc sec */}
+              </div>
+              {/* desc sec */}
 
-          {/* content section DEscription */}
-          <section>
-            {/* <h1>THIS IS SECTION DESCRIPTION</h1> */}
-            <div>
-              {productsMenu === "description" && <Description />}
-              {productsMenu === "review" && <Review />}
-            </div>
+              {/* content section DEscription */}
+              <section>
+                {/* <h1>THIS IS SECTION DESCRIPTION</h1> */}
+                <div>
+                  {productsMenu === "description" && <Description />}
+                  {productsMenu === "review" && <Review />}
+                </div>
+              </section>
+            </section>
           </section>
-        </section>
-      </section>
 
-      <CardRelated data={relatedProduct} />
-
+          <CardRelated data={relatedProduct} />
+          <Relatedcardproduct data={relatedProduct} />
+        </>
+      )}
       <Footer />
     </>
   );
@@ -231,7 +274,8 @@ const Description = () => {
           />
         </div>
         <div
-          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}>
+          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}
+        >
           <div className={styles.productDescriptionSectionP}>
             <p>
               Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at
@@ -273,7 +317,8 @@ const Review = () => {
         {/* <h1>THIS IS SECTION REVIEW </h1> */}
         {/* multiple comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
+        >
           {/* parent comment */}
           <div>
             <div className="d-flex align-items-center">
@@ -344,7 +389,8 @@ const Review = () => {
         </div>
         {/* single comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
+        >
           <div>
             <div className="d-flex align-items-center">
               <div className={styles.userReviewImage}>
@@ -408,7 +454,8 @@ const Review = () => {
             <textarea
               className="form-control"
               rows="3"
-              placeholder="Your Comment"></textarea>
+              placeholder="Your Comment"
+            ></textarea>
           </div>
           <button className={`${styles.productDescButton} btn btn-dark`}>
             Send
@@ -422,7 +469,7 @@ const Review = () => {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    cart: state.cart
+    cart: state.cart,
   };
 };
 
