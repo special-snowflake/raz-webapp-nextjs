@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from 'react';
-import Image from 'next/image';
-import Header from 'src/common/components/header';
-import PageTitle from 'src/common/components/PageTitle';
-import Footer from 'src/common/components/footer';
-import Logout from 'src/common/components/Logout';
-import styles from 'src/common/styles/ProfileSeller.module.css';
-import modalsCss from 'src/common/styles/Modals.module.css';
-import LoadingBox from 'src/common/components/LoadingBox';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Header from "src/common/components/header";
+import PageTitle from "src/common/components/PageTitle";
+import Footer from "src/common/components/footer";
+import Logout from "src/common/components/Logout";
+import styles from "src/common/styles/ProfileSeller.module.css";
+import modalsCss from "src/common/styles/Modals.module.css";
+import LoadingBox from "src/common/components/LoadingBox";
 
-import photoDefault from 'public/default.jpg';
+import photoDefault from "public/default.jpg";
 import {
   getDetailByID,
   updateImage,
-  updateProfile,
-} from 'src/modules/utils/user';
-import {useSelector} from 'react-redux';
-import {toast} from 'react-toastify';
-import {Modal} from 'react-bootstrap';
-import {changePassword} from 'src/modules/utils/auth';
-import Routing from 'src/common/components/Routing';
-import MenuBar from 'src/common/components/MenuBar';
+  updateProfile
+} from "src/modules/utils/user";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { Modal } from "react-bootstrap";
+import { changePassword } from "src/modules/utils/auth";
+import Routing from "src/common/components/Routing";
+import MenuBar from "src/common/components/MenuBar";
 
 function Profile(props) {
   const inputFileRef = React.createRef();
@@ -44,31 +44,31 @@ function Profile(props) {
 
   const onHandleSubmit = (key, value) => {
     const body = {
-      [key]: value,
+      [key]: value
     };
-    const {token} = user;
+    const { token } = user;
     console.log(body);
     updateProfile(body, token)
       .then((res) => {
         console.log(res);
-        if (key === 'name') {
+        if (key === "name") {
           setOnName(false);
         }
-        if (key === 'gender') {
+        if (key === "gender") {
           setOnGender(false);
         }
-        if (key === 'email') {
+        if (key === "email") {
           setOnEmail(false);
         }
-        if (key === 'storeName') {
+        if (key === "storeName") {
           setOnStoreName(false);
         }
-        if (key === 'description') {
+        if (key === "description") {
           setOnDescription(false);
         }
         setUserDetail({
           ...userDetail,
-          ...{[key]: value},
+          ...{ [key]: value }
         });
         return toast.success(res.data.msg);
       })
@@ -80,8 +80,8 @@ function Profile(props) {
 
   const handlerEditPhoto = (e) => {
     const body = new FormData();
-    const {token} = user;
-    body.append('image', e.target.files[0]);
+    const { token } = user;
+    body.append("image", e.target.files[0]);
     updateImage(body, token)
       .then((res) => {
         console.log(res.data);
@@ -108,24 +108,24 @@ function Profile(props) {
     }
     if (newPassword !== repeatNewPassword) {
       return toast.warning(
-        'Repeat password should be the same as new password',
+        "Repeat password should be the same as new password"
       );
     }
     const body = {
       oldPassword,
-      newPassword,
+      newPassword
     };
-    const {token} = user;
+    const { token } = user;
     console.log(body, token);
     changePassword(body, token)
       .then((res) => {
-        console.log('success', res);
-        return toast.success(res.data.msg || 'Change Password Success');
+        console.log("success", res);
+        return toast.success(res.data.msg || "Change Password Success");
       })
       .catch((err) => {
-        console.log('err ', err);
-        console.log('err ', err.response);
-        toast.error(err.response.data.msg || 'Failed to change password');
+        console.log("err ", err);
+        console.log("err ", err.response);
+        toast.error(err.response.data.msg || "Failed to change password");
       });
   };
   const callbackLogout = (isShow) => {
@@ -133,7 +133,7 @@ function Profile(props) {
   };
 
   const getDetailUser = () => {
-    const {id, token} = user;
+    const { id, token } = user;
     getDetailByID(id, token)
       .then((res) => {
         console.log(res.data);
@@ -155,61 +155,61 @@ function Profile(props) {
   return (
     <>
       <Header />
-      <Routing type='private' user='all' />
+      <Routing type="private" user="all" />
       <PageTitle
-        title='Profile'
-        subTitle='See your notifications for the latest updates'
+        title="Profile"
+        subTitle="See your notifications for the latest updates"
       />
-      {userDetail && userDetail.roles === '1' ? <MenuBar /> : ''}
+      {userDetail && userDetail.roles === "1" ? <MenuBar /> : ""}
       <div className={styles.main}>
         {userDetail !== null ? (
           <>
-            <div className={styles['wrapper-photo']}>
-              <div className={styles['wrapper-image']}>
+            <div className={styles["wrapper-photo"]}>
+              <div className={styles["wrapper-image"]}>
                 <Image
                   src={image}
-                  alt='user'
-                  layout='fill'
-                  objectFit='cover'
+                  alt="user"
+                  layout="fill"
+                  objectFit="cover"
                   className={styles.image2}
                   onError={() => {
                     setImage(photoDefault);
                   }}
                 />
                 <input
-                  type='file'
-                  name='photoUser'
+                  type="file"
+                  name="photoUser"
                   hidden
                   ref={inputFileRef}
                   onChange={(e) => {
                     handlerEditPhoto(e);
                   }}
                 />
-                <button className={styles['edit-photo']} onClick={inputImage}>
+                <button className={styles["edit-photo"]} onClick={inputImage}>
                   <i
-                    className={`bi bi-pencil-fill ms-2 ${styles['icon']}`}
-                    style={{marginLeft: 0}}></i>
+                    className={`bi bi-pencil-fill ms-2 ${styles["icon"]}`}
+                    style={{ marginLeft: 0 }}></i>
                 </button>
               </div>
 
-              <div className={styles['wrapper-title']}>
+              <div className={styles["wrapper-title"]}>
                 {onName ? (
                   <div>
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
-                        console.log('submit', e.target);
-                        onHandleSubmit('name', e.target.name.value);
+                        console.log("submit", e.target);
+                        onHandleSubmit("name", e.target.name.value);
                       }}>
                       <input
-                        type='text'
-                        placeholder='Please Enter Your Name'
-                        name='name'
+                        type="text"
+                        placeholder="Please Enter Your Name"
+                        name="name"
                         className={styles.inputField}
-                        defaultValue={userDetail.name || ''}
+                        defaultValue={userDetail.name || ""}
                       />
-                      <button className={styles.btnSave} type='submit'>
-                        <i className='bi bi-check-circle-fill'></i>
+                      <button className={styles.btnSave} type="submit">
+                        <i className="bi bi-check-circle-fill"></i>
                       </button>
                       <button
                         className={styles.btnCancel}
@@ -217,56 +217,56 @@ function Profile(props) {
                           e.preventDefault();
                           setOnName(false);
                         }}>
-                        <i className='bi bi-x-circle-fill'></i>
+                        <i className="bi bi-x-circle-fill"></i>
                       </button>
                     </form>
                   </div>
                 ) : (
-                  <p className={styles['title-name']}>
-                    {userDetail.name !== null ? userDetail.name : '-'}
+                  <p className={styles["title-name"]}>
+                    {userDetail.name !== null ? userDetail.name : "-"}
                     <i
-                      className={`bi bi-pencil-fill ms-2 ${styles['icon']}`}
+                      className={`bi bi-pencil-fill ms-2 ${styles["icon"]}`}
                       onClick={() => setOnName(true)}></i>
                   </p>
                 )}
 
-                <p className={styles['title-role']}>
-                  as {userDetail.roles === '1' ? 'Seller' : 'Customer'}
+                <p className={styles["title-role"]}>
+                  as {userDetail.roles === "1" ? "Seller" : "Customer"}
                 </p>
               </div>
             </div>
 
-            <div className={styles['wrapper']}>
-              <div className={styles['wrapper-form']}>
-                <div className={styles['wrapper-input']}>
-                  <p className={styles['title-gender']}>Gender</p>
+            <div className={styles["wrapper"]}>
+              <div className={styles["wrapper-form"]}>
+                <div className={styles["wrapper-input"]}>
+                  <p className={styles["title-gender"]}>Gender</p>
                   {onGender ? (
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
-                        console.log('submit', e.target);
-                        onHandleSubmit('gender', e.target.gender.value);
+                        console.log("submit", e.target);
+                        onHandleSubmit("gender", e.target.gender.value);
                       }}>
                       <input
-                        type='radio'
-                        name='gender'
-                        id='f'
-                        defaultValue='f'
+                        type="radio"
+                        name="gender"
+                        id="f"
+                        defaultValue="f"
                       />
-                      <label htmlFor='f' className={styles.inputLabel}>
+                      <label htmlFor="f" className={styles.inputLabel}>
                         Female
                       </label>
                       <input
-                        type='radio'
-                        name='gender'
-                        id='m'
-                        defaultValue='m'
+                        type="radio"
+                        name="gender"
+                        id="m"
+                        defaultValue="m"
                       />
-                      <label htmlFor='m' className={styles.inputLabel}>
+                      <label htmlFor="m" className={styles.inputLabel}>
                         Male
                       </label>
-                      <button className={styles.btnSave} type='submit'>
-                        <i className='bi bi-check-circle-fill'></i>
+                      <button className={styles.btnSave} type="submit">
+                        <i className="bi bi-check-circle-fill"></i>
                       </button>
                       <button
                         className={styles.btnCancel}
@@ -274,16 +274,16 @@ function Profile(props) {
                           e.preventDefault();
                           setOnGender(false);
                         }}>
-                        <i className='bi bi-x-circle-fill'></i>
+                        <i className="bi bi-x-circle-fill"></i>
                       </button>
                     </form>
                   ) : (
                     <p className={styles.gender}>
-                      {userDetail.gender === 'f'
-                        ? 'Female'
-                        : userDetail.gender === 'm'
-                        ? 'Male'
-                        : '-'}
+                      {userDetail.gender === "f"
+                        ? "Female"
+                        : userDetail.gender === "m"
+                        ? "Male"
+                        : "-"}
                     </p>
                   )}
                 </div>
@@ -293,32 +293,32 @@ function Profile(props) {
                     onClick={() => {
                       setOnGender(true);
                     }}>
-                    Edit <i className='bi bi-pencil-fill ms-2'></i>
+                    Edit <i className="bi bi-pencil-fill ms-2"></i>
                   </p>
                 )}
               </div>
             </div>
 
-            <div className={styles['wrapper']}>
-              <div className={styles['wrapper-form']}>
-                <div className={styles['wrapper-input']}>
-                  <p className={styles['title-gender']}>Your Email</p>
+            <div className={styles["wrapper"]}>
+              <div className={styles["wrapper-form"]}>
+                <div className={styles["wrapper-input"]}>
+                  <p className={styles["title-gender"]}>Your Email</p>
                   {onEmail ? (
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
-                        console.log('submit', e.target);
-                        onHandleSubmit('name', e.target.name.value);
+                        console.log("submit", e.target);
+                        onHandleSubmit("name", e.target.name.value);
                       }}>
                       <input
-                        type='text'
-                        placeholder='Please Enter Your Email'
-                        name='name'
+                        type="text"
+                        placeholder="Please Enter Your Email"
+                        name="name"
                         defaultValue={userDetail.email}
                         className={styles.inputField}
                       />
-                      <button className={styles.btnSave} type='submit'>
-                        <i className='bi bi-check-circle-fill'></i>
+                      <button className={styles.btnSave} type="submit">
+                        <i className="bi bi-check-circle-fill"></i>
                       </button>
                       <button
                         className={styles.btnCancel}
@@ -326,7 +326,7 @@ function Profile(props) {
                           e.preventDefault();
                           setOnEmail(false);
                         }}>
-                        <i className='bi bi-x-circle-fill'></i>
+                        <i className="bi bi-x-circle-fill"></i>
                       </button>
                     </form>
                   ) : (
@@ -339,37 +339,37 @@ function Profile(props) {
                     onClick={() => {
                       setOnEmail(true);
                     }}>
-                    Edit <i className='bi bi-pencil-fill ms-2'></i>
+                    Edit <i className="bi bi-pencil-fill ms-2"></i>
                   </p>
                 )}
               </div>
             </div>
 
-            {userDetail.roles === '1' && (
+            {userDetail.roles === "1" && (
               <>
-                <div className={styles['wrapper']}>
-                  <div className={styles['wrapper-form']}>
-                    <div className={styles['wrapper-input']}>
-                      <p className={styles['title-gender']}>Store Name</p>
+                <div className={styles["wrapper"]}>
+                  <div className={styles["wrapper-form"]}>
+                    <div className={styles["wrapper-input"]}>
+                      <p className={styles["title-gender"]}>Store Name</p>
                       {onStoreName ? (
                         <form
                           onSubmit={(e) => {
                             e.preventDefault();
-                            console.log('submit', e.target);
+                            console.log("submit", e.target);
                             onHandleSubmit(
-                              'storeName',
-                              e.target.storeName.value,
+                              "storeName",
+                              e.target.storeName.value
                             );
                           }}>
                           <input
-                            type='text'
-                            placeholder='Please Enter Your Store Name'
-                            name='storeName'
-                            defaultValue={userDetail.storeName || ''}
+                            type="text"
+                            placeholder="Please Enter Your Store Name"
+                            name="storeName"
+                            defaultValue={userDetail.storeName || ""}
                             className={styles.inputField}
                           />
-                          <button className={styles.btnSave} type='submit'>
-                            <i className='bi bi-check-circle-fill'></i>
+                          <button className={styles.btnSave} type="submit">
+                            <i className="bi bi-check-circle-fill"></i>
                           </button>
                           <button
                             className={styles.btnCancel}
@@ -377,12 +377,12 @@ function Profile(props) {
                               e.preventDefault();
                               setOnStoreName(false);
                             }}>
-                            <i className='bi bi-x-circle-fill'></i>
+                            <i className="bi bi-x-circle-fill"></i>
                           </button>
                         </form>
                       ) : (
                         <p className={styles.gender}>
-                          {userDetail.storeName || '-'}
+                          {userDetail.storeName || "-"}
                         </p>
                       )}
                     </div>
@@ -392,34 +392,34 @@ function Profile(props) {
                         onClick={() => {
                           setOnStoreName(true);
                         }}>
-                        Edit <i className='bi bi-pencil-fill ms-2'></i>
+                        Edit <i className="bi bi-pencil-fill ms-2"></i>
                       </p>
                     )}
                   </div>
                 </div>
-                <div className={styles['wrapper']}>
-                  <div className={styles['wrapper-form']}>
-                    <div className={styles['wrapper-input']}>
-                      <p className={styles['title-gender']}>
+                <div className={styles["wrapper"]}>
+                  <div className={styles["wrapper-form"]}>
+                    <div className={styles["wrapper-input"]}>
+                      <p className={styles["title-gender"]}>
                         Store Description
                       </p>
                       {onDescription ? (
                         <form
                           onSubmit={(e) => {
                             e.preventDefault();
-                            console.log('submit', e.target);
+                            console.log("submit", e.target);
                             onHandleSubmit(
-                              'description',
-                              e.target.description.value,
+                              "description",
+                              e.target.description.value
                             );
                           }}>
                           <textarea
-                            placeholder='Please Enter Your Store Description'
-                            name='description'
-                            defaultValue={userDetail.description || ''}
+                            placeholder="Please Enter Your Store Description"
+                            name="description"
+                            defaultValue={userDetail.description || ""}
                             className={styles.inputTextArea}></textarea>
-                          <button className={styles.btnSave} type='submit'>
-                            <i className='bi bi-check-circle-fill'></i>
+                          <button className={styles.btnSave} type="submit">
+                            <i className="bi bi-check-circle-fill"></i>
                           </button>
                           <button
                             className={styles.btnCancel}
@@ -427,12 +427,12 @@ function Profile(props) {
                               e.preventDefault();
                               setOnDescription(false);
                             }}>
-                            <i className='bi bi-x-circle-fill'></i>
+                            <i className="bi bi-x-circle-fill"></i>
                           </button>
                         </form>
                       ) : (
                         <p className={styles.gender}>
-                          {userDetail.description || '-'}
+                          {userDetail.description || "-"}
                         </p>
                       )}
                     </div>
@@ -443,104 +443,104 @@ function Profile(props) {
                         onClick={() => {
                           setOnDescription(true);
                         }}>
-                        Edit <i className='bi bi-pencil-fill ms-2'></i>
+                        Edit <i className="bi bi-pencil-fill ms-2"></i>
                       </p>
                     )}
                   </div>
                 </div>
               </>
             )}
-            <div className='mb-2 h-auto'>
+            <div className="mb-2 h-auto">
               <button
-                className={styles['btn-reset-password']}
+                className={styles["btn-reset-password"]}
                 onClick={(e) => {
                   e.preventDefault();
                   setShowResetPassword(true);
                 }}>
-                <i className='bi bi-lock'></i> Reset Password
+                <i className="bi bi-lock"></i> Reset Password
               </button>
             </div>
             <button
-              className={styles['btn-logout']}
+              className={styles["btn-logout"]}
               onClick={(e) => {
                 e.preventDefault();
-                console.log('clicked logout');
+                console.log("clicked logout");
                 setShowLogout(true);
               }}>
-              <i className='bi bi-box-arrow-right'></i> LOGOUT
+              <i className="bi bi-box-arrow-right"></i> LOGOUT
             </button>
           </>
         ) : (
-          <div className='mx-auto w-100'>
+          <div className="d-flex justify-content-center">
             <LoadingBox />
           </div>
         )}
       </div>
       <Modal show={showResetPassword}>
         <Modal.Header>
-          <p className={modalsCss['header']}>Reset Password</p>
+          <p className={modalsCss["header"]}>Reset Password</p>
           <button
-            type='button'
-            className={`${modalsCss['close-btn']}`}
-            data-bs-dismiss='modal'
-            aria-label='close'
+            type="button"
+            className={`${modalsCss["close-btn"]}`}
+            data-bs-dismiss="modal"
+            aria-label="close"
             onClick={() => {
               setShowResetPassword(false);
             }}>
-            <i className='bi bi-x'></i>
+            <i className="bi bi-x"></i>
           </button>
         </Modal.Header>
         <Modal.Body>
           <div className={styles.passwordWrapper}>
-            <i className='bi bi-shield-lock'></i>
+            <i className="bi bi-shield-lock"></i>
             <input
-              type='password'
-              placeholder='Enter Your Current Password'
+              type="password"
+              placeholder="Enter Your Current Password"
               ref={currentPasswordRef}
             />
             <i
               className={`bi bi-eye-slash right ${styles.passwordEye}`}
               onClick={() => {
-                if (currentPasswordRef.current.type === 'text') {
-                  currentPasswordRef.current.type = 'password';
+                if (currentPasswordRef.current.type === "text") {
+                  currentPasswordRef.current.type = "password";
                 } else {
-                  currentPasswordRef.current.type = 'text';
+                  currentPasswordRef.current.type = "text";
                 }
               }}></i>
           </div>
           <br />
           <div className={styles.passwordWrapper}>
-            <i className='bi bi-shield-lock'></i>
+            <i className="bi bi-shield-lock"></i>
             <input
-              type='password'
-              placeholder='Enter New Password'
+              type="password"
+              placeholder="Enter New Password"
               ref={newPasswordRef}
             />
             <i
               className={`bi bi-eye-slash right ${styles.passwordEye}`}
               onClick={() => {
-                if (newPasswordRef.current.type === 'text') {
-                  newPasswordRef.current.type = 'password';
+                if (newPasswordRef.current.type === "text") {
+                  newPasswordRef.current.type = "password";
                 } else {
-                  newPasswordRef.current.type = 'text';
+                  newPasswordRef.current.type = "text";
                 }
               }}></i>
           </div>
           <br />
           <div className={styles.passwordWrapper}>
-            <i className='bi bi-shield-lock'></i>
+            <i className="bi bi-shield-lock"></i>
             <input
-              type='password'
-              placeholder='Repeat New Password'
+              type="password"
+              placeholder="Repeat New Password"
               ref={repeatNewPasswordRef}
             />
             <i
               className={`bi bi-eye-slash right ${styles.passwordEye}`}
               onClick={() => {
-                if (repeatNewPasswordRef.current.type === 'text') {
-                  repeatNewPasswordRef.current.type = 'password';
+                if (repeatNewPasswordRef.current.type === "text") {
+                  repeatNewPasswordRef.current.type = "password";
                 } else {
-                  repeatNewPasswordRef.current.type = 'text';
+                  repeatNewPasswordRef.current.type = "text";
                 }
               }}></i>
           </div>
@@ -550,11 +550,11 @@ function Profile(props) {
             onClick={() => {
               setShowResetPassword(false);
             }}
-            className={`btn ${modalsCss['btn-gray']}`}>
+            className={`btn ${modalsCss["btn-gray"]}`}>
             Cancel
           </button>
           <button
-            className={`btn ${modalsCss['btn-black']} float-start`}
+            className={`btn ${modalsCss["btn-black"]} float-start`}
             onClick={handleChanePassword}>
             Save
           </button>

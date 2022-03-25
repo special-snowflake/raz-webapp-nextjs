@@ -1,4 +1,4 @@
-import styles from "src/common/styles/Header.module.css";
+import styles from "src/common/styles/HeaderCommingSoon.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";

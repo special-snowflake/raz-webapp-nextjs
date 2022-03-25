@@ -1,5 +1,5 @@
 import styles from "src/common/styles/Coming.module.css";
-import Header from "src/common/components/header";
+import Header from "src/common/components/HeaderComming";
 
 function ComingSoon() {
   return (
