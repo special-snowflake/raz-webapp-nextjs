@@ -154,10 +154,12 @@ const ChangePassword = (props) => {
         <input
           name="password"
           placeholder="Enter your new password"
+          type="password"
           className={styles["email"]}></input>
 
         <input
           name="password2"
+          type="password"
           placeholder="re-enter your password"
           className={styles["email"]}></input>
 
