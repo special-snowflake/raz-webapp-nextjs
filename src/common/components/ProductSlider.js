@@ -57,7 +57,7 @@ export default function App() {
   );
 
   return (
-    <>
+    <div>
       <div
         className={`${styles.galleryImageWrapper} row align-items-center justify-content-center`}
       >
@@ -73,14 +73,14 @@ export default function App() {
               alt="product"
             />
           </div>
-          <div className="keen-slider__slide number-slide2">
+          {/* <div className="keen-slider__slide number-slide2">
             <Image
               src={one}
               height={400}
               objectFit="scale-down"
               alt="product"
             />
-          </div>
+          </div> */}
           <div className="keen-slider__slide number-slide3">
             <Image
               src={two}
@@ -125,9 +125,7 @@ export default function App() {
               margin: "auto 30px",
             }}
           >
-            <Image src={one} 
-            width={200} height={200}
-            />
+            <Image src={one} width={200} height={200} />
           </div>
           <div
             className="keen-slider__slide number-slide2 "
@@ -135,8 +133,7 @@ export default function App() {
               margin: "auto 20px",
             }}
           >
-            <Image src={two} 
-            width={200} height={200}/>
+            <Image src={two} width={200} height={200} />
           </div>
           <div
             className="keen-slider__slide number-slide3 "
@@ -144,11 +141,10 @@ export default function App() {
               margin: "auto 10px",
             }}
           >
-            <Image src={three}
-            width={200} height={200} />
+            <Image src={three} width={200} height={200} />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

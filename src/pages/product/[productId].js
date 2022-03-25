@@ -248,7 +248,7 @@ function DetailProduct(props) {
             </section>
           </section>
 
-          <CardRelated data={relatedProduct} />
+          {/* <CardRelated data={relatedProduct} /> */}
           <Relatedcardproduct data={relatedProduct} />
         </>
       )}
