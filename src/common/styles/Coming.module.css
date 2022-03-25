@@ -1,4 +1,144 @@
 .main {
-  margin-top: 150px;
-  border: 1px solid black;
+  margin-top: 74px;
+  /* border: 1px solid black; */
+  padding: 60px;
+  background-color: #151515;
+}
+
+.title {
+  color: #fff;
+  /* padding-top: 10px; */
+  padding-bottom: 20px;
+  font-family: Arimo;
+  font-size: 70px;
+  margin: 0;
+  font-weight: 400;
+  /* border: 1px solid #fff; */
+  /* line-height: 77px; */
+}
+
+.wrapper-date {
+  /* border: 1px solid #fff; */
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.wrapper {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+}
+
+.number {
+  font-family: Arimo;
+  font-size: 40px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+}
+
+.title-date {
+  font-family: Arimo;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.wrapper-input {
+  /* border: 1px solid white; */
+  width: 60%;
+  display: flex;
+  padding-top: 40px;
+  border-bottom: 1px solid #fff;
+}
+
+.input {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  font-family: Arimo;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.input::placeholder {
+  color: #fff;
+}
+
+.input:focus {
+  border: none;
+  outline: none;
+}
+
+.btn-sub {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+
+.footer {
+  /* background-color: rebeccapurple; */
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrapper-title-footer {
+  /* border: 1px solid #fff; */
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-company {
+  font-family: Arimo;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.desc-company {
+  margin: 0;
+  font-family: Arimo;
+  font-weight: 400;
+  font-size: 11px;
+  color: #fff;
+  /* background-color: red; */
+  width: 80%;
+}
+
+.wrapper-icon {
+  /* background-color: red; */
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  border: 1px solid #fff;
+  /* padding: 5px; */
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon > i {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  /* font-size: 20px; */
 }
