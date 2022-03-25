@@ -14,26 +14,28 @@ import { useRouter } from "next/router";
 
 const Forgot = (props) => {
   const [getOtp, setGetOtp] = useState(false);
-  const [email, setEMail] = useState("");
+  const [email, setEmail] = useState("");
 
   const submitGetOtp = (e) => {
     e.preventDefault();
-    setEMail(e.target.email.value);
+    const emailBody = e.target.email.value;
+    // setEMail(e.target.email.value);
     const body = {
-      email: email
+      email: emailBody
     };
-    if (email !== "" && email.length !== 0) {
+    if (emailBody !== "" && emailBody.length !== 0) {
       getOtpApi(body)
         .then((res) => {
-          console.log("RESPONSE", res.data);
-          console.log("MESSAGE", res.data.msg);
+          setEmail(body.email);
+          // console.log("RESPONSE", res.data);
+          // console.log("MESSAGE", res.data.msg);
           if (res.data.status === 200) {
             setGetOtp(true);
             return toast.success(res.data.msg);
           }
         })
         .catch((err) => {
-          console.log(err.response);
+          // console.log(err.response);
           return toast.error("Email is not registered");
         });
     } else {
@@ -67,25 +69,26 @@ const Forgot = (props) => {
   );
 };
 
-const CheckOtp = ({ email }) => {
-  const [otp, setOtp] = useState("");
+const CheckOtp = (props) => {
+  // const [otp, setOtp] = useState("");
   const [checkOtp, setCheckOtp] = useState(false);
   const [body, setBody] = useState({});
-
   const submitCheckOtp = (e) => {
     e.preventDefault();
-    setOtp(e.target.otp.value);
-    const body = {
-      email: email,
+    // console.log(props);
+    // setOtp(e.target.otp.value);
+    const otp = e.target.otp.value;
+    const bodyInput = {
+      email: props.email,
       otp: otp
     };
-    setBody(body);
-    console.log("BODY", body);
-    checkOtpAPi(body)
+    // console.log("BODY", bodyInput);
+    checkOtpAPi(bodyInput)
       .then((res) => {
         console.log(res.data.msg);
         if (res.data.status === 200) {
           setCheckOtp(true);
+          setBody(body);
           return toast.success(res.data.msg);
         }
         // console.log(res.data);
@@ -127,7 +130,11 @@ const ChangePassword = (props) => {
       return toast.error("your password doesn't match");
     }
 
-    console.log(props);
+    if (password.length === 0 && password2.length === 0) {
+      return toast.error("Password cannot be empty");
+    }
+
+    // console.log(props);
     const body = {
       email: props.body.email,
       otp: props.body.otp,
@@ -136,14 +143,14 @@ const ChangePassword = (props) => {
     if (Object.values(body).length !== 0) {
       resetPasswordApi(body)
         .then((res) => {
-          console.log("RESPONSE RESET", res.data.msg);
+          console.log("RESPONSE", res.data.msg);
           toast.success(res.data.msg);
           setTimeout(() => {
             return router.push("/auth");
           }, 2000);
         })
         .catch((err) => {
-          console.log("RESPONSE RESET", err.response);
+          console.log("RESPONSE", err.response);
           return toast.error(err.response.data.msg);
         });
     }
