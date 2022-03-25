@@ -12,47 +12,81 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 
-function Forgot(props) {
-  const router = useRouter();
-  const [otp, setOtp] = useState("");
-  const [checkOtp, setCheckOtp] = useState(false);
-  const [reset, setReset] = useState(false);
-  const [body, setBody] = useState({});
+const Forgot = (props) => {
+  const [getOtp, setGetOtp] = useState(false);
+  const [email, setEMail] = useState("");
 
-  const submitHandlerGetOtp = (e) => {
+  const submitGetOtp = (e) => {
     e.preventDefault();
+    setEMail(e.target.email.value);
     const body = {
-      email: e.target.email.value
+      email: email
     };
-    // console.log(body);
-    getOtpApi(body)
-      .then((res) => {
-        // console.log(res);
-        setBody({ ...body, email: body.email });
-        setCheckOtp(true);
-
-        return toast.success(res.data.msg);
-      })
-      .catch((err) => {
-        console.log(err);
-        return toast.error(res.data.msg);
-      });
+    if (email !== "" && email.length !== 0) {
+      getOtpApi(body)
+        .then((res) => {
+          console.log("RESPONSE", res.data);
+          console.log("MESSAGE", res.data.msg);
+          if (res.data.status === 200) {
+            setGetOtp(true);
+            return toast.success(res.data.msg);
+          }
+        })
+        .catch((err) => {
+          console.log(err.response);
+          return toast.error("Email is not registered");
+        });
+    } else {
+      return toast.error("Email cannot be empty");
+    }
   };
 
-  const submitHandlerResetPassword = (e) => {
+  return (
+    <>
+      <Header />
+      <PageTitle
+        title="Forgot Password"
+        subTitle="Forgot your password? Don't worry, we got your back."
+      />
+      {getOtp ? (
+        <CheckOtp email={email} />
+      ) : (
+        <main className={styles["main"]}>
+          <form onSubmit={submitGetOtp} className={styles["form"]}>
+            <input
+              name="email"
+              placeholder="Input your email"
+              className={styles["email"]}></input>
+
+            <button>Reset Password</button>
+          </form>
+        </main>
+      )}
+      <Footer />
+    </>
+  );
+};
+
+const CheckOtp = ({ email }) => {
+  const [otp, setOtp] = useState("");
+  const [checkOtp, setCheckOtp] = useState(false);
+  const [body, setBody] = useState({});
+
+  const submitCheckOtp = (e) => {
     e.preventDefault();
+    setOtp(e.target.otp.value);
     const body = {
-      email: e.target.email.value,
-      otp: e.target.otp.value,
-      password: e.target.newpassword.value
+      email: email,
+      otp: otp
     };
-    console.log("BODY RESET PASSWORD", body);
     setBody(body);
+    console.log("BODY", body);
     checkOtpAPi(body)
       .then((res) => {
         console.log(res.data.msg);
         if (res.data.status === 200) {
-          setReset(true);
+          setCheckOtp(true);
+          return toast.success(res.data.msg);
         }
         // console.log(res.data);
       })
@@ -61,8 +95,45 @@ function Forgot(props) {
         return toast.error(err.response.data.msg);
       });
   };
-  useEffect(() => {
-    if (reset) {
+
+  // console.log("PROPS CHECK OTP", data);
+  return (
+    <>
+      {checkOtp ? (
+        <ChangePassword body={body} />
+      ) : (
+        <main className={styles["main"]}>
+          <form onSubmit={submitCheckOtp} className={styles["form"]}>
+            <input
+              name="otp"
+              placeholder="Input your code OTP from email"
+              className={styles["email"]}></input>
+
+            <button>Check OTP</button>
+          </form>
+        </main>
+      )}
+    </>
+  );
+};
+
+const ChangePassword = (props) => {
+  const router = useRouter();
+  const submitResetPassword = (e) => {
+    e.preventDefault();
+    const password = e.target.password.value;
+    const password2 = e.target.password2.value;
+    if (password !== password2) {
+      return toast.error("your password doesn't match");
+    }
+
+    console.log(props);
+    const body = {
+      email: props.body.email,
+      otp: props.body.otp,
+      password: password
+    };
+    if (Object.values(body).length !== 0) {
       resetPasswordApi(body)
         .then((res) => {
           console.log("RESPONSE RESET", res.data.msg);
@@ -76,54 +147,24 @@ function Forgot(props) {
           return toast.error(err.response.data.msg);
         });
     }
-  }, [reset]);
-
+  };
   return (
-    <>
-      <Header />
-      <PageTitle
-        title="Forgot Password"
-        subTitle="Forgot your password? Don't worry, we got your back."
-      />
+    <main className={styles["main"]}>
+      <form onSubmit={submitResetPassword} className={styles["form"]}>
+        <input
+          name="password"
+          placeholder="Enter your new password"
+          className={styles["email"]}></input>
 
-      {checkOtp ? (
-        <main className={styles["main"]}>
-          <form
-            onSubmit={submitHandlerResetPassword}
-            className={styles["form"]}>
-            <input
-              name="email"
-              value={body.email}
-              placeholder="Your email address *"
-              className={styles["email"]}></input>
+        <input
+          name="password2"
+          placeholder="re-enter your password"
+          className={styles["email"]}></input>
 
-            <input
-              name="otp"
-              placeholder="Input your code OTP from email"
-              className={styles["email"]}></input>
-
-            <input
-              name="newpassword"
-              placeholder="Your new password"
-              className={styles["email"]}></input>
-            <button>Reset Password</button>
-          </form>
-        </main>
-      ) : (
-        <main className={styles["main"]}>
-          <form onSubmit={submitHandlerGetOtp} className={styles["form"]}>
-            <input
-              name="email"
-              placeholder="Your email address *"
-              className={styles["email"]}></input>
-            <button>Reset Password</button>
-          </form>
-        </main>
-      )}
-
-      <Footer />
-    </>
+        <button>Reset Password</button>
+      </form>
+    </main>
   );
-}
+};
 
 export default Forgot;
