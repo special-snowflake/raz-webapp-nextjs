@@ -55,7 +55,7 @@ function Header() {
   };
 
   useEffect(() => {
-    user.token &&
+    user.token && user.roles == 2 &&
       getUserFavorite(user.token, 1)
         .then((res) => {
           setFavoriteCounter(res.data.meta.totalData);
