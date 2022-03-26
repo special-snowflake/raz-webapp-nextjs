@@ -332,14 +332,14 @@ function MenuLogin({show, handleClickedLogout, user}) {
         </Link>
       </li>
       <li>
-        <p
+        <span
           onClick={() => {
             handleClickedLogout();
           }}
           className={styles['tag-a-menu']}
         >
           Logout
-        </p>
+        </span>
       </li>
     </ul>
   );

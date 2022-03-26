@@ -8,6 +8,7 @@ import modalsCss from 'src/common/styles/Modals.module.css';
 import {useRouter} from 'next/router';
 
 import {toast} from 'react-toastify';
+import {logoutAuth} from 'src/modules/utils/auth';
 
 function Logout(props) {
   const [isShow, setIsShow] = useState(props.isShow);
@@ -16,10 +17,11 @@ function Logout(props) {
   const router = useRouter();
 
   const hanndleLogout = () => {
-    dispatch(logoutAction(user.token));
+    dispatch(logoutAction());
     setIsShow(false);
     props.callbackShow(false);
     toast.success('Logout Success');
+    logoutAuth(user.token);
     router.replace('/');
   };
   useEffect(() => {

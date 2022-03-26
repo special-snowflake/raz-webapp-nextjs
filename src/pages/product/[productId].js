@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,6 +23,7 @@ import LoadingBox from "src/common/components/LoadingBox";
 function DetailProduct(props) {
   const router = useRouter();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.userData);
   const [counter, setCounter] = useState(1);
   // const [product, setProduct] = useState({});
   const [isNullData, setIsNullData] = useState(false);
@@ -158,6 +159,7 @@ function DetailProduct(props) {
                 <p>{productsMenu.description}</p>
               </div>
             </div>
+            {}
             <div className="d-flex align-items-center">
               <div className={`${styles.counter} d-flex align-items-center`}>
                 <div className="btn btn btn-light" onClick={subCounter}>

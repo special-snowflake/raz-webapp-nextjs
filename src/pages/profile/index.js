@@ -459,16 +459,16 @@ function Profile(props) {
                 }}>
                 <i className='bi bi-lock'></i> Reset Password
               </button>
+              <button
+                className={`mx-2 ${styles['btn-logout']}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log('clicked logout');
+                  setShowLogout(true);
+                }}>
+                <i className='bi bi-box-arrow-right'></i> LOGOUT
+              </button>
             </div>
-            <button
-              className={styles['btn-logout']}
-              onClick={(e) => {
-                e.preventDefault();
-                console.log('clicked logout');
-                setShowLogout(true);
-              }}>
-              <i className='bi bi-box-arrow-right'></i> LOGOUT
-            </button>
           </>
         ) : (
           <div className={`mx-auto ${styles['wrapper']} `}>
