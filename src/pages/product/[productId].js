@@ -1,24 +1,26 @@
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import Link from "next/link";
-import Image from "next/image";
-import styles from "src/common/styles/ProductDetail.module.css";
-import sofa from "src/assets/sofa.png";
-import userone from "src/assets/userone.png";
-import usertwo from "src/assets/usertwo.png";
-import userthree from "src/assets/userthree.png";
-import ProductSlider from "src/common/components/ProductSlider";
-import { geProductId } from "src/modules/utils/product";
-import { getRelatedProduct } from "src/modules/utils/product";
-import Footer from "src/common/components/footer";
-import Header from "src/common/components/header";
-import CardRelated from "src/common/components/RelatedProduct";
-import { addProduct } from "src/store/actions/cart";
-import { addToFavorite } from "src/modules/utils/favorite";
-import Relatedcardproduct from "src/common/components/RelatedCardProduct";
-import LoadingBox from "src/common/components/LoadingBox";
+import Head from 'next/head';
+import {useRouter} from 'next/router';
+import {useState, useEffect} from 'react';
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {toast} from 'react-toastify';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from 'src/common/styles/ProductDetail.module.css';
+import sofa from 'src/assets/sofa.png';
+import userone from 'src/assets/userone.png';
+import usertwo from 'src/assets/usertwo.png';
+import userthree from 'src/assets/userthree.png';
+import ProductSlider from 'src/common/components/ProductSlider';
+import {geProductId} from 'src/modules/utils/product';
+import {getRelatedProduct} from 'src/modules/utils/product';
+import Footer from 'src/common/components/footer';
+import Header from 'src/common/components/header';
+import CardRelated from 'src/common/components/RelatedProduct';
+import {addProduct} from 'src/store/actions/cart';
+import {addToFavorite} from 'src/modules/utils/favorite';
+import Relatedcardproduct from 'src/common/components/RelatedCardProduct';
+import LoadingBox from 'src/common/components/LoadingBox';
+import PageTitle from 'src/common/components/PageTitle';
 
 function DetailProduct(props) {
   const router = useRouter();
@@ -28,25 +30,27 @@ function DetailProduct(props) {
   // const [product, setProduct] = useState({});
   const [isNullData, setIsNullData] = useState(false);
   const [relatedProduct, setRelatedProduct] = useState([]);
-  const [productsMenu, setProductsMenu] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [productsMenu, setProductsMenu] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [headerTitle, setHeaderTitle] = useState('Product Detail');
 
   const menu = [
-    "description",
-    "review",
-    "additional informatin",
-    "about brand",
-    "Shipping & delivery",
+    'description',
+    'review',
+    'additional informatin',
+    'about brand',
+    'Shipping & delivery',
   ];
 
   const productId = router.query.productId;
 
   const getRelated = () => {
     setLoading(true);
-    if (Object.keys(router.query).includes("productId"))
+    if (Object.keys(router.query).includes('productId'))
       return getRelatedProduct(productId)
         .then((res) => {
           setRelatedProduct(res.data.data);
+          setIsNullData(false);
         })
         .catch((err) => {
           setIsNullData(true);
@@ -56,13 +60,13 @@ function DetailProduct(props) {
 
   // console.log(props.auth.userData.token);
   const addToFavoriteHandler = () => {
-    addToFavorite(props.auth.userData.token, { idProduct: productsMenu.id })
+    addToFavorite(props.auth.userData.token, {idProduct: productsMenu.id})
       .then((res) => {
-        toast.success("Success add item to favorite");
+        toast.success('Success add item to favorite');
       })
       .catch((err) => {
-        console.log({ ...err });
-        toast.error("Fail add item to favorite.");
+        console.log({...err});
+        toast.error('Fail add item to favorite.');
       });
   };
 
@@ -70,10 +74,12 @@ function DetailProduct(props) {
     setLoading(true);
     // console.log(router);
     // const token = props.token;
-    if (Object.keys(router.query).includes("productId")) {
+    if (Object.keys(router.query).includes('productId')) {
       geProductId(productId)
         .then((res) => {
-          setProductsMenu({ ...res.data.data });
+          setProductsMenu({...res.data.data});
+          setLoading(false);
+          setHeaderTitle(res.data.data.name);
           // console.log(res.data.data);
           // {...}
         })
@@ -92,7 +98,7 @@ function DetailProduct(props) {
   };
 
   const addToCartHandler = () => {
-    const { id, name, images, price } = productsMenu;
+    const {id, name, images, price} = productsMenu;
     const parsedPrice = parseFloat(price);
     dispatch(
       addProduct({
@@ -102,35 +108,42 @@ function DetailProduct(props) {
         price: parsedPrice,
         quantity: counter,
         total: parsedPrice * counter,
-      })
+      }),
     );
-    toast.success("Added to cart", { position: "bottom-left" });
+    toast.success('Added to cart', {position: 'bottom-left'});
   };
 
   return (
     <>
+      <Head>
+        <title>{headerTitle} | RAZ Furniture</title>
+      </Head>
       <Header />
-      {!loading ? (
-        <div className="d-flex justify-content-center">
+      {loading ? (
+        <div className='d-flex justify-content-center'>
+          {/* <PageTitle title='Detail Product' /> */}
           <LoadingBox />
         </div>
       ) : (
         <>
+          {/* <PageTitle
+            title={productsMenu.name}
+          /> */}
           <section className={styles.productMainWrapper}>
             <div>
-              <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <Link href="/" passHref>
-                      <a className={styles["title-page-crumb"]}>Home</a>
+              <nav aria-label='breadcrumb'>
+                <ol className='breadcrumb'>
+                  <li className='breadcrumb-item'>
+                    <Link href='/' passHref>
+                      <a className={styles['title-page-crumb']}>Home</a>
                     </Link>
                   </li>
-                  <li className="breadcrumb-item">
-                    <Link href="/product" passHref>
-                      <a className={styles["title-page-crumb"]}>Product</a>
+                  <li className='breadcrumb-item'>
+                    <Link href='/product' passHref>
+                      <a className={styles['title-page-crumb']}>Product</a>
                     </Link>
                   </li>
-                  <li className="breadcrumb-item active" aria-current="page">
+                  <li className='breadcrumb-item active' aria-current='page'>
                     {productsMenu.name}
                   </li>
                 </ol>
@@ -148,10 +161,10 @@ function DetailProduct(props) {
                 <p className={styles.productPrice}>
                   {productsMenu.price !== null
                     ? `$ ${productsMenu.price}`
-                    : "loading"}
+                    : 'loading'}
                 </p>
                 <p className={styles.productStock}>
-                  <i className="bi bi-check-circle"></i>19 Sold /{" "}
+                  <i className='bi bi-check-circle'></i>19 Sold /{' '}
                   {productsMenu.stock} In Stock
                 </p>
               </div>
@@ -160,31 +173,28 @@ function DetailProduct(props) {
               </div>
             </div>
             {}
-            <div className="d-flex align-items-center">
+            <div className='d-flex align-items-center'>
               <div className={`${styles.counter} d-flex align-items-center`}>
-                <div className="btn btn btn-light" onClick={subCounter}>
+                <div className='btn btn btn-light' onClick={subCounter}>
                   -
                 </div>
                 <div>{counter}</div>
-                <div className="btn btn btn-light" onClick={addCounter}>
+                <div className='btn btn btn-light' onClick={addCounter}>
                   +
                 </div>
               </div>
               <button
                 onClick={addToCartHandler}
-                className={`${styles.productDescButton} btn btn-dark`}
-              >
+                className={`${styles.productDescButton} btn btn-dark`}>
                 Add to Cart
               </button>
               <button
                 onClick={addToFavoriteHandler}
-                className={`${styles.productDescButton} btn btn-dark`}
-              >
-                <i className="bi bi-heart"></i>
+                className={`${styles.productDescButton} btn btn-dark`}>
+                <i className='bi bi-heart'></i>
               </button>
               <button
-                className={`${styles.productDescButton} btn btn-outline-dark`}
-              >
+                className={`${styles.productDescButton} btn btn-outline-dark`}>
                 Add to Wihslist
               </button>
             </div>
@@ -195,37 +205,34 @@ function DetailProduct(props) {
               <p>Product ID: 274</p>
             </div>
             <div
-              className={`${styles.shippingOptions} d-flex align-items-center`}
-            >
+              className={`${styles.shippingOptions} d-flex align-items-center`}>
               <p>
-                <i className="bi bi-truck-flatbed"></i>Delivery and return
+                <i className='bi bi-truck-flatbed'></i>Delivery and return
               </p>
               <p>
-                <i className="bi bi-rulers"></i>Size Guide
+                <i className='bi bi-rulers'></i>Size Guide
               </p>
               <p>
-                <i className="bi bi-geo-alt"></i>Store availability
+                <i className='bi bi-geo-alt'></i>Store availability
               </p>
             </div>
             <div
-              className={`${styles.socialMediaIcon} d-flex align-items-center`}
-            >
+              className={`${styles.socialMediaIcon} d-flex align-items-center`}>
               <div>
-                <i className="bi bi-facebook"></i>
+                <i className='bi bi-facebook'></i>
               </div>
               <div>
-                <i className="bi bi-twitter"></i>
+                <i className='bi bi-twitter'></i>
               </div>
               <div>
-                <i className="bi bi-youtube"></i>
+                <i className='bi bi-youtube'></i>
               </div>
             </div>
 
             {/* desctription components */}
             <section>
               <div
-                className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}
-              >
+                className={`${styles.productDetailNav} d-flex align-items-center justify-content-center`}>
                 {menu.map((productMenu, idx) => (
                   <p key={idx} onClick={() => setProductsMenu(productMenu)}>
                     {productMenu.toLocaleUpperCase()}
@@ -243,14 +250,14 @@ function DetailProduct(props) {
               <section>
                 {/* <h1>THIS IS SECTION DESCRIPTION</h1> */}
                 <div>
-                  {productsMenu === "description" && <Description />}
-                  {productsMenu === "review" && <Review />}
+                  {productsMenu === 'description' && <Description />}
+                  {productsMenu === 'review' && <Review />}
                 </div>
               </section>
             </section>
           </section>
 
-          <CardRelated data={relatedProduct} />
+          {/* <CardRelated data={relatedProduct} /> */}
           <Relatedcardproduct data={relatedProduct} />
         </>
       )}
@@ -262,12 +269,12 @@ function DetailProduct(props) {
 const Description = () => {
   return (
     <>
-      <div className="d-flex align-items-center mx-auto w-75 row">
-        <div className="col-10 col-sm-10 col-md-5 col-lg-5">
+      <div className='d-flex align-items-center mx-auto w-75 row'>
+        <div className='col-10 col-sm-10 col-md-5 col-lg-5'>
           <Image
             src={sofa}
             // className={styles.imageStarter}
-            alt="register"
+            alt='register'
             width={400}
             height={450}
             // layout="fill"
@@ -276,8 +283,7 @@ const Description = () => {
           />
         </div>
         <div
-          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}
-        >
+          className={`${styles.productDescriptionSection} col-10 col-sm-10 col-md-6 col-lg-6`}>
           <div className={styles.productDescriptionSectionP}>
             <p>
               Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at
@@ -319,15 +325,14 @@ const Review = () => {
         {/* <h1>THIS IS SECTION REVIEW </h1> */}
         {/* multiple comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
-        >
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
           {/* parent comment */}
           <div>
-            <div className="d-flex align-items-center">
+            <div className='d-flex align-items-center'>
               <div className={styles.userReviewImage}>
                 <Image
                   src={userone}
-                  alt="user"
+                  alt='user'
                   width={75}
                   height={75}
                   // layout="fill"
@@ -341,7 +346,7 @@ const Review = () => {
                   Customer support has been excellent and answered every
                   question we've thrown at them with 12 hours.”`}
                 </p>
-                <div className="d-flex align-items-center">
+                <div className='d-flex align-items-center'>
                   <p className={styles.commentTime}>
                     35 mins ago, 15 November 2019
                   </p>
@@ -353,16 +358,16 @@ const Review = () => {
             </div>
           </div>
           {/* reply commenet card */}
-          <div className="d-flex align-items-center">
-            <div className="w-25"></div>
+          <div className='d-flex align-items-center'>
+            <div className='w-25'></div>
 
             <div>
-              <div className="d-flex align-items-center">
-                <i className="bi bi-align-end"></i>
+              <div className='d-flex align-items-center'>
+                <i className='bi bi-align-end'></i>
                 <div className={styles.userReviewImage}>
                   <Image
                     src={usertwo}
-                    alt="user"
+                    alt='user'
                     width={75}
                     height={75}
                     // layout="fill"
@@ -376,7 +381,7 @@ const Review = () => {
                   Customer support has been excellent and answered every
                   question we've thrown at them with 12 hours.”`}
                   </p>
-                  <div className="d-flex align-items-center">
+                  <div className='d-flex align-items-center'>
                     <p className={styles.commentTime}>
                       35 mins ago, 15 November 2019
                     </p>
@@ -391,14 +396,13 @@ const Review = () => {
         </div>
         {/* single comment */}
         <div
-          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}
-        >
+          className={`${styles.cardReviewComment} w-75 mx-auto col-10 col-sm-10`}>
           <div>
-            <div className="d-flex align-items-center">
+            <div className='d-flex align-items-center'>
               <div className={styles.userReviewImage}>
                 <Image
                   src={userthree}
-                  alt="user"
+                  alt='user'
                   width={75}
                   height={75}
                   // layout="fill"
@@ -412,7 +416,7 @@ const Review = () => {
                   Customer support has been excellent and answered every
                   question we've thrown at them with 12 hours.”`}
                 </p>
-                <div className="d-flex align-items-center">
+                <div className='d-flex align-items-center'>
                   <p className={styles.commentTime}>
                     35 mins ago, 15 November 2019
                   </p>
@@ -427,37 +431,36 @@ const Review = () => {
       </section>
 
       {/* leave comment section */}
-      <section className="w-75 mx-auto my-5">
+      <section className='w-75 mx-auto my-5'>
         <p className={styles.productTitle}>Leave A Comment</p>
         <p className={styles.productRate}>
           Your email address will not be published. Required fields are marked *
         </p>
         <form>
-          <div className="row my-3">
-            <div className="form-group col-sm-4">
-              <input type="text" className="form-control" placeholder="Name*" />
+          <div className='row my-3'>
+            <div className='form-group col-sm-4'>
+              <input type='text' className='form-control' placeholder='Name*' />
             </div>
-            <div className="form-group col-sm-4">
+            <div className='form-group col-sm-4'>
               <input
-                type="email"
-                className="form-control"
-                placeholder="Email*"
+                type='email'
+                className='form-control'
+                placeholder='Email*'
               />
             </div>
-            <div className="form-group col-sm-4">
+            <div className='form-group col-sm-4'>
               <input
-                type="text"
-                className="form-control"
-                placeholder="Website*"
+                type='text'
+                className='form-control'
+                placeholder='Website*'
               />
             </div>
           </div>
-          <div className="form-group my-3">
+          <div className='form-group my-3'>
             <textarea
-              className="form-control"
-              rows="3"
-              placeholder="Your Comment"
-            ></textarea>
+              className='form-control'
+              rows='3'
+              placeholder='Your Comment'></textarea>
           </div>
           <button className={`${styles.productDescButton} btn btn-dark`}>
             Send

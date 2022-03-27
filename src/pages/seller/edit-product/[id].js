@@ -76,10 +76,18 @@ function EditProduct() {
         // console.log('inclueds:', arrCategory.includes(el.category), arrCategory);
         console.log('elements', element, el, el.category === element);
         if (el.category === element) {
-          const arr = categoryChecked;
-          if (!category.includes(el.id)) {
+          console.log(
+            'includes, ',
+            categoryChecked.includes(el.id),
+            categoryChecked,
+            element.toString(),
+          );
+          const val = el.id.toString();
+          if (!categoryChecked.includes(val)) {
+            const arr = categoryChecked;
             // const arr = [...categoryChecked, el.id];
-            arr.push(el.id);
+            console.log('val to input', val);
+            arr.push(val);
             setCategoryChecked(arr);
           }
         }
@@ -310,12 +318,14 @@ function EditProduct() {
                   <textarea
                     name='description'
                     id='description'
-                    defaultValue={dataItem.description}
+                    // defaultValue={}
                     cols='30'
                     rows='10'
                     maxLength={255}
                     placeholder='Description Product'
-                    className={`${styles.textDescription} mb-5`}></textarea>
+                    className={`${styles.textDescription} mb-5`}>
+                    {dataItem.description}
+                  </textarea>
                   <p className={styles.title}>Item Details</p>
                   <input
                     type='number'

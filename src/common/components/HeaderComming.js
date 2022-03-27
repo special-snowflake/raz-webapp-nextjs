@@ -1,4 +1,4 @@
-import styles from "src/common/styles/Header.module.css";
+import styles from "src/common/styles/HeaderCommingSoon.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -55,7 +55,7 @@ function Header() {
   };
 
   useEffect(() => {
-    user.token && user.roles == 2 &&
+    user.token &&
       getUserFavorite(user.token, 1)
         .then((res) => {
           setFavoriteCounter(res.data.meta.totalData);
@@ -324,13 +324,13 @@ function MenuLogin({ show, handleClickedLogout, user }) {
         </Link>
       </li>
       <li>
-        <span
+        <p
           onClick={() => {
             handleClickedLogout();
           }}
           className={styles["tag-a-menu"]}>
           Logout
-        </span>
+        </p>
       </li>
     </ul>
   );

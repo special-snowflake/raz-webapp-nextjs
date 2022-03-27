@@ -1,41 +1,67 @@
 .title {
-  font-family: Arimo;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 41px;
-  color: #1a1a1a;
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 41px;
+    color: #1a1a1a;
+}
+
+.cardwrapperloop {
+    width: 100%;
 }
 
 .wrapper-card {
-  width: 82% !important;
-  height: 370px !important;
-  /* border: 1px solid red; */
-  box-sizing: border-box;
+    width: 85%;
+    height: 400px;
+    margin: auto;
+    /* border: 1px solid red; */
+    overflow-y: hidden;
+    /* Hide horizontal scrollbar */
+    /* overflow-x: scroll; */
+    /* margin: 4px, 4px; */
+    padding: 0.5rem 1rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
 }
 
 .card {
-  /* border: 1px solid black !important; */
-  height: 350px;
-  /* margin-right: 40px; */
-  /* width: 100px !important; */
+    /* border: 1px solid black ; */
+    height: auto;
+    width: auto;
+    margin-left: 30px;
+    /* margin-right: 40px; */
+    /* width: 100px !important; */
 }
 
 .wrapper-text {
-  /* border: 1px solid black; */
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /* width: max-content; */
+    /* border: 1px solid black; */
+    height: 50px;
+    display: flex;
+    /* width: 100px; */
+    flex-direction: column;
+    justify-content: center;
+    /* width: max-content; */
 }
 
-.wrapper-text > p {
-  font-family: Arimo;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 11px;
-  color: #3e3e3e;
-  margin: 0;
+.txtb {
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 5px;
+    color: #3e3e3e;
+    margin: 5px;
+}
+
+.txta {
+    /* line-height: 0.5em; */
+    /* height: 0.5em; */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 170px;
+    /* margin-left: 100px; */
+    padding: 0;
 }
