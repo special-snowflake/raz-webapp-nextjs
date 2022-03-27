@@ -469,7 +469,7 @@ function Profile(props) {
                 <i className='bi bi-box-arrow-right'></i> LOGOUT
               </button>
             </div>
-            <button
+            {/* <button
               className={styles["btn-logout"]}
               onClick={(e) => {
                 e.preventDefault();
@@ -477,7 +477,7 @@ function Profile(props) {
                 setShowLogout(true);
               }}>
               <i className="bi bi-box-arrow-right"></i> LOGOUT
-            </button>
+            </button> */}
           </>
         ) : (
           <div className="d-flex justify-content-center">
