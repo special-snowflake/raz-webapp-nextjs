@@ -48,7 +48,7 @@ function Login(props) {
 
     if (props.auth.isFulfilled === true) {
       router.push("/");
-      return toast.success("success");
+      return toast.success("Login success");
     }
     if (props.auth.isRejected === true) {
       toast.error("Wrong email/password!");

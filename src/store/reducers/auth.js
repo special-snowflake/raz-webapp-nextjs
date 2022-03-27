@@ -51,6 +51,11 @@ const authReducer = (prevState = initialState, action) => {
         err: null,
       };
 
+    case authLogout:
+      return {
+        ...initialState,
+      };
+
     case authLogout.concat('_', Fulfilled):
       return {
         ...initialState,
