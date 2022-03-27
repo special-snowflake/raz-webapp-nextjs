@@ -61,7 +61,8 @@ function Product(props) {
         {products.length > 0 && !loading ? (
           products.map((product, id) => (
             <CardProduct
-              key={id}
+              // key={id}
+              key={`product-${product.id}`}
               id={product.id}
               name={product.name}
               price={product.price}
