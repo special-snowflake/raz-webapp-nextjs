@@ -20,7 +20,7 @@ For Deployment frontend we're using vercel and out related project for server si
 Clone this repository by run the following code:
 
 ```
-$ git clone https://github.com/okidwijaya/raz-app
+$ git clone https://github.com/anshoriacc/raz-webapp-nextjs
 ```
 ## 2. Go to directory
 
