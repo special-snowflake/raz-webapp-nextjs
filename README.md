@@ -1,55 +1,52 @@
 
-# Raz e-commerce app
+# Raz App Frontend
 
 Raz is web app that we build using next js and express js.
 Raz is great way to cut costs in the long run as you will be offering your products online. This will create an opportunity for your customers to buy your products at any location and at any time-increasing your sales significantly
-For Deployment frontend we're using vercel and for backend we're using heroku
-
-Backend: https://raz-garlic.herokuapp.com
-
-## Screenshots
-
-![App Screenshot](https://github.com/okidwijaya/coffee-good-meals/src/assets/webcap.jpeg)
+For Deployment frontend we're using vercel and out related project for server side [project](##Related) 
 
 
-## Related Project
+![Raz](https://drive.google.com/uc?export=view&id=1FcgncPq7HGnaEXO0tmrE6r2ZykxhtSF-)
 
-GitHub - okidwijaya/raz-app
-https://github.com/okidwijaya/raz-app
+[![react-router-dom](https://img.shields.io/npm/v/react-router-dom?label=react-router-dom)](https://www.npmjs.com/package/react-router-dom)
+[![axios](https://img.shields.io/npm/v/axios?label=axios)](https://www.npmjs.com/package/axios)
+[![chart.js](https://img.shields.io/npm/v/chart.js?label=chart.js)](https://www.npmjs.com/package/chart.js)
+[![redux](https://img.shields.io/npm/v/redux?label=redux)](https://www.npmjs.com/package/redux)
 
+# Installation
 
-## Installation
+## 1. Clone this repository
 
-Install my-project with npm
+Clone this repository by run the following code:
 
-```bash
-  npm install my-project
-  cd my-project
+```
+$ git clone https://github.com/anshoriacc/raz-webapp-nextjs
+```
+## 2. Go to directory
+
+```
+$ cd raz-app
 ```
 
-## Getting Started
+## 3. Install dependency packages
 
-First, run the development server:
+Install dependency packages by run the following code inside project folder:
 
-```bash
-npm run dev
-# or
-yarn dev
+```
+$ npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-    
-## Features
+## Deploy
 
-- CRUD data transaction, user and product
-    - create transaction an
-    - create and update user
-    - forgot password
-    - update password
-    - get product list
-    - manage product -- update and delete
+[Raz App - Vercel](https://raz-garlic.vercel.app/)
 
+## Screenshot
 
+<div align="center">
+<img width="500" src="https://drive.google.com/uc?export=view&id=1JGGu6ursmkqwlLVFCvNh-Bi3dR34p5Qy" alt="Home page">
+
+<img width="300" src="https://drive.google.com/uc?export=view&id=1utTXOmKdl3c54jpnxFMIDyPr5ctcAiDW" alt="page">
+</div>
 
 ## Other Common Github Profile Sections
 👩‍💻 we're currently working on...
@@ -77,12 +74,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Here are some related projects
 
-[click here - README](https://github.com/anshoriacc/raz-webapp-nextjs)
-
-Frontend: GitHub https://github.com/anshoriacc/raz-webapp-nextjs
-
-
-## Feedback
-
-If you have any feedback, please reach out to us at okidwijaya@gmail.com
+[Raz Backend](https://github.com/okidwijaya/raz-app)
 
